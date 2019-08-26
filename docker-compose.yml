@@ -1,0 +1,61 @@
+version: '3.7'
+services:
+  laravel_nginx:
+    build: ./docker/nginx
+    container_name: laravel_nginx
+    ports:
+      - "89:80"
+    volumes:
+      - ./docker/nginx/conf:/etc/nginx/conf.d
+      - .:/var/www/html
+      - ./docker/nginx/log/:/var/log/nginx
+      - /tmp:/tmp
+    depends_on:
+      - laravel_php
+    networks:
+      - laravel-net
+
+  laravel_php:
+    build: ./docker/php
+    container_name: laravel_php
+    volumes:
+      - .:/var/www/html
+      - /tmp:/tmp
+      - ~/.composer:/var/www/.composer
+    depends_on:
+      - laravel_mysql
+    networks:
+      - laravel-net
+
+  laravel_mysql:
+    image: mysql:5.7
+    container_name: laravel_mysql
+    ports:
+      - "33069:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    volumes:
+      - laravel_mysql_data:/var/lib/mysql
+    networks:
+      - laravel-net
+
+  laravel_pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: laravel_pma
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    ports:
+      - 8089:80
+    volumes:
+      - /sessions
+    networks:
+      - laravel-net
+
+networks:
+  laravel-net:
+volumes:
+  laravel_mysql_data:
