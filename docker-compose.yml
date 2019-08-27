@@ -22,6 +22,9 @@ services:
       - .:/var/www/html
       - /tmp:/tmp
       - ~/.composer:/var/www/.composer
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=laravel_mysql"
     depends_on:
       - laravel_mysql
     networks:
@@ -49,7 +52,7 @@ services:
       - PMA_ARBITRARY=1
     restart: always
     ports:
-      - 8089:80
+      - "8089:80"
     volumes:
       - /sessions
     networks:
