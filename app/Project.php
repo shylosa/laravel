@@ -39,7 +39,7 @@ class Project extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [
