@@ -31,3 +31,15 @@ memory:
 perm:
 	sudo chgrp -R www-data storage bootstrap/cache
 	sudo chmod -R ug+rwx storage bootstrap/cache
+
+clear:
+	php artisan route:clear
+	php artisan config:clear
+	php artisan cache:clear
+	composer dump-autoload
+
+up:
+	docker-compose up -d
+
+stop:
+	docker-compose stop

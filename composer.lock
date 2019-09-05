@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06c3c6ec5b91d292d786fc46c9118a0a",
+    "content-hash": "56245e55854dd468ec4f4b93fec3c21b",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -595,6 +595,59 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "jeroennoten/laravel-adminlte",
+            "version": "v1.27.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeroennoten/Laravel-AdminLTE.git",
+                "reference": "879132b6029eab47c432ecd235323b532e54f83c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/879132b6029eab47c432ecd235323b532e54f83c",
+                "reference": "879132b6029eab47c432ecd235323b532e54f83c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|~6.0.0",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JeroenNoten\\LaravelAdminLte\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JeroenNoten\\LaravelAdminLte\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen Noten",
+                    "email": "jeroennoten@me.com"
+                }
+            ],
+            "description": "Easy AdminLTE integration with Laravel",
+            "keywords": [
+                "AdminLTE",
+                "admin",
+                "administrator",
+                "laravel"
+            ],
+            "time": "2019-08-29T10:14:18+00:00"
         },
         {
             "name": "laravel/framework",
@@ -3687,16 +3740,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.4.8",
+            "version": "1.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "8992921a199e9632cb3da76709aff1d53431259a"
+                "reference": "b83c91fc70a028c4715854bb0b7e708daac3c20c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/8992921a199e9632cb3da76709aff1d53431259a",
-                "reference": "8992921a199e9632cb3da76709aff1d53431259a",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/b83c91fc70a028c4715854bb0b7e708daac3c20c",
+                "reference": "b83c91fc70a028c4715854bb0b7e708daac3c20c",
                 "shasum": ""
             },
             "require": {
@@ -3751,7 +3804,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-04T10:50:24+00:00"
+            "time": "2019-09-05T14:31:41+00:00"
         },
         {
             "name": "facade/ignition-contracts",
