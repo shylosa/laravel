@@ -16,7 +16,7 @@ class UsersController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index()
     {
         $users = User::all();
         return view('admin.users.index', ['users'   =>  $users]);
@@ -27,7 +27,7 @@ class UsersController extends Controller
      *
      * @return Response
      */
-    public function create(): Response
+    public function create()
     {
         return view('admin.users.create');
     }
@@ -39,7 +39,7 @@ class UsersController extends Controller
      * @return Response
      * @throws ValidationException
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name'  =>  'required',

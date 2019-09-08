@@ -65,11 +65,41 @@ class User extends Authenticatable
     public function remove(): void
     {
         try {
+            $this->removeAvatar();
             $this->delete();
         } catch (\Exception $e) {
         }
     }
 
+    public function uploadAvatar($image)
+    {
+        if($image == null) { return; }
+
+        $this->removeAvatar();
+
+        $filename = str_random(10) . '.' . $image->extension();
+        $image->storeAs('uploads', $filename);
+        $this->avatar = $filename;
+        $this->save();
+    }
+
+    public function removeAvatar()
+    {
+        if($this->avatar != null)
+        {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+    }
+
+    public function getImage()
+    {
+        if($this->avatar == null)
+        {
+            return '/img/no-image.png';
+        }
+
+        return '/uploads/' . $this->avatar;
+    }
     public function makeAdmin(): void
     {
         $this->is_admin = 1;
@@ -91,4 +121,6 @@ class User extends Authenticatable
 
         $this->makeAdmin();
     }
+
+
 }

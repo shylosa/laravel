@@ -35,6 +35,8 @@ fabric.properties
 vendor/
 node_modules/
 npm-debug.log
+/public/images/
+/public/img/
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -53,3 +55,4 @@ Homestead.json
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
 /docker/nginx/log/
+

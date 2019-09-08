@@ -36,7 +36,6 @@ clear:
 	php artisan route:clear
 	php artisan config:clear
 	php artisan cache:clear
-	composer dump-autoload
 
 up:
 	docker-compose up -d

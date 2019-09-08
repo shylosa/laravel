@@ -18,7 +18,6 @@
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
       <div class="box">
             <div class="box-header">
@@ -27,30 +26,39 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="form-group">
-                <a href="{{route('subscribers.create')}}" class="btn btn-success">Добавить</a>
+                <a href="{{route('posts.create')}}" class="btn btn-success">Добавить</a>
               </div>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Email</th>
+                  <th>Название</th>
+                  <th>Категория</th>
+                  <th>Теги</th>
+                  <th>Картинка</th>
                   <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($subs as $subscriber)
+                @foreach($projects as $project)
                 <tr>
-                  <td>{{$subscriber->id}}</td>
-                  <td>{{$subscriber->email}}
+                  <td>{{$project->id}}</td>
+                  <td>{{$project->title}}</td>
+                  <td>{{$project->getCategoryTitle()}}</td>
+                  <td>{{$project->getTagsTitles()}}</td>
+                  <td>
+                    <img src="{{$project->getImage()}}" alt="" width="100">
                   </td>
                   <td>
-                   {{Form::open(['route'=>['subscribers.destroy', $subscriber->id], 'method'=>'delete'])}}
+                  <a href="{{route('projects', $project->id)}}" class="fa fa-pencil"></a> 
+
+                  {{Form::open(['route'=>['posts.destroy', $project->id], 'method'=>'delete'])}}
 	                  <button onclick="return confirm('are you sure?')" type="submit" class="delete">
 	                   <i class="fa fa-remove"></i>
 	                  </button>
 
 	                   {{Form::close()}}
-                   </td>
+                  </td>
                 </tr>
                 @endforeach
                 </tfoot>
@@ -59,7 +67,6 @@
             <!-- /.box-body -->
           </div>
       <!-- /.box -->
-
     </section>
     <!-- /.content -->
   </div>
