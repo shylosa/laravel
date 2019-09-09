@@ -56,3 +56,5 @@ Homestead.json
 .rocketeer/
 /docker/nginx/log/
 
+/public/uploads/
+/.phpunit.result.cache

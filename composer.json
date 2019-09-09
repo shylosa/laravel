@@ -11,6 +11,7 @@
         "php": "^7.2",
         "ext-pdo": "*",
         "cviebrock/eloquent-sluggable": "^6.0",
+        "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "jeroennoten/laravel-adminlte": "^1.27",
         "laravel/framework": "^6.0",

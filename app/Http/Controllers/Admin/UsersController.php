@@ -19,7 +19,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index', ['users'   =>  $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     /**
@@ -50,6 +50,7 @@ class UsersController extends Controller
 
         $user = User::add($request->all());
         $user->generatePassword($request->get('password'));
+        $user->uploadAvatar($request->file('avatar'));
 
         return redirect()->route('users.index');
     }
@@ -60,7 +61,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id): Response
+    public function edit($id)
     {
         $user = User::find($id);
         return view('admin.users.edit', compact('user'));
@@ -74,7 +75,7 @@ class UsersController extends Controller
      * @return Response
      * @throws ValidationException
      */
-    public function update(Request $request, $id): Response
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
 
@@ -90,6 +91,7 @@ class UsersController extends Controller
 
         $user->edit($request->all()); //name,email
         $user->generatePassword($request->get('password'));
+        $user->uploadAvatar($request->file('avatar'));
 
         return redirect()->route('users.index');
     }
@@ -100,7 +102,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id): Response
+    public function destroy($id)
     {
         User::find($id)->remove();
 
