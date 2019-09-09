@@ -50,11 +50,10 @@
 	                  </td>
 	                  <td><a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a> 
 	                  {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
-	                  <button onclick="return confirm('are you sure?')" type="submit" class="delete">
-	                   <i class="fa fa-remove"></i>
-	                  </button>
-
-	                   {{Form::close()}}
+                          <button onclick="return confirm('Вы уверены?')" type="submit" class="delete">
+                          <i class="fa fa-remove"></i>
+                          </button>
+	                  {{Form::close()}}
 	                  </td>
 	                </tr>
                 @endforeach

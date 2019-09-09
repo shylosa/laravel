@@ -7,8 +7,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Добавить пользователя
-        <small>приятные слова..</small>
+        Изменение пользователя
+        <small>Редактирование существующего профиля</small>
       </h1>
     </section>
 
@@ -22,7 +22,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Добавляем пользователя</h3>
+          <h3 class="box-title">Изменяем пользователя</h3>
           @include('admin.errors')
         </div>
         <div class="box-body">
@@ -43,8 +43,14 @@
               <img src="{{$user->getImage()}}" alt="" width="200" class="img-responsive">
               <label for="exampleInputFile">Аватар</label>
               <input type="file" name="avatar" id="exampleInputFile">
-
-              <p class="help-block">Какое-нибудь уведомление о форматах..</p>
+              <p class="help-block">jpeg, jpg, png, bmp</p>
+            </div>
+            <div class="form-group">
+              <!--СДЕЛАТЬ ФУНКЦИЮ УДАЛЕНИЯ АВАТАРА-->
+              {{Form::open(['route'=>['users.index', $user->id], 'method'=>'delete'])}}
+              <button onclick="return confirm('Вы уверены?')" type="submit" class="delete">
+                <i class="fa fa-remove"></i>
+              </button>
             </div>
         </div>
       </div>
