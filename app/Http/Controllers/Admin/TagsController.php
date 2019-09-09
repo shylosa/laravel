@@ -15,7 +15,7 @@ class TagsController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index()
     {
         $tags = Tag::all();
         return view('admin.tags.index', ['tags'=>$tags]);
@@ -26,7 +26,7 @@ class TagsController extends Controller
      *
      * @return Response
      */
-    public function create(): Response
+    public function create()
     {
         return view('admin.tags.create');
     }
@@ -41,7 +41,7 @@ class TagsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' =>  'required' //обязательно
+            'title' =>  'required|unique:tags' //обязательно
         ]);
 
         Tag::create($request->all());
@@ -54,7 +54,7 @@ class TagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id): Response
+    public function edit($id)
     {
         $tag = Tag::find($id);
         return view('admin.tags.edit', ['tag'=>$tag]);
@@ -68,10 +68,10 @@ class TagsController extends Controller
      * @return Response
      * @throws ValidationException
      */
-    public function update(Request $request, $id): Response
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' =>  'required' //обязательно
+            'title' =>  'required|unique:tags' //обязательно
         ]);
 
         $tag = Tag::find($id);
@@ -87,7 +87,7 @@ class TagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id): Response
+    public function destroy($id)
     {
         Tag::find($id)->delete();
         return redirect()->route('tags.index');

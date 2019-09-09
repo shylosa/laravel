@@ -85,7 +85,7 @@ class UsersController extends Controller
                 'email',
                 Rule::unique('users')->ignore($user->id),
             ],
-            'avatar'    =>  'nullable|image'
+            'avatar' => 'nullable|image'
         ]);
 
         $user->edit($request->all()); //name,email
