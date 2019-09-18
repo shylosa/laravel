@@ -19,8 +19,7 @@
 		'method'	=>	'put',
 		'files'	=>	true
 	])}}
-      <!-- Default box -->
-      <div class="box">
+      <!-- Default box -->      <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Изменяем пользователя</h3>
           @include('admin.errors')
@@ -40,23 +39,23 @@
               <input type="password" class="form-control" id="exampleInputEmail1" name="password" placeholder="">
             </div>
             <div class="form-group">
-              <img src="{{$user->getImage()}}" alt="" width="200" class="img-responsive">
-              <label for="exampleInputFile">Аватар</label>
-              <input type="file" name="avatar" id="exampleInputFile">
-              <p class="help-block">jpeg, jpg, png, bmp</p>
+              <img src="{{$user->getImage()}}" alt="/img/no-image.png" width="200" class="img-responsive">
+                <button onclick="return confirm('Вы уверены?')" type="submit" name="update" value="delete-avatar" class="delete align-top" title="Удалить аватар">
+                  <i class="fa fa-remove fa-3x"></i>
+                </button>
             </div>
             <div class="form-group">
-              <!--СДЕЛАТЬ ФУНКЦИЮ УДАЛЕНИЯ АВАТАРА-->
-              {{Form::open(['route'=>['users.index', $user->id], 'method'=>'delete'])}}
-              <button onclick="return confirm('Вы уверены?')" type="submit" class="delete">
-                <i class="fa fa-remove"></i>
-              </button>
+                <div>
+                  <label for="exampleInputFile">Аватар</label>
+                </div>
+                <input type="file" name="avatar" id="exampleInputFile">
+                <p class="help-block">jpeg, jpg, png, bmp</p>
             </div>
+          </div>
         </div>
-      </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <button class="btn btn-warning pull-right">Изменить</button>
+          <button class="btn btn-warning pull-right" name="update" value="update-user">Изменить</button>
         </div>
         <!-- /.box-footer-->
       </div>

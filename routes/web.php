@@ -11,13 +11,6 @@
 |
 */
 
-
-//Route::get('/', 'HomeController@index');
-Route::get('/', static function (){
-    dump('Hello world!');
-    return view('welcome');
-});
-
 Route::get('/project/{slug}', 'HomeController@show')->name('project.show');
 Route::get('/tag/{slug}', 'HomeController@tag')->name('tag.show');
 Route::get('/category/{slug}', 'HomeController@category')->name('category.show');
@@ -48,3 +41,8 @@ Route::get('/about/{id}', function($id){
     return "About: " . $id;
 });
 
+//Route::get('/', 'HomeController@index');
+Route::get('/', static function (){
+    dump('Hello world!');
+    return view('welcome');
+});

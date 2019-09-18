@@ -38,7 +38,7 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
     	$this->validate($request, [
-    		'title'	=>	'required' //обязательно
+    		'title'	=> 'required' //обязательно
     	]);
 
     	$category = Category::find($id);

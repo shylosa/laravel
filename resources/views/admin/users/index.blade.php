@@ -7,7 +7,7 @@
     <section class="content-header">
       <h1>
         Пользователи
-        <small>Управление списком</small>
+        <small>Управление пользователями</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -46,7 +46,7 @@
 	                  <td>{{$user->name}}</td>
 	                  <td>{{$user->email}}</td>
 	                  <td>
-	                    <img src="{{$user->getImage()}}" alt="" class="img-responsive" width="150">
+	                    <img src="{{$user->getImage()}}" alt="" class="img-responsive" width="120">
 	                  </td>
 	                  <td><a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a> 
 	                  {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
@@ -57,8 +57,7 @@
 	                  </td>
 	                </tr>
                 @endforeach
-
-                </tfoot>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->

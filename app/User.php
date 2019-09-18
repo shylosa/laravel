@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+/**
+ * @method static find(int $id)
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -88,12 +91,20 @@ class User extends Authenticatable
         $this->save();
     }
 
-    public function removeAvatar()
+    public function removeAvatar() //Удаление файла аватара с диска
     {
         if($this->avatar !== null)
         {
             Storage::delete('uploads/' . $this->avatar);
         }
+    }
+
+    public function deleteAvatar() //Удаление записи об аватаре из базы
+    {
+        if($this->avatar === null) { return; }
+        $this->removeAvatar();
+        $this->avatar = null;
+        $this->save();
     }
 
     public function getImage()
@@ -105,6 +116,7 @@ class User extends Authenticatable
 
         return '/uploads/' . $this->avatar;
     }
+
     public function makeAdmin(): void
     {
         $this->is_admin = 1;

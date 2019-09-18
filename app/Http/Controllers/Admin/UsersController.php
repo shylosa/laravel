@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\Console\Input\Input;
 
 class UsersController extends Controller
 {
@@ -91,7 +92,16 @@ class UsersController extends Controller
 
         $user->edit($request->all()); //name,email
         $user->generatePassword($request->get('password'));
-        $user->uploadAvatar($request->file('avatar'));
+
+        switch ($request->input('update')) {
+            case 'delete-avatar':
+                $user->deleteAvatar();
+                break;
+
+            case 'update-user':
+                $user->uploadAvatar($request->file('avatar'));
+                break;
+        }
 
         return redirect()->route('users.index');
     }
@@ -108,9 +118,5 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function deleteAvatar($id)
-    {
-        User::find($id)->removeAvatar();
-        return redirect()->route('users.index');
-    }
+
 }

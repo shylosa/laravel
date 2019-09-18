@@ -35,10 +35,16 @@
               <input type="password" name="password" class="form-control" id="exampleInputEmail1" placeholder="">
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">Аватар</label>
+              <div class="card w-50">
+                <img src="/img/no-image.png" alt="/img/no-image.png" class="card-img">
+                </div>
+              </div>
+              <div>
+                <label for="exampleInputFile">Аватар</label>
+              </div>
               <input type="file" name="avatar" id="exampleInputFile">
 
-              <p class="help-block">Какое-нибудь уведомление о форматах..</p>
+              <p class="help-block">jpeg, jpg, png, bmp</p>
             </div>
         </div>
       </div>
