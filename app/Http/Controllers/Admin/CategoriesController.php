@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class CategoriesController extends Controller
 {
@@ -22,7 +23,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
     	$this->validate($request, [
-    		'title'	=>	'required|unique:categories' //обязательно
+    		'title'	=> 'required|unique:categories' //обязательно
     	]);
 
     	Category::create($request->all());
@@ -38,7 +39,9 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
     	$this->validate($request, [
-    		'title'	=> 'required' //обязательно
+    		'title'	=> [
+    		    'required',
+                Rule::unique('categories')->ignore($id),]
     	]);
 
     	$category = Category::find($id);

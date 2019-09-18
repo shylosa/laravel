@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Добавить пользователя
-        <small>приятные слова..</small>
+        Добавление пользователя
+        <small>Управление пользователями</small>
       </h1>
     </section>
 

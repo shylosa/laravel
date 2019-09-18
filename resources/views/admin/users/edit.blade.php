@@ -8,7 +8,7 @@
     <section class="content-header">
       <h1>
         Изменение пользователя
-        <small>Редактирование существующего профиля</small>
+        <small>Управление пользователями</small>
       </h1>
     </section>
 

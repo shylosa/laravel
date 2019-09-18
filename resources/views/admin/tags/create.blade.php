@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Добавить категорию
-        <small>приятные слова..</small>
+        Добавление тега
+        <small>Управление тегами</small>
       </h1>
     </section>
 

@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Изменить тег
-        <small>приятные слова..</small>
+        Изменение тега
+        <small>Управление тегами</small>
       </h1>
     </section>
 
@@ -17,7 +17,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Меняем тег</h3>
+          <h3 class="box-title">Изменяем тег</h3>
           @include('admin.errors')
         </div>
         <div class="box-body">

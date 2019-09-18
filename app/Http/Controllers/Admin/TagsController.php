@@ -6,6 +6,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class TagsController extends Controller
@@ -71,7 +72,9 @@ class TagsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' =>  'required|unique:tags' //обязательно
+            'title' =>  [
+                'required',
+                Rule::unique('tags')->ignore($id),]
         ]);
 
         $tag = Tag::find($id);
