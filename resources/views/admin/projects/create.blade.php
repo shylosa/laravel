@@ -6,21 +6,21 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Добавить статью
-        <small>приятные слова..</small>
+        Добавление проекта
+        <small>Управление проектами</small>
       </h1>
     </section>
 
     <!-- Main content -->
     <section class="content">
 	{{Form::open([
-		'route'	=> 'projects',
-		'files'	=>	true
+		'route' => 'projects.store',
+		'files' => true
 	])}}
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Добавляем статью</h3>
+          <h3 class="box-title">Добавляем проект</h3>
           @include('admin.errors')
         </div>
         <div class="box-body">
@@ -31,11 +31,13 @@
             </div>
             
             <div class="form-group">
-              <label for="exampleInputFile">Лицевая картинка</label>
-              <input type="file" id="exampleInputFile" name="image">
-
-              <p class="help-block">Какое-нибудь уведомление о форматах..</p>
+              <div>
+                <label for="exampleInputFile">Лицевая картинка</label>
+              </div>
+              <input type="file" id="exampleInputFile" name="main_image">
+              <p class="help-block">jpeg, jpg, png, bmp</p>
             </div>
+
             <div class="form-group">
               <label>Категория</label>
               {{Form::select('category_id', 
@@ -44,6 +46,7 @@
               	['class' => 'form-control select2'])
               }}
             </div>
+
             <div class="form-group">
               <label>Теги</label>
               {{Form::select('tags[]', 
@@ -55,12 +58,11 @@
             <!-- Date -->
             <div class="form-group">
               <label>Дата:</label>
-
               <div class="input-group date">
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" class="form-control pull-right" id="datepicker" name="date" value="{{old('date')}}">
+                <input type="text" class="form-control pull-right" id="datepicker1" name="date" value="{{old('date')}}">
               </div>
               <!-- /.input group -->
             </div>
@@ -68,7 +70,7 @@
             <!-- checkbox -->
             <div class="form-group">
               <label>
-                <input type="checkbox" class="minimal" name="is_featured">
+                <input type="checkbox" class="minimal" name="is_popular">
               </label>
               <label>
                 Рекомендовать
@@ -88,13 +90,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="exampleInputEmail1">Описание</label>
-              <textarea name="description" id="" cols="30" rows="10" class="form-control" >{{old('description')}}</textarea>
-          </div>
-        </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Полный текст</label>
-              <textarea name="content" id="" cols="30" rows="10" class="form-control" ></textarea>
+              <textarea name="description" id="" cols="30" rows="8" class="form-control" >{{old('description')}}</textarea>
           </div>
         </div>
       </div>

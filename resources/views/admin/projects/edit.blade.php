@@ -6,22 +6,22 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Изменить статью
-        <small>приятные слова..</small>
+        Изменение проекта
+        <small>Управление проектами</small>
       </h1>
     </section>
 
     <!-- Main content -->
     <section class="content">
 	{{Form::open([
-		'route'	=>	['posts.update', $project->id],
+		'route'	=>	['projects.update', $project->id],
 		'files'	=>	true,
 		'method'	=>	'put'
 	])}}
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Обновляем статью</h3>
+          <h3 class="box-title">Изменяем проект</h3>
           @include('admin.errors')
         </div>
         <div class="box-body">
@@ -32,11 +32,16 @@
             </div>
             
             <div class="form-group">
-              <img src="{{$project->getImage()}}" alt="" class="img-responsive" width="200">
-              <label for="exampleInputFile">Лицевая картинка</label>
+              <div>
+                <label for="exampleInputFile">Лицевая картинка</label>
+              </div>
+              <div>
+                <img src="{{$project->getImage()}}" alt="" class="img-responsive" width="200">
+              </div>
+
               <input type="file" id="exampleInputFile" name="image">
 
-              <p class="help-block">Какое-нибудь уведомление о форматах..</p>
+              <p class="help-block">jpeg, jpg, png, bmp</p>
             </div>
             <div class="form-group">
               <label>Категория</label>
@@ -91,13 +96,6 @@
               <label for="exampleInputEmail1">Описание</label>
               <textarea name="description" id="" cols="30" rows="10" class="form-control" >{{$project->description}}</textarea>
           </div>
-        </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Полный текст</label>
-              <textarea name="content" id="" cols="30" rows="10" class="form-control">{{$project->content}}</textarea>
-          </div>
-        </div>
       </div>
         <!-- /.box-body -->
         <div class="box-footer">

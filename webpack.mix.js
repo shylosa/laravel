@@ -16,7 +16,7 @@ mix.styles([
   'resources/assets/admin/font-awesome/4.5.0/css/font-awesome.min.css',
   'resources/assets/admin/ionicons/2.0.1/css/ionicons.min.css',
   'resources/assets/admin/plugins/iCheck/minimal/_all.css',
-  'resources/assets/admin/plugins/datepicker/datepicker3.css',
+  'resources/assets/admin/plugins/datepicker/bootstrap-datepicker.css',
   'resources/assets/admin/plugins/select2/select2.min.css',
   'resources/assets/admin/plugins/datatables/dataTables.bootstrap.css',
   'resources/assets/admin/dist/css/AdminLTE.min.css',
@@ -24,7 +24,7 @@ mix.styles([
 ], 'public/css/admin.css');
 
 mix.scripts([
-  'resources/assets/admin/plugins/jQuery/jquery-2.2.3.min.js',
+  'resources/assets/admin/plugins/jQuery/jquery-3.4.1.min.js',
   'resources/assets/admin/bootstrap/js/bootstrap.min.js',
   'resources/assets/admin/plugins/select2/select2.full.min.js',
   'resources/assets/admin/plugins/datepicker/bootstrap-datepicker.js',
@@ -35,7 +35,8 @@ mix.scripts([
   'resources/assets/admin/plugins/iCheck/icheck.min.js',
   'resources/assets/admin/dist/js/app.min.js',
   'resources/assets/admin/dist/js/demo.js',
-  'resources/assets/admin/dist/js/scripts.js'
+  'resources/assets/admin/dist/js/scripts.js',
+  'resources/assets/admin/plugins/popper/popper.min.js'
 ], 'public/js/admin.js');
 
 mix.copy('resources/assets/admin/bootstrap/fonts', 'public/fonts');

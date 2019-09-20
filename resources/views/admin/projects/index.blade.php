@@ -6,8 +6,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        Проекты
+        <small>Управление проектами</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -21,12 +21,12 @@
       <!-- Default box -->
       <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Листинг сущности</h3>
+              <h3 class="box-title">Список проектов</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="form-group">
-                <a href="{{route('posts.create')}}" class="btn btn-success">Добавить</a>
+                <a href="{{route('projects.create')}}" class="btn btn-success">Добавить</a>
               </div>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -35,33 +35,34 @@
                   <th>Название</th>
                   <th>Категория</th>
                   <th>Теги</th>
-                  <th>Картинка</th>
+                  <th>Изображения</th>
                   <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($projects as $project)
-                <tr>
-                  <td>{{$project->id}}</td>
-                  <td>{{$project->title}}</td>
-                  <td>{{$project->getCategoryTitle()}}</td>
-                  <td>{{$project->getTagsTitles()}}</td>
-                  <td>
-                    <img src="{{$project->getImage()}}" alt="" width="100">
-                  </td>
-                  <td>
-                  <a href="{{route('projects', $project->id)}}" class="fa fa-pencil"></a> 
+                  <tr>
 
-                  {{Form::open(['route'=>['posts.destroy', $project->id], 'method'=>'delete'])}}
-	                  <button onclick="return confirm('are you sure?')" type="submit" class="delete">
-	                   <i class="fa fa-remove"></i>
-	                  </button>
+                    <td>{{$project->id}}</td>
+                    <td>{{$project->title}}</td>
+                    <td>{{$project->getCategoryTitle()}}</td>
+                    <td>{{$project->getTagsTitles()}}</td>
+                    <td>
+                      <img src="{{$project->getImage()}}" alt="" width="100">
+                    </td>
+                    <td>
+                      
+                      <a href="{{route('projects.edit', $project->id)}}" class="fa fa-pencil"></a>
 
-	                   {{Form::close()}}
-                  </td>
-                </tr>
+                      {{Form::open(['route'=>['projects.destroy', $project->id], 'method'=>'delete'])}}
+                          <button onclick="return confirm('are you sure?')" type="submit" class="delete">
+                           <i class="fa fa-remove"></i>
+                          </button>
+                      {{Form::close()}}
+                    </td>
+                  </tr>
                 @endforeach
-                </tfoot>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->

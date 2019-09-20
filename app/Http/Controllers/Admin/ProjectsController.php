@@ -17,10 +17,10 @@ class ProjectsController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index()
     {
         $projects = Project::all();
-        return view('admin.projects.index', ['posts'=>$projects]);
+        return view('admin.projects.index', ['projects'=>$projects]);
     }
 
     /**
@@ -28,15 +28,12 @@ class ProjectsController extends Controller
      *
      * @return Response
      */
-    public function create(): Response
+    public function create()
     {
         $categories = Category::pluck('title', 'id')->all();
         $tags = Tag::pluck('title', 'id')->all();
 
-        return view('admin.projects.create', compact(
-            'categories',
-            'tags'
-        ));
+        return view('admin.projects.create', compact('categories','tags'));
     }
 
     /**
@@ -46,23 +43,23 @@ class ProjectsController extends Controller
      * @return Response
      * @throws ValidationException
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $this->validate($request, [
             'title' =>'required',
-            'content'   =>  'required',
-            'date'  =>  'required',
-            'image' =>  'nullable|image'
+            'date' =>'required',
+            'main_image' => 'nullable|image'
         ]);
 
-        $post = Project::add($request->all());
-        $post->uploadImage($request->file('image'));
-        $post->setCategory($request->get('category_id'));
-        $post->setTags($request->get('tags'));
-        $post->toggleStatus($request->get('status'));
-        $post->togglePopular($request->get('is_featured'));
+        $projects = Project::add($request->all());
 
-        return redirect()->route('posts.index');
+        $projects->uploadImage($request->file('main_image'));
+        $projects->setCategory($request->get('category_id'));
+        $projects->setTags($request->get('tags'));
+        $projects->toggleStatus($request->get('status'));
+        $projects->togglePopular($request->get('is_popular'));
+
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -71,17 +68,17 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id): Response
+    public function edit($id)
     {
-        $post = Project::find($id);
+        $project = Project::find($id);
         $categories = Category::pluck('title', 'id')->all();
         $tags = Tag::pluck('title', 'id')->all();
-        $selectedTags = $post->tags->pluck('id')->all();
+        $selectedTags = $project->tags->pluck('id')->all();
 
         return view('admin.projects.edit', compact(
             'categories',
             'tags',
-            'post',
+            'project',
             'selectedTags'
         ));
 
@@ -91,27 +88,27 @@ class ProjectsController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
+     * @throws ValidationException
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'title' =>'required',
-            'content'   =>  'required',
             'date'  =>  'required',
             'image' =>  'nullable|image'
         ]);
 
-        $post = Post::find($id);
-        $post->edit($request->all());
-        $post->uploadImage($request->file('image'));
-        $post->setCategory($request->get('category_id'));
-        $post->setTags($request->get('tags'));
-        $post->toggleStatus($request->get('status'));
-        $post->toggleFeatured($request->get('is_featured'));
+        $projects = Project::find($id);
+        $projects->edit($request->all());
+        $projects->uploadImage($request->file('image'));
+        $projects->setCategory($request->get('category_id'));
+        $projects->setTags($request->get('tags'));
+        $projects->toggleStatus($request->get('status'));
+        $projects->togglePopular($request->get('is_popular'));
 
-        return redirect()->route('posts.index');
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -122,7 +119,7 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        Post::find($id)->remove();
-        return redirect()->route('posts.index');
+        Project::find($id)->remove();
+        return redirect()->route('projects.index');
     }
 }

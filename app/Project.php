@@ -5,8 +5,12 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\Input;
 
 class Project extends Model
 {
@@ -15,14 +19,14 @@ class Project extends Model
     public const IS_DRAFT = 0;
     public const IS_PUBLIC = 1;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'description', 'date'];
 
-    public function category(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
             Tag::class,
@@ -32,14 +36,9 @@ class Project extends Model
         );
     }
 
-    public function images(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function images(): HasMany
     {
-        return $this->belongsToMany(
-            Image::class,
-        'project_images',
-        'project_id',
-        'image_id'
-        );
+        return $this->hasMany(Image::class);
     }
 
     /**
@@ -60,7 +59,8 @@ class Project extends Model
     {
         $project = new static();
         $project->fill($fields);
-        $project->user_id = 1;
+        //$project->user_id = 1;
+
         $project->save();
 
         return $project;
@@ -81,33 +81,33 @@ class Project extends Model
         }
     }
 
-    public function removeImage(): void
+    public function removeImage()
     {
-        if($this->image !== null)
+        if($this->main_image !== null)
         {
-            Storage::delete('uploads/' . $this->image);
+            Storage::delete('uploads/' . $this->main_image);
         }
     }
 
-    public function uploadImage($image): void
+    public function uploadImage($image)
     {
         if($image === null) { return; }
 
         $this->removeImage();
-        $filename = Str::random(10) . '.' . $image->Storage::extension();
-        $image->Storage::storeAs('uploads', $filename);
-        $this->image = $filename;
+        $filename = Str::random(10) . '.' . $image->extension();
+        $image->storeAs('uploads', $filename);
+        $this->main_image = $filename;
         $this->save();
     }
 
-    public function getImage(): string
+    public function getImage()
     {
-        if($this->image === null)
+        if($this->main_image === null)
         {
             return '/img/no-image.png';
         }
 
-        return '/uploads/' . $this->image;
+        return '/uploads/' . $this->main_image;
     }
 
     public function setCategory($id): void
