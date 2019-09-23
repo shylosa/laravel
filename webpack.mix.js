@@ -1,5 +1,20 @@
 const mix = require('laravel-mix');
 
+mix.setPublicPath('public')
+
+// This part is Bootstrap 4-friendly
+// The Bootstrap 4-example will also autoload and extract Popper.js
+mix.js('resources/js/app.js', 'js/')
+  .sass('resources/sass/app.scss', 'css/')
+  .autoload({
+    jquery: ['$', 'jQuery', 'jquery', 'window.jQuery'],
+    'node_modules/popper.js/dist/umd/popper.min.js': ['Popper']
+  })
+  .extract(['jquery', 'popper.js', 'bootstrap'])
+  .options({
+    processCssUrls: false
+  });
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -20,12 +35,16 @@ mix.styles([
   'resources/assets/admin/plugins/select2/select2.min.css',
   'resources/assets/admin/plugins/datatables/dataTables.bootstrap.css',
   'resources/assets/admin/dist/css/AdminLTE.min.css',
-  'resources/assets/admin/dist/css/skins/_all-skins.min.css'
+  'resources/assets/admin/dist/css/skins/_all-skins.min.css',
+  'resources/assets/admin/plugins/tempus-dominus/tempusdominus-bootstrap-4.min.css'
 ], 'public/css/admin.css');
 
 mix.scripts([
   'resources/assets/admin/plugins/jQuery/jquery-3.4.1.min.js',
+  'resources/assets/admin/plugins/jquery-migrate/jquery-migrate-3.1.0.min.js',
+  'node_modules/popper.js/dist/umd/popper.min.js',
   'resources/assets/admin/bootstrap/js/bootstrap.min.js',
+  'resources/assets/admin/plugins/moment/moment-with-locales.js',
   'resources/assets/admin/plugins/select2/select2.full.min.js',
   'resources/assets/admin/plugins/datepicker/bootstrap-datepicker.js',
   'resources/assets/admin/plugins/datatables/jquery.dataTables.min.js',
@@ -35,8 +54,10 @@ mix.scripts([
   'resources/assets/admin/plugins/iCheck/icheck.min.js',
   'resources/assets/admin/dist/js/app.min.js',
   'resources/assets/admin/dist/js/demo.js',
-  'resources/assets/admin/dist/js/scripts.js',
-  'resources/assets/admin/plugins/popper/popper.min.js'
+  'resources/assets/admin/plugins/tempus-dominus/tempusdominus-bootstrap-4.min.js',
+  'resources/assets/admin/plugins/ckeditor/ckeditor.js',
+  'resources/assets/admin/plugins/ckfinder/ckfinder.js',
+  'resources/assets/admin/dist/js/scripts.js'
 ], 'public/js/admin.js');
 
 mix.copy('resources/assets/admin/bootstrap/fonts', 'public/fonts');

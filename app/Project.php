@@ -18,6 +18,9 @@ class Project extends Model
 
     public const IS_DRAFT = 0;
     public const IS_PUBLIC = 1;
+    public const IS_STANDART = 0;
+    public const IS_POPULAR = 1;
+
 
     protected $fillable = ['title', 'description', 'date'];
 
@@ -141,6 +144,7 @@ class Project extends Model
         if($value === null)
         {
             $this->setDraft();
+            return;
         }
 
         $this->setPublic();
@@ -148,13 +152,13 @@ class Project extends Model
 
     public function setPopular(): void
     {
-        $this->is_popular = 1;
+        $this->is_popular = self::IS_POPULAR;
         $this->save();
     }
 
     public function setStandart(): void
     {
-        $this->is_popular = 0;
+        $this->is_popular = self::IS_STANDART;
         $this->save();
     }
 
@@ -163,6 +167,7 @@ class Project extends Model
         if($value === null)
         {
             $this->setStandart();
+            return;
         }
 
         $this->setPopular();
@@ -170,13 +175,15 @@ class Project extends Model
 
     public function setDateAttribute($value): void
     {
-        $date = Carbon::createFromFormat('d/m/y', $value)->format('Y-m-d');
-        $this->attributes['date'] = $date;
+        //$date = Carbon::createFromFormat('d/m/y', $value)->format('Y-m-d');
+       $date = $value;
+       $this->attributes['date'] = $date;
     }
 
     public function getDateAttribute($value): string
     {
-        return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/y');
+       // return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/y');
+        return $value;
     }
 
     public function getCategoryTitle()

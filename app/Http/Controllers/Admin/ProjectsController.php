@@ -58,7 +58,7 @@ class ProjectsController extends Controller
         $projects->setTags($request->get('tags'));
         $projects->toggleStatus($request->get('status'));
         $projects->togglePopular($request->get('is_popular'));
-
+        //dd($projects);
         return redirect()->route('projects.index');
     }
 
@@ -119,6 +119,9 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
+        //Удаление записей о тегах из промежуточной таблицы
+        Project::find($id)->tags()->detach();
+        //Удаление записи
         Project::find($id)->remove();
         return redirect()->route('projects.index');
     }

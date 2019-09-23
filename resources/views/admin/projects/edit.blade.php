@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-<!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -13,12 +13,12 @@
 
     <!-- Main content -->
     <section class="content">
-	{{Form::open([
-		'route'	=>	['projects.update', $project->id],
-		'files'	=>	true,
-		'method'	=>	'put'
-	])}}
-      <!-- Default box -->
+    {{Form::open([
+      'route'	=>	['projects.update', $project->id],
+      'files'	=>	true,
+      'method'	=>	'put'
+    ])}}
+    <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Изменяем проект</h3>
@@ -28,9 +28,10 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1">Название</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" value="{{$project->title}}" name="title">
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" value="{{$project->title}}"
+                     name="title">
             </div>
-            
+
             <div class="form-group">
               <div>
                 <label for="exampleInputFile">Лицевая картинка</label>
@@ -67,7 +68,8 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" class="form-control pull-right" id="datepicker" value="{{$project->date}}" name="date">
+                <input type="text" class="form-control pull-right" id="datepicker" value="{{$project->date}}"
+                       name="date">
               </div>
               <!-- /.input group -->
             </div>
@@ -75,7 +77,7 @@
             <!-- checkbox -->
             <div class="form-group">
               <label>
-              {{Form::checkbox('is_featured', '1', $project->is_popular, ['class'=>'minimal'])}}
+                {{Form::checkbox('is_popular', '1', $project->is_popular, ['class'=>'minimal'])}}
               </label>
               <label>
                 Рекомендовать
@@ -94,17 +96,19 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="exampleInputEmail1">Описание</label>
-              <textarea name="description" id="" cols="30" rows="10" class="form-control" >{{$project->description}}</textarea>
+              <textarea name="description" id="" cols="30" rows="10"
+                        class="form-control">{{$project->description}}</textarea>
+            </div>
           </div>
-      </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <button class="btn btn-warning pull-right">Изменить</button>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button class="btn btn-warning pull-right">Изменить</button>
+          </div>
+          <!-- /.box-footer-->
         </div>
-        <!-- /.box-footer-->
+        <!-- /.box -->
       </div>
-      <!-- /.box -->
-	{{Form::close()}}
+      {{Form::close()}}
     </section>
     <!-- /.content -->
   </div>
