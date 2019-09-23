@@ -73,7 +73,7 @@
                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
                 <input type="text" class="form-control datetimepicker-input pull-right"
-                       data-target="#datetimepicker4" name="data"/>
+                       data-target="#datetimepicker4" name="date" value="{{App\Project::getCurrentDate()}}" />
               </div>
             </div>
             <!-- /.input group -->

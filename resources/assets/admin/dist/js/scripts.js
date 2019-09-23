@@ -11,7 +11,7 @@ $(document).ready(function (){
     $('#datetimepicker4').datetimepicker({
       format: 'Y-MM-DD',
       locale: 'ru',
-      defaultDate: moment()
+     /* defaultDate: moment()*/
     });
   });
   //CKEditor

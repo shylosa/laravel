@@ -186,6 +186,11 @@ class Project extends Model
         return $value;
     }
 
+    public static function getCurrentDate():string
+    {
+        return Carbon::now()->toDateString();
+    }
+
     public function getCategoryTitle()
     {
         return ($this->category !== null)

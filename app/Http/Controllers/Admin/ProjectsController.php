@@ -47,7 +47,7 @@ class ProjectsController extends Controller
     {
         $this->validate($request, [
             'title' =>'required',
-            'date' =>'required',
+            'date' =>'required|date_format:Y-m-d',
             'main_image' => 'nullable|image'
         ]);
 
@@ -96,7 +96,7 @@ class ProjectsController extends Controller
     {
         $this->validate($request, [
             'title' =>'required',
-            'date'  =>  'required',
+            'date'  =>  'required|date_format:Y-m-d',
             'image' =>  'nullable|image'
         ]);
 
