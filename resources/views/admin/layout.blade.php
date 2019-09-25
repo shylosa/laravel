@@ -26,13 +26,6 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
-  <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-migrate-3.1.0.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" />
-  -->
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -439,5 +432,7 @@
 <script src="/js/vendor.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/admin.js"></script>
+<script src="/plugins/ckeditor/ckeditor.js"></script>
+<script src="/plugins/ckfinder/ckfinder.js"></script>
 </body>
 </html>

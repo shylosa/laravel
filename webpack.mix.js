@@ -55,8 +55,6 @@ mix.scripts([
   'resources/assets/admin/dist/js/app.min.js',
   'resources/assets/admin/dist/js/demo.js',
   'resources/assets/admin/plugins/tempus-dominus/tempusdominus-bootstrap-4.min.js',
-  'resources/assets/admin/plugins/ckeditor/ckeditor.js',
-  'resources/assets/admin/plugins/ckfinder/ckfinder.js',
   'resources/assets/admin/dist/js/scripts.js'
 ], 'public/js/admin.js');
 
