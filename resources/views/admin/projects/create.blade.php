@@ -4,12 +4,21 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Добавление проекта
-        <small>Управление проектами</small>
-      </h1>
-    </section>
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Проекты</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              {{ Breadcrumbs::render('projects.create') }}
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -20,7 +29,7 @@
     <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Добавляем проект</h3>
+          <h4 class="box-title">Добавляем проект</h4>
           @include('admin.errors')
         </div>
         <div class="box-body">

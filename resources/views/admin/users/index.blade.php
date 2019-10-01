@@ -3,27 +3,28 @@
 @section('content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Пользователи
-        <small>Управление пользователями</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-    </section>
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Пользователи</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                {{ Breadcrumbs::render('users') }}
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
 
       <!-- Default box -->
       <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Список пользователей</h3>
-            </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="form-group">
@@ -48,10 +49,10 @@
 	                  <td>
 	                    <img src="{{$user->getImage()}}" alt="" class="img-responsive" width="120">
 	                  </td>
-	                  <td><a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a> 
+	                  <td><a href="{{route('users.edit', $user->id)}}" class="fas fa-pencil-alt fa-2x" title="Изменить запись"></a>
 	                  {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
                           <button onclick="return confirm('Вы уверены?')" type="submit" class="delete">
-                          <i class="fa fa-remove"></i>
+                          <i class="fas fa-times fa-2x" title="Удалить запись"></i>
                           </button>
 	                  {{Form::close()}}
 	                  </td>
@@ -68,4 +69,4 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-@endsection
+@stop

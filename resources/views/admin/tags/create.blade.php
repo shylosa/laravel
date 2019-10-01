@@ -4,12 +4,21 @@
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Добавление тега
-        <small>Управление тегами</small>
-      </h1>
-    </section>
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Теги</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              {{ Breadcrumbs::render('tags.create') }}
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -18,7 +27,7 @@
       <div class="box">
       {!! Form::open(['route' => 'tags.store']) !!}
         <div class="box-header with-border">
-          <h3 class="box-title">Добавляем тег</h3>
+          <h4 class="box-title">Добавляем тег</h4>
           @include('admin.errors')
         </div>
         <div class="box-body">

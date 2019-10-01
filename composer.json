@@ -10,10 +10,12 @@
     "require": {
         "php": "^7.2",
         "ext-pdo": "*",
+        "almasaeed2010/adminlte": "~3.0",
         "cviebrock/eloquent-sluggable": "^6.0",
+        "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
-        "jeroennoten/laravel-adminlte": "^1.27",
+        "jeroennoten/laravel-adminlte": "^2.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^6.0"
@@ -37,7 +39,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/dusk"
+            ]
         }
     },
     "autoload": {

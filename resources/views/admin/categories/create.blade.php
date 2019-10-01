@@ -1,24 +1,33 @@
 @extends('admin.layout')
 
 @section('content')
-<!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Добавление категории
-        <small>Управление категориями</small>
-      </h1>
-    </section>
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Категории</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              {{ Breadcrumbs::render('categories.create') }}
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
 
       <!-- Default box -->
       <div class="box">
-      {!! Form::open(['route' => 'categories.store']) !!}
+        {!! Form::open(['route' => 'categories.store']) !!}
         <div class="box-header with-border">
-          <h3 class="box-title">Добавляем категорию</h3>
+          <h4 class="box-title">Добавляем категорию</h4>
           @include('admin.errors')
         </div>
         <div class="box-body">
@@ -27,8 +36,8 @@
               <label for="exampleInputEmail1">Название</label>
               <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="title">
             </div>
+          </div>
         </div>
-      </div>
         <!-- /.box-body -->
         <div class="box-footer">
           <button class="btn btn-default">Назад</button>

@@ -1,12 +1,53 @@
- <ul class="sidebar-menu">
-    <li class="header">MAIN NAVIGATION</li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-dashboard"></i> <span>Админ-панель</span>
-      </a>
-    </li>
-    <li><a href="{{route('projects.index')}}"><i class="fa fa-sticky-note-o"></i> <span>Проекты</span></a></li>
-    <li><a href="{{route('categories.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
-    <li><a href="{{route('tags.index')}}"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
-    <li><a href="{{route('users.index')}}"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
-</ul>
+<div class="sidebar">
+  <!-- Sidebar user panel (optional) -->
+  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+    </div>
+    <div class="info">
+      <a href="#" class="d-block">Serhii Shylo</a>
+    </div>
+  </div>
+
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <nav class="mt-2">
+      <li class="nav-header">Навигация</li>
+      <li class="nav-item">
+             <a href="{{route('projects.index')}}" class="nav-link">
+                 <i class="nav-icon fas fa-project-diagram"></i>
+                 <p>
+                     Проекты
+                     <span class="badge badge-info right">2</span>
+                 </p>
+             </a>
+         </li>
+      <li class="nav-item">
+             <a href="{{route('categories.index')}}" class="nav-link">
+                 <i class="nav-icon fas fas fa-list-ul"></i>
+                 <p>
+                     Категории
+                     <span class="badge badge-info right">1</span>
+                 </p>
+             </a>
+         </li>
+      <li class="nav-item">
+             <a href="{{route('tags.index')}}" class="nav-link">
+                 <i class="nav-icon fas fas fa-tags"></i>
+                 <p>
+                     Теги
+                     <span class="badge badge-info right">1</span>
+                 </p>
+             </a>
+         </li>
+      <li class="nav-item">
+             <a href="{{route('users.index')}}" class="nav-link">
+                 <i class="nav-icon fas fas fa-users"></i>
+                 <p>
+                     Пользователи
+                     <span class="badge badge-info right">1</span>
+                 </p>
+             </a>
+         </li>
+    </nav>
+  </ul>
+</div>
