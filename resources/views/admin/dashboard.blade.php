@@ -32,4 +32,4 @@
     </section>
     <!-- /.content -->
   </div>
-@endsection
+@stop

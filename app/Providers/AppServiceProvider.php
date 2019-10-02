@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('admin._sidebar', static function ($view){
+            $view->with('count', \App\AppModel::sidebarCount());
+        });
     }
 }

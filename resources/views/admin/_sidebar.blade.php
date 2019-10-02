@@ -17,7 +17,7 @@
                  <i class="nav-icon fas fa-project-diagram"></i>
                  <p>
                      Проекты
-                     <span class="badge badge-info right">2</span>
+                     <span class="badge badge-info right">{{ $count['projects'] }}</span>
                  </p>
              </a>
          </li>
@@ -26,7 +26,7 @@
                  <i class="nav-icon fas fas fa-list-ul"></i>
                  <p>
                      Категории
-                     <span class="badge badge-info right">1</span>
+                     <span class="badge badge-info right">{{ $count['categories'] }}</span>
                  </p>
              </a>
          </li>
@@ -35,7 +35,7 @@
                  <i class="nav-icon fas fas fa-tags"></i>
                  <p>
                      Теги
-                     <span class="badge badge-info right">1</span>
+                     <span class="badge badge-info right">{{ $count['tags'] }}</span>
                  </p>
              </a>
          </li>
@@ -44,7 +44,7 @@
                  <i class="nav-icon fas fas fa-users"></i>
                  <p>
                      Пользователи
-                     <span class="badge badge-info right">1</span>
+                     <span class="badge badge-info right">{{ $count['users'] }}</span>
                  </p>
              </a>
          </li>

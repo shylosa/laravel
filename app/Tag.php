@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Tag extends Model
+class Tag extends AppModel
 {
     use Sluggable;
 

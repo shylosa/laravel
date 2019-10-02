@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\Input;
 
-class Project extends Model
+class Project extends AppModel
 {
     use Sluggable;
 
