@@ -8,6 +8,7 @@ Breadcrumbs::for('home', static function ($trail) {
 
 // Categories
 Breadcrumbs::for('categories', static function ($trail) {
+    $trail->parent('admin');
     $trail->push('Категории', route('categories.index'));
 });
 
@@ -25,6 +26,7 @@ Breadcrumbs::for('categories.edit', static function ($trail, $category) {
 
 // Projects
 Breadcrumbs::for('projects', static function ($trail) {
+    $trail->parent('admin');
     $trail->push('Проекты', route('projects.index'));
 });
 
@@ -42,6 +44,7 @@ Breadcrumbs::for('projects.edit', static function ($trail, $project) {
 
 // Tags
 Breadcrumbs::for('tags', static function ($trail) {
+    $trail->parent('admin');
     $trail->push('Теги', route('tags.index'));
 });
 
@@ -59,6 +62,7 @@ Breadcrumbs::for('tags.edit', static function ($trail, $tag) {
 
 // Users
 Breadcrumbs::for('users', static function ($trail) {
+    $trail->parent('admin');
     $trail->push('Пользователи', route('users.index'));
 });
 
@@ -72,4 +76,9 @@ Breadcrumbs::for('users.create', static function ($trail) {
 Breadcrumbs::for('users.edit', static function ($trail, $user) {
     $trail->parent('users');
     $trail->push('Изменение пользователя', route('users.edit', ['user' => $user]));
+});
+
+// Admin
+Breadcrumbs::for('admin', static function ($trail) {
+    $trail->push('Админ-панель', route('admin'));
 });

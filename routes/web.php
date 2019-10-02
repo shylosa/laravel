@@ -29,7 +29,7 @@ Route::group(['middleware'=>'guest'], static function(){
 });
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], static function(){
-    Route::get('/', 'DashboardController@index');
+    Route::get('/', 'DashboardController@index')->name('admin');
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
     Route::resource('/users', 'UsersController');

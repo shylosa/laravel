@@ -1,35 +1,61 @@
 @extends('admin.layout')
 
 @section('content')
-<div class="content-wrapper">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Привет! Это админка
-        <small>приятные слова..</small>
-      </h1>
-    </section>
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Админ-панель</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              {{ Breadcrumbs::render('admin') }}
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
 
       <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Главная страница</h3>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Руководство пользования</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
         </div>
-        <div class="box-body">
-          Текст инструкции по пользованию админкой
+        <div class="card-body">
+          <div class="col-md-12">
+            <ul>
+              <li>На боковой панели находятся элементы управления, которые служат для добавления,
+                редактирования и удаления записей в базе данных;
+              </li>
+              <li>Рядом с каждым разделом указано число записей в нём.</li>
+            </ul>
+          </div>
+          <!-- ./col -->
         </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          и здесь есть место для какого-нибудь текста
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Удачной работы!
         </div>
-        <!-- /.box-footer-->
+        <!-- /.card-footer-->
       </div>
-      <!-- /.box -->
+      <!-- /.card -->
 
     </section>
     <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
 @stop

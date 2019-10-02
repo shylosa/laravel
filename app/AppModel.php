@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Doctrine\DBAL\Driver\PDOException;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class AppModel extends Model
@@ -11,10 +12,15 @@ abstract class AppModel extends Model
         $count = ['categories' => null, 'projects' => null, 'tags' => null, 'users' => null];
 
         foreach ($count as $table => $amount) {
-            $count[$table] = \DB::table($table)
-                ->get()
-                ->count();
+            try {
+                $count[$table] = \DB::table($table)
+                    ->get()
+                    ->count();
+            } catch (PDOException $e) {
+                echo 'Подключение не удалось: ' . $e->getMessage();
             }
+
+        }
 
         return $count;
     }

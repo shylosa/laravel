@@ -11,7 +11,11 @@
 
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <nav class="mt-2">
-      <li class="nav-header">Навигация</li>
+      <li class="nav-header">
+        <a href="{{route('admin')}}" class="nav-link">
+          АДМИН-ПАНЕЛЬ
+        </a>
+      </li>
       <li class="nav-item">
              <a href="{{route('projects.index')}}" class="nav-link">
                  <i class="nav-icon fas fa-project-diagram"></i>
