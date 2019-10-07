@@ -1170,7 +1170,7 @@ var renderHeader = function renderHeader(instance, params) {
 
   renderProgressSteps(instance, params); // Icon
 
-  renderIcon(instance, params); // Image
+  renderIcon(instance, params); // Photo
 
   renderImage(instance, params); // Title
 

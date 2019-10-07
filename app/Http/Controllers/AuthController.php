@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class AuthController extends Controller
         $user = User::add($request->all());
         $user->generatePassword($request->get('password'));
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Вы успешно зарегистрировались и теперь можете войти на сайт');;
     }
 
     public function loginForm()

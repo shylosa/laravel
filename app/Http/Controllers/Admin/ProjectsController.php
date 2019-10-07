@@ -48,7 +48,7 @@ class ProjectsController extends Controller
         $this->validate($request, [
             'title' =>'required',
             'date' =>'required|date_format:Y-m-d',
-            'main_image' => 'nullable|image'
+            'main_image' => 'nullable|image|max:8000'
         ]);
 
         $projects = Project::add($request->all());
@@ -97,7 +97,7 @@ class ProjectsController extends Controller
         $this->validate($request, [
             'title' =>'required',
             'date'  =>  'required|date_format:Y-m-d',
-            'image' =>  'nullable|image'
+            'image' =>  'nullable|image|max:8000'
         ]);
 
         $projects = Project::find($id);

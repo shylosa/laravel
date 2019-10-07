@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Image extends AppModel
+class Photo extends AppModel
 {
     //
     public function project(): BelongsTo

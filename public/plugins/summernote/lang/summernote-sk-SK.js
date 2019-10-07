@@ -31,7 +31,7 @@
         maximumFileSize: 'Maximum file size',
         maximumFileSizeError: 'Maximum file size exceeded.',
         url: 'URL obrázku',
-        remove: 'Remove Image',
+        remove: 'Remove Photo',
         original: 'Original',
       },
       video: {

@@ -27,7 +27,7 @@
         dropImage: 'Drop image or Text',
         selectFromFiles: 'Vybrat soubor',
         url: 'URL obrázku',
-        remove: 'Remove Image',
+        remove: 'Remove Photo',
         original: 'Original',
       },
       video: {

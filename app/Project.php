@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use Intervention\Image\Facades\Image;
 use Symfony\Component\Console\Input\Input;
 
 class Project extends AppModel
@@ -41,7 +44,7 @@ class Project extends AppModel
 
     public function images(): HasMany
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Photo::class);
     }
 
     /**
@@ -97,8 +100,11 @@ class Project extends AppModel
         if($image === null) { return; }
 
         $this->removeImage();
-        $filename = Str::random(10) . '.' . $image->extension();
-        $image->storeAs('uploads', $filename);
+        $filename = Str::random(10) . '.' . mb_strtolower($image->getClientOriginalExtension());
+        $image = Image::make($image)->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+        });
+        $image->save('uploads/' . $filename);
         $this->main_image = $filename;
         $this->save();
     }
@@ -213,5 +219,37 @@ class Project extends AppModel
     public function getDate(): string
     {
         return Carbon::createFromFormat('d/m/y', $this->date)->format('F d, Y');
+    }
+
+    public function hasCategory(): bool
+    {
+        return $this->category != null ? true : false;
+    }
+
+    public function hasPrevious()
+    {
+        return self::where('id', '<', $this->id)->max('id');
+    }
+
+    public function getPrevious()
+    {
+        $postID = $this->hasPrevious(); //ID
+        return self::find($postID);
+    }
+
+    public function hasNext()
+    {
+        return self::where('id', '>', $this->id)->min('id');
+    }
+
+    public function getNext()
+    {
+        $postID = $this->hasNext();
+        return self::find($postID);
+    }
+
+    public function related()
+    {
+        return self::all()->except($this->id);
     }
 }

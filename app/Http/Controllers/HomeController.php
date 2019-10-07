@@ -2,28 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Project;
+use App\Tag;
+use App\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        $projects = Project::paginate(2);
+
+        return view('pages.index')->with('projects', $projects);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return Renderable
-     */
-    public function index(): Renderable
+    public function show($slug)
     {
-        return view('home');
+        $project = Project::where('slug', $slug)->firstOrFail();
+
+        return view('pages.show', compact('project'));
+    }
+
+    public function tag($slug)
+    {
+        $tag = Tag::where('slug', $slug)->firstOrFail();
+
+        $projects = $tag->projects()->paginate(2);
+
+        return view('pages.list', ['projects'  =>  $projects]);
+    }
+
+    public function category($slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
+
+        $projects = $category->projects()->paginate(2);
+
+        return view('pages.list', ['projects'  =>  $projects]);
     }
 }
