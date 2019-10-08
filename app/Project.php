@@ -9,6 +9,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -104,7 +105,10 @@ class Project extends AppModel
         $image = Image::make($image)->resize(800, null, function ($constraint) {
                 $constraint->aspectRatio();
         });
-        $image->save('uploads/' . $filename);
+        $path = 'uploads';
+        //Проверка наличия директории и её создание при необходимости
+        $this->checkDirectory($path);
+        $image->save($path . '/' . $filename);
         $this->main_image = $filename;
         $this->save();
     }
@@ -252,4 +256,14 @@ class Project extends AppModel
     {
         return self::all()->except($this->id);
     }
+
+    public function checkDirectory($directory)
+    {
+        $path = public_path() . '/' . $directory;
+
+        if(!File::isDirectory($path)){
+            File::makeDirectory($path, 0777, true, true);
+        }
+    }
+
 }

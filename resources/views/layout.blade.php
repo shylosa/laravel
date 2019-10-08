@@ -48,6 +48,9 @@
         </ul>
 
         <ul class="nav navbar-nav text-uppercase pull-right">
+          @if(Auth::check() && Auth::user()->is_admin)
+            <li><a href="admin">АДМИН-ПАНЕЛЬ</a></li>
+          @endif
           @if(Auth::check())
             <li><a href="/profile">МОЙ ПРОФИЛЬ</a></li>
             <li><a href="/logout">ВЫХОД</a></li>
