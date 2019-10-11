@@ -3,9 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/js/manifest.js": "/js/manifest.js",
     "/js/vendor.js": "/js/vendor.js",
-    "/css/admin.css": "/css/admin.css",
-    "/js/admin.js": "/js/admin.js",
-    "/css/blue.png": "/css/blue.png",
     "/css/front.css": "/css/front.css",
     "/js/front.js": "/js/front.js"
 }

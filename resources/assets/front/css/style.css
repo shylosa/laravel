@@ -355,7 +355,7 @@ a.more-link:hover {
 }
 
 .social-share span a {
-    color: #333;
+    color: #00BFF3;
 }
 
 .social-share-title {
@@ -427,7 +427,7 @@ a.more-link:hover {
 pagination
 ==============*/
 .pagination {
-    display: inline-block;
+    /*display: inline-block;*/
     padding-left: 0;
     margin: 0 0 50px;
     border-radius: 4px;
@@ -853,7 +853,7 @@ footer instragram
 }
 
 .address {
-    padding-top: 20px;
+    padding-top: 10px;
     font-weight: 600;
 
 }
@@ -870,7 +870,7 @@ footer instragram
 }
 
 /*==============
-athuor
+author
 ===================*/
 /* review section */
 #review {

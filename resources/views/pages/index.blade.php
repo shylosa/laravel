@@ -5,8 +5,9 @@
   <div class="main-content">
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
+
           @foreach($projects as $project)
+          <div class="col-md-6">
             <article class="post">
               <div class="post-thumb">
                 <a href="{{route('project.show', $project->slug)}}"><img src="{{$project->getImage()}}" alt=""></a>
@@ -22,29 +23,29 @@
                   @endif
                   <h1 class="entry-title"><a href="{{route('project.show', $project->slug)}}">{{$project->title}}</a></h1>
 
-
                 </header>
                 <div class="entry-content">
                   {!!$project->description!!}
 
                   <div class="btn-continue-reading text-center text-uppercase">
-                    <a href="{{route('project.show', $project->slug)}}" class="more-link">Continue Reading</a>
+                    <a href="{{route('project.show', $project->slug)}}" class="more-link">Подробнее</a>
                   </div>
                 </div>
                 <div class="social-share">
                   <ul class="text-center pull-right">
-                    <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a class="s-instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="s-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a class="s-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a class="s-instagram" href="#"><i class="fab fa-instagram"></i></a></li>
                   </ul>
                 </div>
               </div>
             </article>
+        </div>
           @endforeach
 
           {{$projects->links()}}
-        </div>
-        @include('pages._sidebar')
+
+
       </div>
     </div>
   </div>

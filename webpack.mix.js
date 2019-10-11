@@ -26,7 +26,7 @@ mix.js('resources/js/app.js', 'js/')
  |
  */
 
-mix.styles([
+/*mix.styles([
   'resources/assets/admin/bootstrap/css/bootstrap.min.css',
   'resources/assets/admin/font-awesome/4.5.0/css/font-awesome.min.css',
   'resources/assets/admin/ionicons/2.0.1/css/ionicons.min.css',
@@ -62,10 +62,11 @@ mix.copy('resources/assets/admin/bootstrap/fonts', 'public/fonts');
 mix.copy('resources/assets/admin/dist/fonts', 'public/fonts');
 mix.copy('resources/assets/admin/dist/img', 'public/img');
 mix.copy('resources/assets/admin/plugins/iCheck/minimal/blue.png', 'public/css');
+*/
 
 mix.styles([
   'resources/assets/front/css/bootstrap.min.css',
-  'resources/assets/front/css/font-awesome.min.css',
+  'resources/assets/front/css/all.min.css',
   'resources/assets/front/css/animate.min.css',
   'resources/assets/front/css/owl.carousel.css',
   'resources/assets/front/css/owl.theme.css',
@@ -77,6 +78,7 @@ mix.styles([
 mix.scripts([
   'resources/assets/front/js/jquery-1.11.3.min.js',
   'resources/assets/front/js/bootstrap.min.js',
+  'resources/assets/front/js/all.min.js',
   'resources/assets/front/js/owl.carousel.min.js',
   'resources/assets/front/js/jquery.stickit.min.js',
   'resources/assets/front/js/menu.js',
@@ -84,4 +86,5 @@ mix.scripts([
 ], 'public/js/front.js');
 
 mix.copy('resources/assets/front/fonts', 'public/fonts');
+mix.copy('resources/assets/front/webfonts', 'public/webfonts');
 mix.copy('resources/assets/front/images', 'public/images');
