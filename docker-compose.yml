@@ -18,6 +18,8 @@ services:
   laravel_php:
     build: ./docker/php
     container_name: laravel_php
+    ports:
+      - "80:80"
     volumes:
       - .:/var/www/html
       - /tmp:/tmp
