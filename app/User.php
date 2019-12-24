@@ -2,13 +2,45 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
+ * App\User
+ *
  * @method static find(int $id)
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property Carbon|null $email_verified_at
+ * @property string|null $password
+ * @property int $is_admin
+ * @property string|null $remember_token
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $avatar
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User query()
+ * @method static Builder|User whereAvatar($value)
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereIsAdmin($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
@@ -19,10 +51,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-    ];
+    protected $fillable = ['name', 'email'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,6 +72,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Add user
+     *
+     * @param $fields
+     * @return static
+     */
     public static function add($fields)
     {
         $user = new static;
@@ -52,6 +87,11 @@ class User extends Authenticatable
         return $user;
     }
 
+    /**
+     * Edit existing user
+     *
+     * @param $fields
+     */
     public function edit($fields): void
     {
         $this->fill($fields); //name,email
@@ -59,6 +99,11 @@ class User extends Authenticatable
         $this->save();
     }
 
+    /**
+     * Generate (encryption) user password
+     *
+     * @param $password
+     */
     public function generatePassword($password): void
     {
         if($password !== null)
@@ -68,6 +113,9 @@ class User extends Authenticatable
         }
     }
 
+    /**
+     * Remove user
+     */
     public function remove(): void
     {
         try {
@@ -77,6 +125,11 @@ class User extends Authenticatable
         }
     }
 
+    /**
+     * Upload user's avatar
+     *
+     * @param $image
+     */
     public function uploadAvatar($image)
     {
         if($image === null) { return; }
@@ -89,7 +142,10 @@ class User extends Authenticatable
         $this->save();
     }
 
-    public function removeAvatar() //Удаление файла аватара с диска
+    /**
+     * Remove user's avatar from disk
+     */
+    public function removeAvatar()
     {
         if($this->avatar !== null)
         {
@@ -97,7 +153,10 @@ class User extends Authenticatable
         }
     }
 
-    public function deleteAvatar() //Удаление записи об аватаре из базы
+    /**
+     * Remove user's avatar from database
+     */
+    public function deleteAvatar()
     {
         if($this->avatar === null) { return; }
         $this->removeAvatar();
@@ -105,6 +164,11 @@ class User extends Authenticatable
         $this->save();
     }
 
+    /**
+     * Get image
+     *
+     * @return string
+     */
     public function getImage()
     {
         if($this->avatar === null)
@@ -115,18 +179,29 @@ class User extends Authenticatable
         return '/uploads/' . $this->avatar;
     }
 
+    /**
+     * Make admin status for user
+     */
     public function makeAdmin(): void
     {
         $this->is_admin = 1;
         $this->save();
     }
 
+    /**
+     * Make normal status for user
+     */
     public function makeNormal(): void
     {
         $this->is_admin = 0;
         $this->save();
     }
 
+    /**
+     * Toggle admin status
+     *
+     * @param $value
+     */
     public function toggleAdmin($value): void
     {
         if($value === null)

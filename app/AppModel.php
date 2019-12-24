@@ -5,9 +5,19 @@ namespace App;
 use Doctrine\DBAL\Driver\PDOException;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class AppModel
+ * @package App
+ */
 abstract class AppModel extends Model
 {
-    public static function sidebarCount(){
+    /**
+     * Count elements in sidebar
+     *
+     * @return array
+     */
+    public static function sidebarCount()
+    {
 
         $count = ['categories' => null, 'projects' => null, 'tags' => null, 'users' => null];
 

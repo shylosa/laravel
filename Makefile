@@ -38,7 +38,13 @@ clear:
 	php artisan cache:clear
 
 up:
+	sudo service mysql stop
+	sudo service apache2 stop
+	sudo service nginx stop
 	docker-compose up -d
 
 stop:
 	docker-compose stop
+
+watch:
+	npm run watch-poll

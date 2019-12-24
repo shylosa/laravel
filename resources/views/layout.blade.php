@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- favicon icon -->
-
   <title>{{config('app.name')}}</title>
 
   <!-- common css -->
@@ -20,32 +19,24 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/images/favicon.png">
-
 </head>
 
 <body>
 
 <nav class="main-header">
-  <div class="nav avbar navbar-expand-lg">
-    <a class="navbar-brand" href="/"><img src="/images/logo.png" alt=""></a>
-    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+  <div class="nav navbar fixed-top navbar-expand-lg">
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="">JAYwood</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
-    <div class="collapse navbar-collapse align-items-start" id="navbarSupportedContent">
-
-      <ul class="nav navbar-nav ml-auto text-uppercase">
-        <li class="nav-item"><a href="">О нас</a></li>
-        @if(Auth::check() && Auth::user()->is_admin)
-          <li class="nav-item"><a href="admin">Админ-панель</a></li>
-        @endif
-        @if(Auth::check())
-          <li class="nav-item"><a href="/profile">Мой профиль</a></li>
-          <li class="nav-item"><a href="/logout">Выход</a></li>
-        @else
-          <li class="nav-item"><a href="/register">Регистрация</a></li>
-          <li class="nav-item"><a href="/login">Вход</a></li>
-        @endif
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="">О нас</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Услуги</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Проекты</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Контакты</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

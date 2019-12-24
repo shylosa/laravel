@@ -5,17 +5,26 @@ namespace App\Http\Controllers\Admin;
 use App\Project;
 use App\Tag;
 use App\Category;
+use Eloquent;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
+/**
+ * Class ProjectsController
+ * @package App\Http\Controllers\Admin
+ * @mixin Eloquent
+ */
 class ProjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -26,7 +35,7 @@ class ProjectsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -40,7 +49,7 @@ class ProjectsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      * @throws ValidationException
      */
     public function store(Request $request)
@@ -66,7 +75,7 @@ class ProjectsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return Factory|View
      */
     public function edit($id)
     {
@@ -75,12 +84,8 @@ class ProjectsController extends Controller
         $tags = Tag::pluck('title', 'id')->all();
         $selectedTags = $project->tags->pluck('id')->all();
 
-        return view('admin.projects.edit', compact(
-            'categories',
-            'tags',
-            'project',
-            'selectedTags'
-        ));
+        return view('admin.projects.edit',
+            compact('categories','tags', 'project', 'selectedTags'));
 
     }
 
@@ -89,7 +94,7 @@ class ProjectsController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * @return Response
+     * @return RedirectResponse
      * @throws ValidationException
      */
     public function update(Request $request, $id)
@@ -115,7 +120,7 @@ class ProjectsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
