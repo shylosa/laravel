@@ -33,6 +33,7 @@ mix.styles([
   'resources/assets/front/css/owl.carousel.css',
   'resources/assets/front/css/owl.theme.css',
   'resources/assets/front/css/owl.transitions.css',
+  'resources/assets/front/css/nivo-lightbox.min.css',
   'resources/assets/front/css/style.css',
   'resources/assets/front/css/responsive.css'
 ],'public/css/front.css');
@@ -43,6 +44,8 @@ mix.scripts([
   'resources/assets/front/js/all.min.js',
   'resources/assets/front/js/owl.carousel.min.js',
   'resources/assets/front/js/jquery.stickit.min.js',
+  'resources/assets/front/js/isotope.pkgd.min.js',
+  'resources/assets/front/js/nivo-lightbox.min.js',
   'resources/assets/front/js/menu.js',
   'resources/assets/front/js/main.js',
   'resources/assets/front/js/scripts.js',

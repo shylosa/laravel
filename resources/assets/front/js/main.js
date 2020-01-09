@@ -3,13 +3,14 @@ function main() {
     (function () {
         'use strict';
 
+        //Scroll page to selected menu item
         $('a.page-scroll').click(function () {
             if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
                 if (target.length) {
                     $('html,body').animate({
-                        scrollTop: target.offset().top - 40
+                        scrollTop: target.offset().top - 105
                     }, 900);
                     return false;
                 }
@@ -44,6 +45,8 @@ function main() {
         $(window).load(function () {
             var $container = $('.portfolio-items');
             $container.isotope({
+                itemSelector: '.portfolio-item',
+                layoutMode: 'fitRows',
                 filter: '*',
                 animationOptions: {
                     duration: 750,
@@ -56,6 +59,8 @@ function main() {
                 $(this).addClass('active');
                 var selector = $(this).attr('data-filter');
                 $container.isotope({
+                    itemSelector: '.portfolio-item',
+                    layoutMode: 'fitRows',
                     filter: selector,
                     animationOptions: {
                         duration: 750,

@@ -1,53 +1,100 @@
 @extends('layout')
 
 @section('content')
-  <!--main content start-->
-  <div class="main-content">
+
+
+  <!-- .section-about -->
+  <section class="section-about" id="about">
     <div class="container">
+      <div class="section-title">
+        <h2>{{__('Наша история')}}</h2>
+        <hr>
+      </div>
       <div class="row">
-
-          @foreach($projects as $project)
-          <div class="col-md-6">
-            <article class="post">
-              <div class="post-thumb">
-                <a href="{{route('project.show', $project->slug)}}"><img src="{{$project->getImage()}}" alt=""></a>
-
-                <a href="{{route('project.show', $project->slug)}}" class="post-thumb-overlay text-center">
-                  <div class="text-uppercase text-center">View Post</div>
-                </a>
-              </div>
-              <div class="post-content">
-                <header class="entry-header text-center text-uppercase">
-                  @if($project->hasCategory())
-                    <h6><a href="{{route('category.show', $project->category->slug)}}"> {{$project->getCategoryTitle()}}</a></h6>
-                  @endif
-                  <h1 class="entry-title"><a href="{{route('project.show', $project->slug)}}">{{$project->title}}</a></h1>
-
-                </header>
-                <div class="entry-content">
-                  {!!$project->description!!}
-
-                  <div class="btn-continue-reading text-center text-uppercase">
-                    <a href="{{route('project.show', $project->slug)}}" class="more-link">Подробнее</a>
-                  </div>
-                </div>
-                <div class="social-share">
-                  <ul class="text-center pull-right">
-                    <li><a class="s-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a class="s-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a class="s-instagram" href="#"><i class="fab fa-instagram"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </article>
+        <div class="col-xs-12 col-md-6"><img src="/images/about.jpg" alt=""></div>
+        <div class="col-xs-12 col-md-6">
+          <div class="about-text">
+            <h3>Фабрика</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo
+              nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
+            <h3>Что мы делаем</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo
+              nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare.</p>
+          </div>
         </div>
-          @endforeach
-
-          {{$projects->links()}}
-
-
       </div>
     </div>
-  </div>
-  <!-- end main content-->
+  </section>
+  <!-- /.section-about -->
+
+  <!-- .section-services -->
+  <section class="section-services" id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>{{__('Наши услуги')}}</h2>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 service"><img src="/images/outside-design.jpg" class="img-responsive"
+                                                     alt="Project Title">
+          <h3>Детские площадки</h3>
+          <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
+            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
+        </div>
+        <div class="col-xs-12 col-sm-4 service"><img src="/images/restoration-design.jpg" class="img-responsive"
+                                                     alt="Project Title">
+          <h3>Реставрация</h3>
+          <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
+            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
+        </div>
+        <div class="col-xs-12 col-sm-4 service"><img src="/images/stairs-design.jpg" class="img-responsive"
+                                                     alt="Project Title">
+          <h3>Лестницы</h3>
+          <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
+            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.section-services -->
+
+  <!-- .section-portfolio -->
+  <section class="section-portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h2>{{__('Реализованные проекты')}}</h2>
+        <hr>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
+      <div class="categories">
+        <ul class="cat">
+          <li>
+            <ol class="type">
+              <li><a href="#" data-filter="*" class="active">{{__('All Projects')}}</a></li>
+              <li><a href="#" data-filter=".residential">{{__('Residential')}}</a></li>
+              <li><a href="#" data-filter=".office">{{__('Office')}}</a></li>
+              <li><a href="#" data-filter=".commercial">{{__('Commercial')}}</a></li>
+            </ol>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="row portfolio-items">
+          @foreach($projects as $project)
+            <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
+                <div class="hover-bg">
+                  <a href="{{route('project.show', $project->slug)}}" title="{{$project->title}}" data-lightbox-gallery="gallery1">
+                    <div class="hover-text">
+                      <h4>{{$project->title}}</h4>
+                    </div>
+                    <img src="{{$project->getImage()}}" alt="{{$project->title}}">
+                  </a>
+                </div>
+            </div>
+          @endforeach
+      </div>
+    </div>
+  </section>
+  <!-- ./section-portfolio -->
+
 @endsection

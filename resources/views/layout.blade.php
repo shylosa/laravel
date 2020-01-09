@@ -25,7 +25,7 @@
 
 <nav class="main-header">
   <div class="nav navbar fixed-top navbar-expand-lg">
-    <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="">JAYwood</a>
+    <a class="navbar-brand page-scroll" href="/"><img src="/images/logo.png" alt="">{{config('app.name')}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,172 +33,135 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="">О нас</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Услуги</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Проекты</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Контакты</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{__('О нас')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{__('Услуги')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{__('Проекты')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{__('Галерея')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{__('Контакты')}}</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
   </div>
   <!-- /.navbar-expand-->
+  <div class="overlay">
+    <div>
+      <h1>{{config('app.name')}}<span>/</span>Handcrafted Furniture Factory</h1>
+    </div>
+    <div>
+      <p>{{__('Индивидуальный подход к созданию мебели')}}</p>
+    </div>
+    <a href="#about" class="btn btn-custom page-scroll">{{__('Узнать больше')}}</a>
+  </div>
 </nav>
 <!-- /.main-header-->
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      @if(session('success'))
-        <div class="alert alert-info">
-          {{session('success')}}
-        </div>
-      @endif
-    </div>
+<!-- .language -->
+<div class="language">
+  <div class="soc">
+    <button class="lang_button active">UA</button>
+  </div>
+  <div class="soc">
+    <a href="/ru">
+      <button class="lang_button noactive">RU</button>
+    </a>
+  </div>
+  <div class="soc">
+    <a href="/en">
+      <button class="lang_button noactive">EN</button>
+    </a>
   </div>
 </div>
+<!-- ./language -->
+
 @yield('content')
 
-<!--footer start-->
-<div id="footer">
-  <div class="footer-instagram-section">
-    <h3 class="footer-instagram-title text-center text-uppercase">Instagram</h3>
-
-    <div id="footer-instagram" class="owl-carousel">
-
-      <div class="item">
+<!-- section-instagram start-->
+<div class="section-instagram" id="instagram">
+  <div class="container-fluid">
+    <div class="section-title">
+      <h3>{{__('Instagram')}}</h3>
+    </div>
+    <div class="row">
+      <div class="col">
         <a href="#"><img src="/images/ins-1.jpg" alt=""></a>
       </div>
-      <div class="item">
+      <div class="col">
         <a href="#"><img src="/images/ins-2.jpg" alt=""></a>
       </div>
-      <div class="item">
+      <div class="col">
         <a href="#"><img src="/images/ins-3.jpg" alt=""></a>
       </div>
-      <div class="item">
+      <div class="col">
         <a href="#"><img src="/images/ins-4.jpg" alt=""></a>
       </div>
-      <div class="item">
+      <div class="col">
         <a href="#"><img src="/images/ins-5.jpg" alt=""></a>
       </div>
-      <div class="item">
+      <div class="col">
         <a href="#"><img src="/images/ins-6.jpg" alt=""></a>
       </div>
-      <div class="item">
+      <div class="col">
         <a href="#"><img src="/images/ins-7.jpg" alt=""></a>
       </div>
-      <div class="item">
+      <div class="col">
         <a href="#"><img src="/images/ins-8.jpg" alt=""></a>
       </div>
-
     </div>
   </div>
 </div>
+<!-- ./section-instagram -->
 
-<footer class="footer-widget-section">
+<!-- section-contacts -->
+<section class="section-contacts" id="contacts">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <aside class="footer-widget">
-          <div class="about-img"><img src="/images/footer-logo.png" alt=""></div>
-          <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
-            accusam et justo duo dlores et ea rebum magna text ar koto din.
-          </div>
-          <div class="address">
+    <div class="container">
+      <div class="section-title">
+        <h2>{{__('Как с нами связаться')}}</h2>
+        <hr>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
+      <div class="row">
+        <div class="col-md-4">
+          <aside class="contact-widget">
+            <div class="about-img"><img src="/images/footer-logo.png" alt=""><span>JOIwood</span></div>
+            <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+              eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
+              accusam et justo duo dlores et ea rebum magna text ar koto din.
+            </div>
+            <div class="social-share">
+              <ul>
+                <li><a class="s-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a class="s-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a class="s-instagram" href="#"><i class="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+        <div class="col-md-4 address">
             <h4 class="text-uppercase">Контакты</h4>
             <p> г. Новомосковск</p>
             <p>Днепропетровская обл.</p>
             <p>iphoneapple335@gmail.com</p>
             <p>+38 067 636 9961</p>
-          </div>
-        </aside>
-      </div>
-
-      <div class="col-md-4">
-        <aside class="footer-widget">
-          <h3 class="widget-title text-uppercase">Testimonials</h3>
-
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!--Indicator-->
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-              <div class="item active">
-                <div class="single-review">
-                  <div class="review-text">
-                    <p>Lorem ipsum dolor sit amet, conssadipscing elitr, sed diam nonumy eirmod
-                      tempvidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At
-                      vero eos et accusam justo duo dolores et ea rebum.gubergren no sea takimata
-                      magna aliquyam eratma</p>
-                  </div>
-                  <div class="author-id">
-                    <img src="/images/author.png" alt="">
-
-                    <div class="author-text">
-                      <h4>Sophia</h4>
-
-                      <h4>Client, Tech</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="single-review">
-                  <div class="review-text">
-                    <p>Lorem ipsum dolor sit amet, conssadipscing elitr, sed diam nonumy eirmod
-                      tempvidunt ut labore et dolore magna aliquyam erat,sed diam voluptua. At
-                      vero eos et accusam justo duo dolores et ea rebum.gubergren no sea takimata
-                      magna aliquyam eratma</p>
-                  </div>
-                  <div class="author-id">
-                    <img src="/images/author.png" alt="">
-
-                    <div class="author-text">
-                      <h4>Sophia</h4>
-
-                      <h4>Client, Tech</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </aside>
-      </div>
-      <div class="col-md-4">
-        <aside class="footer-widget">
-          <h3 class="widget-title text-uppercase">Custom Category Post</h3>
-
-
-          <div class="custom-post">
-            <div>
-              <a href="#"><img src="/images/footer-img.png" alt=""></a>
-            </div>
-            <div>
-              <a href="#" class="text-uppercase">Home is peaceful Place</a>
-              <span class="p-date">February 15, 2016</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copy">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-center">&copy; 2019 <a href="#">{{config('app.name')}}, </a>
-            Designed by <a href="#">shylosa</a>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</section>
+<!-- ./section-contacts -->
+
+<!-- footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="text-center">&copy; 2020 <a href="#">{{config('app.name')}}, </a>
+      Designed by <a href="#">shylosa</a>
+    </div>
+  </div>
 </footer>
+<!-- ./footer -->
+
+
+
 <!-- js files -->
 <script src="/js/front.js"></script>
 </body>
