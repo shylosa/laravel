@@ -20,7 +20,7 @@ class HomeController extends Controller
     /**
      * Quantity projects on page
      */
-    protected const PROJECTS_ON_PAGE = 2;
+    protected const PROJECTS_ON_PAGE = 9;
 
     /**
      * Display main page
@@ -30,6 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         $projects = Project::paginate(self::PROJECTS_ON_PAGE);
+
         return view('pages.index')->with('projects', $projects);
     }
 
@@ -42,6 +43,7 @@ class HomeController extends Controller
     public function show($slug)
     {
         $project = Project::where('slug', $slug)->firstOrFail();
+
         return view('pages.show', compact('project'));
     }
 

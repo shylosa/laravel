@@ -75,14 +75,11 @@
                 </div>
             </div>-->
             <div class="form-group">
-              <label>Дата</label>
+              <label>{{__('Дата')}}</label>
               <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                <div class="input-group-append" data-target="#datetimepicker4"
-                     data-toggle="datetimepicker">
-                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                 </div>
-                <input type="text" class="form-control datetimepicker-input pull-right"
-                       data-target="#datetimepicker4" name="date" value="{{App\Project::getCurrentDate()}}" />
+                <input type="date" class="form-control select2" name="date" value="{{App\Project::getCurrentDate()}}"/>
               </div>
             </div>
             <!-- /.input group -->

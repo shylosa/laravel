@@ -45,7 +45,8 @@ class AuthController extends Controller
         $user = User::add($request->all());
         $user->generatePassword($request->get('password'));
 
-        return redirect('/login')->with('success', 'Вы успешно зарегистрировались и теперь можете войти на сайт');;
+        return redirect('/login')->with('success', 'Вы успешно зарегистрировались и теперь можете войти на сайт');
+
     }
 
     /**
@@ -72,11 +73,10 @@ class AuthController extends Controller
             'password'	=>	'required'
         ]);
 
-        if(Auth::attempt([
+        if (Auth::attempt([
             'email'	=>	$request->get('email'),
             'password'	=>	$request->get('password')
-        ]))
-        {
+        ])) {
             return redirect('/');
         }
 

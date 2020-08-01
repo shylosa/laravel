@@ -6,6 +6,10 @@ use Auth;
 use Closure;
 use Illuminate\Http\Request;
 
+/**
+ * Class AdminMiddleware
+ * @package App\Http\Middleware
+ */
 class AdminMiddleware
 {
     /**
@@ -17,12 +21,10 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->is_admin)
-        {
+        if (Auth::check() && Auth::user()->is_admin) {
             return $next($request);
         }
 
         abort(404);
-
     }
 }

@@ -14,7 +14,7 @@
         <div class="col-xs-12 col-md-6"><img src="/images/about.jpg" alt=""></div>
         <div class="col-xs-12 col-md-6">
           <div class="about-text">
-            <h3>Фабрика</h3>
+            <h3>{{__('Фабрика')}}</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo
               nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
             <h3>Что мы делаем</h3>
@@ -37,19 +37,19 @@
       <div class="row">
         <div class="col-xs-12 col-sm-4 service"><img src="/images/outside-design.jpg" class="img-responsive"
                                                      alt="Project Title">
-          <h3>Детские площадки</h3>
+          <h3>{{__('Детские площадки')}}</h3>
           <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
             ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
         </div>
         <div class="col-xs-12 col-sm-4 service"><img src="/images/restoration-design.jpg" class="img-responsive"
                                                      alt="Project Title">
-          <h3>Реставрация</h3>
+          <h3>{{__('Реставрация')}}</h3>
           <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
             ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
         </div>
         <div class="col-xs-12 col-sm-4 service"><img src="/images/stairs-design.jpg" class="img-responsive"
                                                      alt="Project Title">
-          <h3>Лестницы</h3>
+          <h3>{{__('Лестницы')}}</h3>
           <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
             ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
         </div>
@@ -89,6 +89,7 @@
                     </div>
                     <img src="{{$project->getImage()}}" alt="{{$project->title}}">
                   </a>
+
                 </div>
             </div>
           @endforeach

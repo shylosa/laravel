@@ -42,7 +42,7 @@ class ProjectsController extends Controller
         $categories = Category::pluck('title', 'id')->all();
         $tags = Tag::pluck('title', 'id')->all();
 
-        return view('admin.projects.create', compact('categories','tags'));
+        return view('admin.projects.create', compact('categories', 'tags'));
     }
 
     /**
@@ -84,9 +84,10 @@ class ProjectsController extends Controller
         $tags = Tag::pluck('title', 'id')->all();
         $selectedTags = $project->tags->pluck('id')->all();
 
-        return view('admin.projects.edit',
-            compact('categories','tags', 'project', 'selectedTags'));
-
+        return view(
+            'admin.projects.edit',
+            compact('categories', 'tags', 'project', 'selectedTags')
+        );
     }
 
     /**

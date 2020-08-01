@@ -76,10 +76,10 @@
 @yield('content')
 
 <!-- section-instagram start-->
-<div class="section-instagram" id="instagram">
+<div class="section-instagram" id="gallery">
   <div class="container-fluid">
     <div class="section-title">
-      <h3>{{__('Instagram')}}</h3>
+      <h3>{{__('Галерея')}}</h3>
     </div>
     <div class="row">
       <div class="col">
@@ -138,11 +138,9 @@
           </aside>
         </div>
         <div class="col-md-4 address">
-            <h4 class="text-uppercase">Контакты</h4>
+            <h4 class="text-uppercase">Где мы находимся:</h4>
             <p> г. Новомосковск</p>
             <p>Днепропетровская обл.</p>
-            <p>iphoneapple335@gmail.com</p>
-            <p>+38 067 636 9961</p>
         </div>
       </div>
     </div>

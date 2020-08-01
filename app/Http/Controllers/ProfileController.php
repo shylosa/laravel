@@ -37,7 +37,9 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $this->validate(
+            $request,
+            [
             'name'	=> 'required',
             'email' => [
                 'required',
@@ -45,12 +47,16 @@ class ProfileController extends Controller
                 Rule::unique('users')->ignore(Auth::user()->id),
             ],
             'avatar' => 'nullable|image'
-        ]);
+        ]
+        );
 
         $user = Auth::user();
-        $user->edit($request->all());
-        $user->generatePassword($request->get('password'));
-        $user->uploadAvatar($request->file('avatar'));
+        if ($user) {
+            /** @var User $user */
+            $user->edit($request->all());
+            $user->generatePassword($request->get('password'));
+            $user->uploadAvatar($request->file('avatar'));
+        }
 
         return redirect()->back()->with('status', 'Профиль успешно обновлен');
     }

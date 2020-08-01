@@ -1,4 +1,4 @@
-FROM php:7-fpm
+FROM php:7.4-fpm
 
 RUN apt-get update && apt-get install -y \
 curl \
@@ -11,14 +11,21 @@ libxslt-dev \
 libicu-dev \
 libmcrypt-dev \
 libpng-dev \
+zlib1g-dev \
 libzip-dev \
 libxml2-dev \
 mediainfo \
+libonig-dev \
+libpq-dev \
+graphviz \
 mc \
-sudo\
-&& docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip \
-&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+sudo \
+&& docker-php-ext-configure gd --with-freetype --with-jpeg \
 && docker-php-ext-install -j$(nproc) gd \
+&& docker-php-ext-install pdo_mysql \
+&& docker-php-ext-install mysqli \
+&& docker-php-ext-install zip \
+&& docker-php-source delete \
 && usermod -u 1000 www-data && groupmod -g 1000 www-data
 
 RUN docker-php-ext-configure intl

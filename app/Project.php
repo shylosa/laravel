@@ -39,7 +39,7 @@ use Intervention\Image\Facades\Image;
 
 /**
  * Project (post) class
- * 
+ *
  * Class Project
  *
  * @package App
@@ -186,8 +186,7 @@ class Project extends AppModel
      */
     public function removeImage()
     {
-        if($this->main_image !== null)
-        {
+        if ($this->main_image !== null) {
             Storage::delete('uploads/' . $this->main_image);
         }
     }
@@ -199,12 +198,14 @@ class Project extends AppModel
      */
     public function uploadImage($image)
     {
-        if($image === null) { return; }
+        if ($image === null) {
+            return;
+        }
 
         $this->removeImage();
         $filename = Str::random(10) . '.' . mb_strtolower($image->getClientOriginalExtension());
-        $image = Image::make($image)->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
+        $image = Image::make($image)->resize(800, null, static function ($constraint) {
+            $constraint->aspectRatio();
         });
         $path = 'uploads';
 
@@ -222,8 +223,7 @@ class Project extends AppModel
      */
     public function getImage()
     {
-        if($this->main_image === null)
-        {
+        if ($this->main_image === null) {
             return '/img/no-image.png';
         }
 
@@ -237,7 +237,9 @@ class Project extends AppModel
      */
     public function setCategory($id): void
     {
-        if($id === null) {return;}
+        if ($id === null) {
+            return;
+        }
         $this->category_id = $id;
         $this->save();
     }
@@ -249,7 +251,9 @@ class Project extends AppModel
      */
     public function setTags($ids): void
     {
-        if($ids === null){return;}
+        if ($ids === null) {
+            return;
+        }
 
         $this->tags()->sync($ids);
     }
@@ -279,8 +283,7 @@ class Project extends AppModel
      */
     public function toggleStatus($value): void
     {
-        if($value === null)
-        {
+        if ($value === null) {
             $this->setDraft();
             return;
         }
@@ -313,8 +316,7 @@ class Project extends AppModel
      */
     public function togglePopular($value): void
     {
-        if($value === null)
-        {
+        if ($value === null) {
             $this->setStandart();
             return;
         }
@@ -330,8 +332,8 @@ class Project extends AppModel
     public function setDateAttribute($value): void
     {
         //$date = Carbon::createFromFormat('d/m/y', $value)->format('Y-m-d');
-       $date = $value;
-       $this->attributes['date'] = $date;
+        $date = $value;
+        $this->attributes['date'] = $date;
     }
 
     /**
@@ -342,7 +344,7 @@ class Project extends AppModel
      */
     public function getDateAttribute($value): string
     {
-       // return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/y');
+        // return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/y');
         return $value;
     }
 
@@ -471,9 +473,8 @@ class Project extends AppModel
     {
         $path = public_path() . '/' . $directory;
 
-        if(!File::isDirectory($path)){
+        if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0777, true, true);
         }
     }
-
 }

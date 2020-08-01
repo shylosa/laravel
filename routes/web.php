@@ -10,27 +10,28 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/project/{slug}', 'HomeController@show')->name('project.show');
 Route::get('/tag/{slug}', 'HomeController@tag')->name('tag.show');
 Route::get('/category/{slug}', 'HomeController@category')->name('category.show');
 
-Route::group(['middleware'=>'auth'], static function(){
+Route::group(['middleware'=>'auth'], static function () {
     Route::get('/profile', 'ProfileController@index');
     Route::post('/profile', 'ProfileController@store');
-    Route::get('/logout', 'AuthController@logout');
+    Route::get('/logout', 'AuthController@logout')->name('logout');
 });
 
-Route::group(['middleware'=>'guest'], static function(){
+Route::group(['middleware'=>'guest'], static function () {
     Route::get('/register', 'AuthController@registerForm');
     Route::post('/register', 'AuthController@register');
-    Route::get('/login','AuthController@loginForm')->name('login');
+    Route::get('/login', 'AuthController@loginForm')->name('login');
     Route::post('/login', 'AuthController@login');
 });
 
-Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], static function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], static function () {
     Route::get('/', 'DashboardController@index')->name('admin');
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/tags', 'TagsController');
@@ -39,8 +40,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], st
     Route::resource('/tests', 'TestsController');
 });
 
-Route::get('/about/{id}', static function($id){
+Route::get('/about/{id}', static function ($id) {
     return 'About: ' . $id;
 });
-
-
