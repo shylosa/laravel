@@ -69,12 +69,17 @@ class Category extends AppModel
     }
 
     /**
-     * Return the sluggable configuration array for this model.
+     * Add new category
      *
-     * @return array
+     * @param $fields
+     * @return static
      */
-    public function sluggable(): array
+    public static function add($fields)
     {
-        return ['slug' => ['source' => 'title']];
+        $model = new static();
+        $model->fill($fields);
+        $model->save();
+
+        return $model;
     }
 }

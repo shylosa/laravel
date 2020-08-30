@@ -44,11 +44,12 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title'	=> 'required|unique:categories' //обязательно
+        $validatedData = $request->validate([
+            'title'	=> 'required'
         ]);
 
-        Category::create($request->all());
+        $model = Category::add($request->all());
+        $model->translation();
 
         return redirect()->route('categories.index');
     }
