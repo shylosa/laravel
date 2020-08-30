@@ -22,20 +22,23 @@
  */
 namespace App;
 
+use App;
 use Carbon\Carbon;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 use Intervention\Image\Facades\Image;
+use App\ProjectTranslation;
+use App\Support\Translateable;
 
 /**
  * Project (post) class
@@ -45,7 +48,6 @@ use Intervention\Image\Facades\Image;
  * @package App
  * @property int $id
  * @property string $title
- * @property string $slug
  * @property string|null $description
  * @property int|null $category_id
  * @property string|null $customer_name
@@ -62,7 +64,6 @@ use Intervention\Image\Facades\Image;
  * @property-read int|null $images_count
  * @property-read Collection|Tag[] $tags
  * @property-read int|null $tags_count
- * @method static Builder|Project findSimilarSlugs($attribute, $config, $slug)
  * @method static Builder|Project newModelQuery()
  * @method static Builder|Project newQuery()
  * @method static Builder|Project query()
@@ -75,7 +76,6 @@ use Intervention\Image\Facades\Image;
  * @method static Builder|Project whereId($value)
  * @method static Builder|Project whereIsPopular($value)
  * @method static Builder|Project whereMainImage($value)
- * @method static Builder|Project whereSlug($value)
  * @method static Builder|Project whereStatus($value)
  * @method static Builder|Project whereTitle($value)
  * @method static Builder|Project whereUpdatedAt($value)
@@ -84,11 +84,11 @@ use Intervention\Image\Facades\Image;
  */
 class Project extends AppModel
 {
-    use Sluggable;
+    use Translateable;
 
     public const IS_DRAFT = 0;
     public const IS_PUBLIC = 1;
-    public const IS_STANDART = 0;
+    public const IS_STANDARD = 0;
     public const IS_POPULAR = 1;
 
     /**
@@ -96,7 +96,19 @@ class Project extends AppModel
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'date'];
+    protected $fillable = ['status', 'is_popular', 'date'];
+
+    /**
+     * @param null $locale
+     * @return HasOne
+     */
+    public function translation($locale = null)
+    {
+        if ($locale === null) {
+            $locale = App::getLocale();
+        }
+        return $this->hasOne(ProjectTranslation::class)->where('locale', '=', $locale);
+    }
 
     /**
      * Category Database Dependencies
@@ -124,23 +136,13 @@ class Project extends AppModel
     }
 
     /**
-     * Images Database Dependencies
+     * Photos Database Dependencies
      *
      * @return HasMany
      */
-    public function images(): HasMany
+    public function photos(): HasMany
     {
         return $this->hasMany(Photo::class);
-    }
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return ['slug' => ['source' => 'title']];
     }
 
     /**
@@ -303,9 +305,9 @@ class Project extends AppModel
     /**
      * Set standard status for the project
      */
-    public function setStandart(): void
+    public function setStandard(): void
     {
-        $this->is_popular = self::IS_STANDART;
+        $this->is_popular = self::IS_STANDARD;
         $this->save();
     }
 
@@ -317,7 +319,7 @@ class Project extends AppModel
     public function togglePopular($value): void
     {
         if ($value === null) {
-            $this->setStandart();
+            $this->setStandard();
             return;
         }
 
@@ -378,14 +380,14 @@ class Project extends AppModel
     public function getTagsTitles()
     {
         return (!$this->tags->isEmpty())
-            ?   implode(', ', $this->tags->pluck('title')->all())
+            ? implode(', ', $this->tags->pluck('title')->all())
             : 'Нет тегов';
     }
 
     /**
      * Get category ID
      *
-     * @return int|null |null
+     * @return int|null
      */
     public function getCategoryID()
     {
@@ -409,7 +411,7 @@ class Project extends AppModel
      */
     public function hasCategory(): bool
     {
-        return $this->category != null ? true : false;
+        return $this->category !== null;
     }
 
     /**

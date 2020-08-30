@@ -15,15 +15,12 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', static function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('slug');
-            $table->text('description')->nullable();
-            $table->integer('category_id')->nullable();
-            $table->string('customer_name')->nullable();
-            $table->string('address')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->integer('status')->default(0);
             $table->integer('views')->default(0);
             $table->integer('is_popular')->default(0);
+            $table->date('date')->nullable();
+
             $table->timestamps();
         });
     }

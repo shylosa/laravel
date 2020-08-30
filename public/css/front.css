@@ -3552,6 +3552,7 @@ h3{
     font-size: 30px;
     font-weight: 400;
     font-family: 'Arsenal', sans-serif;
+    text-transform: capitalize;
 }
 
 h4{

@@ -2,12 +2,15 @@
 
 namespace App;
 
+use App;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
+use App\Support\Translateable;
 
 /**
  * Class Category
@@ -34,13 +37,26 @@ use Illuminate\Support\Carbon;
 class Category extends AppModel
 {
     use Sluggable;
+    use Translateable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title'];
+    protected $fillable = [];
+
+    /**
+     * @param null $locale
+     * @return HasOne
+     */
+    public function translation($locale = null)
+    {
+        if ($locale === null) {
+            $locale = App::getLocale();
+        }
+        return $this->hasOne(CategoryTranslation::class)->where('locale', '=', $locale);
+    }
 
     /**
      * Project Database Dependencies

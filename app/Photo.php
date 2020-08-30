@@ -30,6 +30,9 @@ use Illuminate\Support\Carbon;
  */
 class Photo extends AppModel
 {
+
+    protected $fillable = ['project_id', 'image', 'is_main'];
+
     /**
      * Project Database Dependencies
      *

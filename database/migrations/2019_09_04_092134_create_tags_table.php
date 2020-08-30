@@ -11,12 +11,10 @@ class CreateTagsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('tags', static function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -26,7 +24,7 @@ class CreateTagsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('tags');
     }

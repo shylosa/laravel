@@ -3,18 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Tag;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -25,7 +30,7 @@ class TagsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -36,7 +41,7 @@ class TagsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      * @throws ValidationException
      */
     public function store(Request $request)
@@ -46,6 +51,7 @@ class TagsController extends Controller
         ]);
 
         Tag::create($request->all());
+
         return redirect()->route('tags.index');
     }
 
@@ -53,12 +59,12 @@ class TagsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return Application|Factory|View
      */
     public function edit($id)
     {
         $tag = Tag::find($id);
-        return view('admin.tags.edit', ['tag'=>$tag]);
+        return view('admin.tags.edit', ['tag' => $tag]);
     }
 
     /**
@@ -66,7 +72,7 @@ class TagsController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * @return Response
+     * @return RedirectResponse
      * @throws ValidationException
      */
     public function update(Request $request, $id)
@@ -74,11 +80,11 @@ class TagsController extends Controller
         $this->validate($request, [
             'title' =>  [
                 'required',
-                Rule::unique('tags')->ignore($id),]
+                Rule::unique('tags')->ignore($id),
+                ]
         ]);
 
         $tag = Tag::find($id);
-
         $tag->update($request->all());
 
         return redirect()->route('tags.index');
@@ -87,12 +93,14 @@ class TagsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy($id)
     {
         Tag::find($id)->delete();
+
         return redirect()->route('tags.index');
     }
 }

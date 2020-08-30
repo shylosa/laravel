@@ -1,6 +1,4 @@
-function main() {
-
-    (function () {
+function main() {(function () {
         'use strict';
 
         //Scroll page to selected menu item
@@ -19,7 +17,6 @@ function main() {
 
         // Show Menu on Book
         //Show background for menu
-       // $(document).scroll(function() {
         window.addEventListener('scroll', function() {
             //var y = $(this).scrollTop();
             const y = function () {
@@ -27,13 +24,11 @@ function main() {
             };
             const $navbar = document.getElementsByClassName('navbar')[0];
             if (y() > vh(20)) {
-              //  $('.navbar').addClass('top-menu').css({transition: 'all 600ms ease-in'});
                 $navbar.classList.add('top-menu');
                 $navbar.style.transition = 'all 600ms ease-in';
             } else {
                 $navbar.classList.remove('top-menu');
                 $navbar.style.transition = 'all 500ms ease-in';
-                //$('.navbar').removeClass('top-menu').css({transition: 'all 500ms ease-in'});
             }
         });
 
@@ -41,15 +36,6 @@ function main() {
             const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
             return (v * h) / 100;
         }
-
-        /*$(window).bind('scroll', function () {
-            var navHeight = $(window).height() - 600;
-            if ($(window).scrollTop() > navHeight) {
-                $('.navbar').addClass('top-menu');
-            } else {
-                $('.navbar').removeClass('top-menu');
-            }
-        });*/
 
         $('body').scrollspy({
             target: '.navbar',

@@ -106,8 +106,7 @@ class User extends Authenticatable
      */
     public function generatePassword($password): void
     {
-        if($password !== null)
-        {
+        if ($password !== null) {
             $this->password = bcrypt($password);
             $this->save();
         }
@@ -132,7 +131,9 @@ class User extends Authenticatable
      */
     public function uploadAvatar($image)
     {
-        if($image === null) { return; }
+        if ($image === null) {
+            return;
+        }
 
         $this->removeAvatar();
 
@@ -147,8 +148,7 @@ class User extends Authenticatable
      */
     public function removeAvatar()
     {
-        if($this->avatar !== null)
-        {
+        if ($this->avatar !== null) {
             Storage::delete('uploads/' . $this->avatar);
         }
     }
@@ -158,7 +158,9 @@ class User extends Authenticatable
      */
     public function deleteAvatar()
     {
-        if($this->avatar === null) { return; }
+        if ($this->avatar === null) {
+            return;
+        }
         $this->removeAvatar();
         $this->avatar = null;
         $this->save();
@@ -171,8 +173,7 @@ class User extends Authenticatable
      */
     public function getImage()
     {
-        if($this->avatar === null)
-        {
+        if ($this->avatar === null) {
             return '/img/no-image.png';
         }
 
@@ -204,13 +205,10 @@ class User extends Authenticatable
      */
     public function toggleAdmin($value): void
     {
-        if($value === null)
-        {
+        if ($value === null) {
             $this->makeNormal();
         }
 
         $this->makeAdmin();
     }
-
-
 }

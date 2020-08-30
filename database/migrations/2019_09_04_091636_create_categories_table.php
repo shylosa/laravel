@@ -4,19 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableProjectTags extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('project_tags', function (Blueprint $table) {
+        Schema::create('categories', static function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('project_id');
-            $table->integer('tag_id');
             $table->timestamps();
         });
     }
@@ -26,8 +24,8 @@ class CreateTableProjectTags extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('project_tags');
+        Schema::dropIfExists('categories');
     }
 }

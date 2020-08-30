@@ -33,11 +33,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{__('О нас')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{__('Услуги')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{__('Проекты')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{__('Галерея')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{__('Контакты')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{__('main.about')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{__('main.services')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{__('main.portfolio')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{__('main.gallery')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{__('main.contacts')}}</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -48,9 +48,9 @@
       <h1>{{config('app.name')}}<span>/</span>Handcrafted Furniture Factory</h1>
     </div>
     <div>
-      <p>{{__('Индивидуальный подход к созданию мебели')}}</p>
+      <p>{{__('main.slogan')}}</p>
     </div>
-    <a href="#about" class="btn btn-custom page-scroll">{{__('Узнать больше')}}</a>
+    <a href="#about" class="btn btn-custom page-scroll">{{__('main.more')}}</a>
   </div>
 </nav>
 <!-- /.main-header-->
@@ -79,7 +79,7 @@
 <div class="section-instagram" id="gallery">
   <div class="container-fluid">
     <div class="section-title">
-      <h3>{{__('Галерея')}}</h3>
+      <h3>{{__('main.gallery')}}</h3>
     </div>
     <div class="row">
       <div class="col">
@@ -116,14 +116,14 @@
   <div class="container">
     <div class="container">
       <div class="section-title">
-        <h2>{{__('Как с нами связаться')}}</h2>
+        <h2>{{__('main.how_contacts')}}</h2>
         <hr>
       </div>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
       <div class="row">
         <div class="col-md-4">
           <aside class="contact-widget">
-            <div class="about-img"><img src="/images/footer-logo.png" alt=""><span>JOIwood</span></div>
+            <div class="about-img"><img src="/images/footer-logo.png" alt=""><span>{{config('app.name')}}</span></div>
             <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
               eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
               accusam et justo duo dlores et ea rebum magna text ar koto din.
@@ -138,9 +138,9 @@
           </aside>
         </div>
         <div class="col-md-4 address">
-            <h4 class="text-uppercase">Где мы находимся:</h4>
-            <p> г. Новомосковск</p>
-            <p>Днепропетровская обл.</p>
+            <h4 class="text-uppercase">{{ __('main.where') }}:</h4>
+            <p>{{ __('main.Novomoskovsk') }}</p>
+            <p>{{ __('main.Dnipropetrovsk_region') }}</p>
         </div>
       </div>
     </div>
