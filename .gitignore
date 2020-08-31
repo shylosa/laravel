@@ -58,3 +58,5 @@ Homestead.json
 
 /public/uploads/
 /.phpunit.result.cache
+/logs/access_log
+/logs/error_log

@@ -36,7 +36,6 @@ use App\Support\Translateable;
  */
 class Category extends AppModel
 {
-    use Sluggable;
     use Translateable;
 
     /**

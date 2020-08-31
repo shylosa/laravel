@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Tag;
-use Exception;
+use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Symfony\Component\Console\Input\Input;
 
-class TagsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +23,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.tags.index', ['tags'=>$tags]);
+        $users = User::all();
+        return view('admin.users.index', ['users' => $users]);
     }
 
     /**
@@ -34,7 +34,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -47,24 +47,29 @@ class TagsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' =>  'required|unique:tags' //обязательно
+            'name'  =>  'required',
+            'email' =>  'required|email|unique:users',
+            'password'  =>  'required',
+            'avatar'    =>  'nullable|image'
         ]);
 
-        Tag::create($request->all());
+        $user = User::add($request->all());
+        $user->generatePassword($request->get('password'));
+        $user->uploadAvatar($request->file('avatar'));
 
-        return redirect()->route('tags.index');
+        return redirect()->route('users.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Application|Factory|View
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('admin.tags.edit', ['tag' => $tag]);
+        $user = User::find($id);
+        return view('admin.users.edit', ['user' => $user]);
     }
 
     /**
@@ -77,30 +82,45 @@ class TagsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+
         $this->validate($request, [
-            'title' =>  [
+            'name'  =>  'required',
+            'email' =>  [
                 'required',
-                Rule::unique('tags')->ignore($id),
-                ]
+                'email',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'avatar' => 'nullable|image'
         ]);
 
-        $tag = Tag::find($id);
-        $tag->update($request->all());
+        $user->edit($request->all()); //name,email
+        $user->generatePassword($request->get('password'));
 
-        return redirect()->route('tags.index');
+        switch ($request->input('update')) {
+            case 'delete-avatar':
+                $user->deleteAvatar();
+                break;
+
+            case 'update-user':
+                $user->uploadAvatar($request->file('avatar'));
+                break;
+        }
+
+        return redirect()->route('users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return RedirectResponse
-     * @throws Exception
      */
     public function destroy($id)
     {
-        Tag::find($id)->delete();
-
-        return redirect()->route('tags.index');
+        User::find($id)->remove();
+        return redirect()->route('users.index');
     }
+
+
 }

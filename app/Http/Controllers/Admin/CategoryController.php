@@ -17,7 +17,7 @@ use Illuminate\View\View;
  * Class CategoriesController
  * @package App\Http\Controllers\Admin
  */
-class CategoriesController extends Controller
+class CategoryController extends Controller
 {
     /**
      * @return Application|Factory|View

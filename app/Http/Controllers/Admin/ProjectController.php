@@ -19,7 +19,7 @@ use Illuminate\View\View;
  * @package App\Http\Controllers\Admin
  * @mixin Eloquent
  */
-class ProjectsController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.

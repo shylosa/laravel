@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Tag;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Symfony\Component\Console\Input\Input;
 
-class UsersController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +23,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin.users.index', ['users' => $users]);
+        $tags = Tag::all();
+        return view('admin.tags.index', ['tags'=>$tags]);
     }
 
     /**
@@ -34,7 +34,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -47,29 +47,24 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'  =>  'required',
-            'email' =>  'required|email|unique:users',
-            'password'  =>  'required',
-            'avatar'    =>  'nullable|image'
+            'title' =>  'required|unique:tags' //обязательно
         ]);
 
-        $user = User::add($request->all());
-        $user->generatePassword($request->get('password'));
-        $user->uploadAvatar($request->file('avatar'));
+        Tag::create($request->all());
 
-        return redirect()->route('users.index');
+        return redirect()->route('tags.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return Application|Factory|View
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.users.edit', ['user' => $user]);
+        $tag = Tag::find($id);
+        return view('admin.tags.edit', ['tag' => $tag]);
     }
 
     /**
@@ -82,45 +77,30 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-
         $this->validate($request, [
-            'name'  =>  'required',
-            'email' =>  [
+            'title' =>  [
                 'required',
-                'email',
-                Rule::unique('users')->ignore($user->id),
-            ],
-            'avatar' => 'nullable|image'
+                Rule::unique('tags')->ignore($id),
+                ]
         ]);
 
-        $user->edit($request->all()); //name,email
-        $user->generatePassword($request->get('password'));
+        $tag = Tag::find($id);
+        $tag->update($request->all());
 
-        switch ($request->input('update')) {
-            case 'delete-avatar':
-                $user->deleteAvatar();
-                break;
-
-            case 'update-user':
-                $user->uploadAvatar($request->file('avatar'));
-                break;
-        }
-
-        return redirect()->route('users.index');
+        return redirect()->route('tags.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy($id)
     {
-        User::find($id)->remove();
-        return redirect()->route('users.index');
+        Tag::find($id)->delete();
+
+        return redirect()->route('tags.index');
     }
-
-
 }

@@ -33,11 +33,11 @@ Route::group(['middleware'=>'guest'], static function () {
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], static function () {
     Route::get('/', 'DashboardController@index')->name('admin');
-    Route::resource('/categories', 'CategoriesController');
-    Route::resource('/tags', 'TagsController');
-    Route::resource('/users', 'UsersController');
-    Route::resource('/projects', 'ProjectsController');
-    Route::resource('/tests', 'TestsController');
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/tags', 'TagController');
+    Route::resource('/users', 'UserController');
+    Route::resource('/projects', 'ProjectController');
+    Route::resource('/tests', 'TestController');
 });
 
 Route::get('/about/{id}', static function ($id) {
