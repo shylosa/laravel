@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use function App\getLocales;
 
 /**
  * Class CategoriesController
@@ -34,21 +35,22 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $locales = getLocales();
+        return view('admin.categories.create', compact('locales'));
     }
 
     /**
      * @param Request $request
      * @return RedirectResponse
-     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title'	=> 'required'
+        $validated = $request->validate([
+            'title'	=> 'required',
+            'title.*' => 'alpha'
         ]);
 
-        $model = Category::add($request->all());
+        $model = Category::add();
         $model->translation();
 
         return redirect()->route('categories.index');
@@ -58,7 +60,7 @@ class CategoryController extends Controller
      * @param $id
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $category = Category::find($id);
 
@@ -67,11 +69,11 @@ class CategoryController extends Controller
 
     /**
      * @param Request $request
-     * @param $id
+     * @param int $id
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $this->validate($request, [
             'title'	=> [

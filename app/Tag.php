@@ -37,7 +37,6 @@ use App\Support\Translateable;
  */
 class Tag extends AppModel
 {
-    use Sluggable;
     use Translateable;
 
     /**

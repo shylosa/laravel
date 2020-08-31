@@ -46,10 +46,10 @@ class Category extends AppModel
     protected $fillable = [];
 
     /**
-     * @param null $locale
+     * @param string|null $locale
      * @return HasOne
      */
-    public function translation($locale = null)
+    public function translation(string $locale = null)
     {
         if ($locale === null) {
             $locale = App::getLocale();
@@ -70,13 +70,11 @@ class Category extends AppModel
     /**
      * Add new category
      *
-     * @param $fields
      * @return static
      */
-    public static function add($fields)
+    public static function add(): self
     {
         $model = new static();
-        $model->fill($fields);
         $model->save();
 
         return $model;

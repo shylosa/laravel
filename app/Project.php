@@ -99,10 +99,10 @@ class Project extends AppModel
     protected $fillable = ['status', 'is_popular', 'date'];
 
     /**
-     * @param null $locale
+     * @param string|null $locale
      * @return HasOne
      */
-    public function translation($locale = null)
+    public function translation(string $locale = null)
     {
         if ($locale === null) {
             $locale = App::getLocale();

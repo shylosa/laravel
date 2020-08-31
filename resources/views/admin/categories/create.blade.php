@@ -30,14 +30,18 @@
           <h4 class="box-title">Добавляем категорию</h4>
           @include('admin.errors')
         </div>
+
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Название</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="title">
+              @foreach($locales as $locale)
+                <label for="title[{{ $locale }}]">Название-{{ $locale }}</label>
+                <input type="text" class="form-control" id="title[{{ $locale }}]" placeholder="" name="title[{{ $locale }}]">
+              @endforeach
             </div>
           </div>
         </div>
+
         <!-- /.box-body -->
         <div class="box-footer">
           <button class="btn btn-success pull-right">Добавить</button>
