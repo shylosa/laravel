@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
-use App\Support\Translateable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
 /**
  * Class Category
@@ -34,9 +35,14 @@ use App\Support\Translateable;
  * @method static Builder|Category whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Category extends AppModel
+class Category extends AppModel implements TranslatableContract
 {
-    use Translateable;
+    use Translatable;
+
+    /**
+     * @var string[]
+     */
+    public $translatedAttributes = ['title'];
 
     /**
      * The attributes that are mass assignable.
@@ -44,18 +50,6 @@ class Category extends AppModel
      * @var array
      */
     protected $fillable = [];
-
-    /**
-     * @param string|null $locale
-     * @return HasOne
-     */
-    public function translation(string $locale = null)
-    {
-        if ($locale === null) {
-            $locale = App::getLocale();
-        }
-        return $this->hasOne(CategoryTranslation::class)->where('locale', '=', $locale);
-    }
 
     /**
      * Project Database Dependencies

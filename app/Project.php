@@ -37,8 +37,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 use Intervention\Image\Facades\Image;
-use App\ProjectTranslation;
-use App\Support\Translateable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
 /**
  * Project (post) class
@@ -82,9 +82,9 @@ use App\Support\Translateable;
  * @method static Builder|Project whereViews($value)
  * @mixin Eloquent
  */
-class Project extends AppModel
+class Project extends AppModel implements TranslatableContract
 {
-    use Translateable;
+    use Translatable;
 
     public const IS_DRAFT = 0;
     public const IS_PUBLIC = 1;
@@ -92,23 +92,16 @@ class Project extends AppModel
     public const IS_POPULAR = 1;
 
     /**
+     * @var string[]
+     */
+    public $translatedAttributes = ['title', 'description', 'customer_name', 'address'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = ['status', 'is_popular', 'date'];
-
-    /**
-     * @param string|null $locale
-     * @return HasOne
-     */
-    public function translation(string $locale = null)
-    {
-        if ($locale === null) {
-            $locale = App::getLocale();
-        }
-        return $this->hasOne(ProjectTranslation::class)->where('locale', '=', $locale);
-    }
 
     /**
      * Category Database Dependencies

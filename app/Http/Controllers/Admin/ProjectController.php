@@ -60,14 +60,14 @@ class ProjectController extends Controller
             'main_image' => 'nullable|image|max:8000'
         ]);
 
-        $projects = Project::add($request->all());
+        $project = Project::add($request->all());
 
-        $projects->uploadImage($request->file('main_image'));
-        $projects->setCategory($request->get('category_id'));
-        $projects->setTags($request->get('tags'));
-        $projects->toggleStatus($request->get('status'));
-        $projects->togglePopular($request->get('is_popular'));
-        //dd($projects);
+        $project->uploadImage($request->file('main_image'));
+        $project->setCategory($request->get('category_id'));
+        $project->setTags($request->get('tags'));
+        $project->toggleStatus($request->get('status'));
+        $project->togglePopular($request->get('is_popular'));
+        //dd($project);
         return redirect()->route('projects.index');
     }
 

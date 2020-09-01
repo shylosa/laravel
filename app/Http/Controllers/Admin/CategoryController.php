@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use function App\getLocales;
+use \Astrotomic\Translatable\Locales;
 
 /**
  * Class CategoriesController
@@ -35,8 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $locales = getLocales();
-        return view('admin.categories.create', compact('locales'));
+        return view('admin.categories.create');
     }
 
     /**
@@ -51,7 +50,7 @@ class CategoryController extends Controller
         ]);
 
         $model = Category::add();
-        $model->translation();
+        $model->setTranslations($validated['title']);
 
         return redirect()->route('categories.index');
     }

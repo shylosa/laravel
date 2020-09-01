@@ -7,11 +7,11 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
-use App\Support\Translateable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
 /**
  * Class Tag
@@ -35,9 +35,14 @@ use App\Support\Translateable;
  * @method static Builder|Tag whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Tag extends AppModel
+class Tag extends AppModel implements TranslatableContract
 {
-    use Translateable;
+    use Translatable;
+
+    /**
+     * @var string[]
+     */
+    public $translatedAttributes = ['title'];
 
     /**
      * The attributes that are mass assignable.
@@ -45,18 +50,6 @@ class Tag extends AppModel
      * @var array
      */
     protected $fillable = [];
-
-    /**
-     * @param null $locale
-     * @return HasOne
-     */
-    public function translation($locale = null)
-    {
-        if ($locale === null) {
-            $locale = App::getLocale();
-        }
-        return $this->hasOne(TagTranslation::class)->where('locale', '=', $locale);
-    }
 
     /**
      * Project Database Dependencies

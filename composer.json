@@ -11,6 +11,7 @@
         "php": "^7.2.5",
         "ext-pdo": "*",
         "almasaeed2010/adminlte": "~3.0",
+        "astrotomic/laravel-translatable": "^11.8",
         "cviebrock/eloquent-sluggable": "^7.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "doctrine/dbal": "^2.10",
@@ -50,9 +51,6 @@
         }
     },
     "autoload": {
-        "files": [
-            "app/helpers.php"
-        ],
         "psr-4": {
             "App\\": "app/"
         },
