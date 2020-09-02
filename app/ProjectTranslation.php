@@ -19,15 +19,7 @@ class ProjectTranslation extends AppModel
         return ['slug' => ['source' => 'title']];
     }
 
-    protected $fillable = [
-        'project_id',
-        'locale',
-        'title',
-        'slug',
-        'description',
-        'customer_name',
-        'address'
-    ];
+    protected $fillable = ['title', 'slug', 'description', 'customer_name', 'address'];
 
     /**
      * @return BelongsTo

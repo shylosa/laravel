@@ -50,7 +50,7 @@ use Astrotomic\Translatable\Translatable;
  * @property string $title
  * @property string|null $description
  * @property int|null $category_id
- * @property string|null $customer_name
+ * @property string $customer_name
  * @property string|null $address
  * @property int $status
  * @property int $views
@@ -141,10 +141,10 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Add new project
      *
-     * @param $fields
+     * @param array $fields
      * @return static
      */
-    public static function add($fields)
+    public static function add(array $fields): self
     {
         $project = new static();
         $project->fill($fields);
@@ -156,11 +156,11 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Edit existing project
      *
-     * @param $fields
+     * @param array $fields
      */
-    public function edit($fields): void
+    public function edit(array $fields): void
     {
-        $this->fill($fields);
+        $this->update($fields);
         $this->save();
     }
 
@@ -228,9 +228,9 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Set category for current project
      *
-     * @param $id
+     * @param int $id
      */
-    public function setCategory($id): void
+    public function setCategory(int $id): void
     {
         if ($id === null) {
             return;

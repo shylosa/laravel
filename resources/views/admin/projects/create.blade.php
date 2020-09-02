@@ -35,14 +35,15 @@
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Название</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="title"
-                     value="{{old('title')}}">
+              @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
+                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder="" name="{{ $locale }}_title">
+              @endforeach
             </div>
 
             <div class="form-group">
               <div>
-                <label for="exampleInputFile">Лицевая картинка</label>
+                <label for="exampleInputFile">{{ __('Основное фото') }}</label>
               </div>
               <input type="file" id="exampleInputFile" name="main_image">
               <p class="help-block">jpeg, jpg, png, bmp</p>
@@ -75,11 +76,10 @@
                 </div>
             </div>-->
             <div class="form-group">
-              <label>{{__('Дата')}}</label>
+              <label>{{ __('Дата') }}</label>
               <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-                </div>
-                <input type="date" class="form-control select2" name="date" value="{{App\Project::getCurrentDate()}}"/>
+                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker"></div>
+                <input type="date" class="form-control select2" name="date" value="{{ App\Project::getCurrentDate() }}"/>
               </div>
             </div>
             <!-- /.input group -->
@@ -88,28 +88,25 @@
           <!-- checkbox -->
           <div class="form-group">
             <label>
-              <input type="checkbox" class="minimal" name="is_popular">
+              <input type="checkbox" class="minimal" name="is_popular" value="1">
             </label>
-            <label>
-              Рекомендовать
-            </label>
+            <label>{{ __('Рекомендовать') }}</label>
           </div>
 
           <!-- checkbox -->
           <div class="form-group">
             <label>
-              <input type="checkbox" class="minimal" name="status">
+              <input type="checkbox" class="minimal" name="status" value="1">
             </label>
-            <label>
-              Черновик
-            </label>
+            <label>{{ __('Черновик') }}</label>
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
-            <label for="exampleInputEmail1">Описание</label>
-            <textarea name="description" id="" cols="30" rows="8"
-                      class="form-control">{{old('description')}}</textarea>
+            @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+              <label for="{{ $locale }}_description">Описание-{{ $locale }}</label>
+              <textarea class="form-control" id="{{ $locale }}_description" name="{{ $locale }}_description" cols="30" rows="8"></textarea>
+            @endforeach
           </div>
         </div>
       </div>
