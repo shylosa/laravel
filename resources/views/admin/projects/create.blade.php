@@ -43,10 +43,9 @@
 
             <div class="form-group">
               <div>
-                <label for="exampleInputFile">{{ __('Основное фото') }}</label>
+                <label for="photos">{{ __('Фотографии проекта') }}</label>
               </div>
-              <input type="file" id="exampleInputFile" name="main_image">
-              <p class="help-block">jpeg, jpg, png, bmp</p>
+              <a href="{{ route('photos.upload') }}">Загрузить фото...</a>
             </div>
 
             <div class="form-group">

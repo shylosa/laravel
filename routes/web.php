@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\Admin\PhotoController;
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -38,6 +41,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'=>'admin'], st
     Route::resource('/users', 'UserController');
     Route::resource('/projects', 'ProjectController');
     Route::resource('/tests', 'TestController');
+    Route::get('/photos-upload', 'PhotoController@photosUpload')->name('photos.upload');
 });
 
 Route::get('/about/{id}', static function ($id) {
