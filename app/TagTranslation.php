@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TagTranslation extends AppModel
 {
-    protected $fillable = ['tag_id', 'locale', 'title'];
+    protected $fillable = ['title'];
 
     /**
      * @return BelongsTo

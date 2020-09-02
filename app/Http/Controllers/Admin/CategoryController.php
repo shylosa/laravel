@@ -22,6 +22,8 @@ use \Astrotomic\Translatable\Locales;
 class CategoryController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
      * @return Application|Factory|View
      */
     public function index()
@@ -34,10 +36,12 @@ class CategoryController extends Controller
             }
         }
 
-        return view('admin.categories.index', ['categories' => $categories]);
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
+     * Show create new category and translations form
+     *
      * @return Application|Factory|View
      */
     public function create()
@@ -46,7 +50,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store category and translations to database
+     * Store a newly created resource in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -67,7 +71,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Edit existing category and translations
+     * Show edit existing category and translations form
      *
      * @param $id
      * @return Application|Factory|View
@@ -80,7 +84,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update existing category and translations
+     * Update the specified resource in storage.
      *
      * @param Request $request
      * @param int $id
@@ -109,6 +113,8 @@ class CategoryController extends Controller
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
      * @param int $id
      * @return RedirectResponse
      * @throws Exception

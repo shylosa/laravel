@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Tag;
+use Astrotomic\Translatable\Locales;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -24,7 +25,14 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('admin.tags.index', ['tags'=>$tags]);
+        //We leave only the tags that have translations
+        foreach ($tags as $key => $tag) {
+            if (!$tag->hasTranslation()) {
+                unset($tag[$key]);
+            }
+        }
+
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -42,15 +50,18 @@ class TagController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
-     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' =>  'required|unique:tags' //обязательно
+        $validated = $request->validate([
+            '*_title' => 'string'
         ]);
 
-        Tag::create($request->all());
+        $model = Tag::add();
+        foreach (app(Locales::class)->all() as $locale) {
+            $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
+        }
+        $model->save();
 
         return redirect()->route('tags.index');
     }
@@ -61,10 +72,11 @@ class TagController extends Controller
      * @param  int  $id
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $tag = Tag::find($id);
-        return view('admin.tags.edit', ['tag' => $tag]);
+
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -73,19 +85,25 @@ class TagController extends Controller
      * @param Request $request
      * @param int $id
      * @return RedirectResponse
-     * @throws ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        $this->validate($request, [
-            'title' =>  [
-                'required',
-                Rule::unique('tags')->ignore($id),
-                ]
+        $validated = $request->validate([
+            '*_title' => 'string',
+            Rule::unique('tags')->ignore($id),
         ]);
 
-        $tag = Tag::find($id);
-        $tag->update($request->all());
+        $model = Tag::find($id);
+        if ($model) {
+            $tagData = [];
+            foreach (app(Locales::class)->all() as $locale) {
+                $tagData[$locale] = [
+                    'title' => $validated[$locale . '_title']
+                ];
+            }
+
+            $model->update($tagData);
+        }
 
         return redirect()->route('tags.index');
     }
@@ -97,9 +115,14 @@ class TagController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        Tag::find($id)->delete();
+        $model = Tag::find($id);
+
+        if ($model) {
+            $model->deleteTranslations();
+            $model->delete();
+        }
 
         return redirect()->route('tags.index');
     }

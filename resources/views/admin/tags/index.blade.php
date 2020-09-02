@@ -41,7 +41,13 @@
               @foreach($tags as $tag)
                 <tr>
                   <td>{{$tag->id}}</td>
-                  <td>{{$tag->title}}</td>
+                  <td>
+                    @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                      @if ($tag->hasTranslation($locale))
+                        <li class="category">{{ $tag->translate($locale)->title }}</li>
+                      @endif
+                    @endforeach
+                  </td>
                   <td><a href="{{route('tags.edit', $tag->id)}}" class="fas fa-pencil-alt fa-2x"
                          title="Изменить запись"></a>
                     {{Form::open(['route'=>['tags.destroy', $tag->id], 'method'=>'delete'])}}

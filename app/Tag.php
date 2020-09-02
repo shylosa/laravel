@@ -68,12 +68,15 @@ class Tag extends AppModel implements TranslatableContract
     }
 
     /**
-     * Return the sluggable configuration array for this model.
+     * Add new tag
      *
-     * @return array
+     * @return static
      */
-    public function sluggable()
+    public static function add(): self
     {
-        return ['slug' => ['source' => 'title']];
+        $model = new static();
+        $model->save();
+
+        return $model;
     }
 }
