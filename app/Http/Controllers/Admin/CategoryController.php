@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use Astrotomic\Translatable\Validation\RuleFactory;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -26,6 +27,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        //We leave only the categories that have translations
+        foreach ($categories as $key => $category) {
+            if (!$category->hasTranslation()) {
+                unset($categories[$key]);
+            }
+        }
 
         return view('admin.categories.index', ['categories' => $categories]);
     }
@@ -45,12 +52,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title'	=> 'required',
-            'title.*' => 'alpha'
+            '*_title' => 'alpha'
         ]);
 
         $model = Category::add();
-        $model->setTranslations($validated['title']);
+        $locales = app(Locales::class)->all();
+        $categoryData = [];
+        foreach ($locales as $locale) {
+            $categoryData[$locale] = [
+                'category_id' => $model->id,
+                'locale' => $locale,
+                'title' => $validated[$locale . '_title']
+            ];
+        }
+
+        $model->setTranslations($categoryData);
 
         return redirect()->route('categories.index');
     }

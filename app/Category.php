@@ -73,4 +73,14 @@ class Category extends AppModel implements TranslatableContract
 
         return $model;
     }
+
+    /**
+     * @param array $translations
+     */
+    public function setTranslations(array $translations)
+    {
+        foreach ($translations as $translation) {
+            CategoryTranslation::add($translation);
+        }
+    }
 }

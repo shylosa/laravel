@@ -30,7 +30,7 @@
           <div class="form-group">
             <a href="{{route('categories.create')}}" class="btn btn-success">Добавить</a>
           </div>
-          <table id="example1" class="table table-bordered table-striped">
+          <table id="categories-table" class="table table-bordered table-striped">
             <thead>
             <tr>
               <th>ID</th>
@@ -42,7 +42,13 @@
             @foreach($categories as $category)
               <tr>
                 <td>{{$category->id}}</td>
-                <td>{{$category->title}}</td>
+                <td>
+                  @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                    @if ($category->hasTranslation($locale))
+                      <li class="category">{{ $category->translate($locale)->title }}</li>
+                    @endif
+                  @endforeach
+                </td>
                 <td><a href="{{route('categories.edit', $category->id)}}" class="fas fa-pencil-alt fa-2x"
                        title="Изменить запись"></a>
 
