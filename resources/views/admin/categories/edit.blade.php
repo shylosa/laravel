@@ -33,8 +33,10 @@
         {{Form::open(['route'=>['categories.update',$category->id], 'method'=>'put'])}}
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Название</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="" value="{{$category->title}}">
+              @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
+                <input type="text" class="form-control" id="{{ $locale }}_title" name="{{ $locale }}_title" placeholder="" value="{{$category->translate($locale)->title}}">
+              @endforeach
             </div>
         </div>
       </div>

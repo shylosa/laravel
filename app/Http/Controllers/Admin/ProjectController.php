@@ -67,7 +67,7 @@ class ProjectController extends Controller
         $project->setTags($request->get('tags'));
         $project->toggleStatus($request->get('status'));
         $project->togglePopular($request->get('is_popular'));
-        //dd($project);
+
         return redirect()->route('projects.index');
     }
 
@@ -77,7 +77,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $project = Project::find($id);
         $categories = Category::pluck('title', 'id')->all();

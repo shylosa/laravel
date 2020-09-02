@@ -46,32 +46,29 @@ class CategoryController extends Controller
     }
 
     /**
+     * Store category and translations to database
+     *
      * @param Request $request
      * @return RedirectResponse
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            '*_title' => 'alpha'
+            '*_title' => 'string'
         ]);
 
         $model = Category::add();
-        $locales = app(Locales::class)->all();
-        $categoryData = [];
-        foreach ($locales as $locale) {
-            $categoryData[$locale] = [
-                'category_id' => $model->id,
-                'locale' => $locale,
-                'title' => $validated[$locale . '_title']
-            ];
+        foreach (app(Locales::class)->all() as $locale) {
+            $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
         }
-
-        $model->setTranslations($categoryData);
+        $model->save();
 
         return redirect()->route('categories.index');
     }
 
     /**
+     * Edit existing category and translations
+     *
      * @param $id
      * @return Application|Factory|View
      */
@@ -79,38 +76,51 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        return view('admin.categories.edit', ['category' => $category]);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
+     * Update existing category and translations
+     *
      * @param Request $request
      * @param int $id
      * @return RedirectResponse
-     * @throws ValidationException
      */
     public function update(Request $request, int $id)
     {
-        $this->validate($request, [
-            'title'	=> [
-                'required',
-                Rule::unique('categories')->ignore($id),
-                ]
+        $validated = $request->validate([
+            '*_title' => 'string',
+            Rule::unique('categories')->ignore($id),
         ]);
 
-        $category = Category::find($id);
-        $category->update($request->all());
+        $model = Category::find($id);
+        if ($model) {
+            $categoryData = [];
+            foreach (app(Locales::class)->all() as $locale) {
+                $categoryData[$locale] = [
+                    'title' => $validated[$locale . '_title']
+                ];
+            }
+
+            $model->update($categoryData);
+        }
 
         return redirect()->route('categories.index');
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        Category::find($id)->delete();
+        $model = Category::find($id);
+        if ($model) {
+            $model->deleteTranslations();
+            $model->delete();
+        }
+
         return redirect()->route('categories.index');
     }
 }
