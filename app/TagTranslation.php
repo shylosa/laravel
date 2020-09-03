@@ -9,7 +9,7 @@ class TagTranslation extends AppModel
 {
     use Sluggable;
 
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = ['title'];
 
     /**
      * Return the sluggable configuration array for this model.
