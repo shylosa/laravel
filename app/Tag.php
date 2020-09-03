@@ -52,6 +52,16 @@ class Tag extends AppModel implements TranslatableContract
     protected $fillable = [];
 
     /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return ['slug' => ['source' => 'title']];
+    }
+
+    /**
      * Project Database Dependencies
      *
      * @return BelongsToMany

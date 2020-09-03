@@ -17,16 +17,11 @@ abstract class AppModel extends Model
      *
      * @return array
      */
-    public static function sidebarCount()
+    public static function sidebarCount(): array
     {
-        $count = [
-            'categories' => null,
-            'projects' => null,
-            'tags' => null,
-            'users' => null
-        ];
-
-        foreach ($count as $table => $amount) {
+        $tables = ['categories', 'projects', 'tags', 'users'];
+        $count = [];
+        foreach ($tables as $table) {
             try {
                 $count[$table] = DB::table($table)->get()->count();
             } catch (PDOException $e) {

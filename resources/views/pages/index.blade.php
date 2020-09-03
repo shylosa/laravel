@@ -83,11 +83,11 @@
           @foreach($projects as $project)
             <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
                 <div class="hover-bg">
-                  <a href="{{route('project.show', $project->slug)}}" title="{{$project->title}}" data-lightbox-gallery="gallery1">
+                  <a href="{{route('project.show', $project->translate()->slug)}}" title="{{$project->translate()->title}}" data-lightbox-gallery="gallery1">
                     <div class="hover-text">
-                      <h4>{{$project->title}}</h4>
+                      <h4>{{$project->translate()->title}}</h4>
                     </div>
-                    <img src="{{$project->getImage()}}" alt="{{$project->title}}">
+                    <img src="{{$project->getImage()}}" alt="{{$project->translate()->title}}">
                   </a>
 
                 </div>

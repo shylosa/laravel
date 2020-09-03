@@ -21,7 +21,7 @@ class CreateTagTranslationsTable extends Migration
             $table->unsignedBigInteger('tag_id');
             $table->string('locale')->index();
             $table->string('title');
-
+            $table->string('slug');
             $table->unique(['tag_id', 'locale']);
             $table->foreign('tag_id')
                 ->references('id')
