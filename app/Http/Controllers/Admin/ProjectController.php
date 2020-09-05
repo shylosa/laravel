@@ -107,8 +107,8 @@ class ProjectController extends Controller
     public function edit(int $id)
     {
         $project = Project::find($id);
-        $categories = Category::pluck('title', 'id')->all();
-        $tags = Tag::pluck('title', 'id')->all();
+        $categories = Category::with('translations')->get()->pluck('title', 'id')->all();
+        $tags = Tag::with('translations')->get()->pluck('title', 'id')->all();
         $selectedTags = $project->tags->pluck('id')->all();
 
         return view(
