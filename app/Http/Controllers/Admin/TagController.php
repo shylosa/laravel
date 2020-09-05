@@ -24,7 +24,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::paginate(Controller::PER_PAGE);
         //We leave only the tags that have translations
         foreach ($tags as $key => $tag) {
             if (!$tag->hasTranslation()) {

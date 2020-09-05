@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(Controller::PER_PAGE);
         //We leave only the categories that have translations
         foreach ($categories as $key => $category) {
             if (!$category->hasTranslation()) {

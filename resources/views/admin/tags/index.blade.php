@@ -60,6 +60,7 @@
               @endforeach
               </tbody>
             </table>
+            {{ $tags->links() }}
           </div>
           <!-- /.box-body -->
         </div>
