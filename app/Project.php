@@ -4,22 +4,23 @@
  *
  * PHP Version 7.3.6
  *
- * @category    Personal project
- * @package     Laravel
- * @author      Shylo Serhii <shylosa.mm@gmail.com>
- * @copyright   2019 Shylo Serhii
- * @license     http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
+ * @category Personal project
+ * @package Laravel
+ * @author Shylo Serhii <shylosa.mm@gmail.com>
+ * @copyright 2020 Shylo Serhii
+ * @license http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
  */
 
 /**
  * Project model class for the Laravel.
  *
- * @category    Personal project
- * @package     Laravel
- * @author      Shylo Serhii <shylosa.mm@gmail.com>
- * @copyright   2019 Shylo Serhii
- * @license     http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
+ * @category Personal project
+ * @package Laravel
+ * @author Shylo Serhii <shylosa.mm@gmail.com>
+ * @copyright 2020 Shylo Serhii
+ * @license http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
  */
+
 namespace App;
 
 use App;
@@ -348,7 +349,7 @@ class Project extends AppModel implements TranslatableContract
      *
      * @return string
      */
-    public static function getCurrentDate():string
+    public static function getCurrentDate(): string
     {
         return Carbon::now()->toDateString();
     }
@@ -361,8 +362,8 @@ class Project extends AppModel implements TranslatableContract
     public function getCategoryTitle()
     {
         return ($this->category !== null)
-            ?   $this->category->title
-            :   'Нет категории';
+            ? $this->category->title
+            : 'Нет категории';
     }
 
     /**
@@ -464,7 +465,7 @@ class Project extends AppModel implements TranslatableContract
      *
      * @param $directory
      */
-    public function checkDirectory($directory)
+    public function checkDirectory(string $directory)
     {
         $path = public_path() . '/' . $directory;
 

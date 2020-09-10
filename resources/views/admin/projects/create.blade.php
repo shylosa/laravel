@@ -37,7 +37,8 @@
             <div class="form-group">
               @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
-                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder="" name="{{ $locale }}_title">
+                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder=""
+                       name="{{ $locale }}_title">
               @endforeach
             </div>
 
@@ -45,7 +46,8 @@
               <div>
                 <label for="photos">{{ __('Фотографии проекта') }}</label>
               </div>
-              <a href="{{ route('photos.upload') }}">Загрузить фото...</a>
+              <div id="imgPreview"></div>
+              <input id="photos" required type="file" class="btn btn-dark" name="image[]" placeholder="Выберите файлы..." multiple>
             </div>
 
             <div class="form-group">
@@ -77,8 +79,10 @@
             <div class="form-group">
               <label>{{ __('Дата') }}</label>
               <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker"></div>
-                <input type="date" class="form-control select2" name="date" value="{{ App\Project::getCurrentDate() }}"/>
+                <div class="input-group-append" data-target="#datetimepicker4"
+                     data-toggle="datetimepicker"></div>
+                <input type="date" class="form-control select2" name="date"
+                       value="{{ App\Project::getCurrentDate() }}"/>
               </div>
             </div>
             <!-- /.input group -->
@@ -104,7 +108,8 @@
           <div class="form-group">
             @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
               <label for="{{ $locale }}_description">Описание-{{ $locale }}</label>
-              <textarea class="form-control" id="{{ $locale }}_description" name="{{ $locale }}_description" cols="30" rows="8"></textarea>
+              <textarea class="form-control" id="{{ $locale }}_description"
+                        name="{{ $locale }}_description" cols="30" rows="8"></textarea>
             @endforeach
           </div>
         </div>
@@ -116,10 +121,24 @@
       </div>
       <!-- /.box-footer-->
 
-  <!-- /.box -->
-  {{Form::close()}}
-  </section>
-  <!-- /.content -->
+      <!-- /.box -->
+      {{Form::close()}}
+    </section>
+    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <script type="text/javascript">
+      const $photos = document.querySelector('#photos');
+      $photos.addEventListener('change', function (event) {
+        const $imgPreview = document.querySelector('#imgPreview');
+        const $total_file = document.getElementById("photos").files.length;
+        const image = [];
+        for (var i = 0; i < $total_file; i++) {
+            image[i] = document.createElement('img');
+            image[i].style.cssText = 'width: 200px; padding: 5px;';
+            image[i].setAttribute('src', URL.createObjectURL(event.target.files[i]));
+            $imgPreview.appendChild(image[i]);
+        }
+      });
+  </script>
 @endsection

@@ -9,10 +9,12 @@
         input[type=file] {
             display: inline;
         }
+
         #imgPreview {
             border: 1px solid black;
             padding: 10px;
         }
+
         #imgPreview img {
             width: 200px;
             padding: 5px;

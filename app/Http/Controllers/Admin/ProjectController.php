@@ -61,13 +61,14 @@ class ProjectController extends Controller
             'address' => 'sometimes|string|nullable',
             'status' => 'sometimes|accepted',
             'is_popular' => 'sometimes|accepted',
-            'date' =>'required|date_format:Y-m-d'
+            'date' =>'required|date_format:Y-m-d',
+            'image.*' => 'nullable|image|max:8000'
         ]);
 
 //        $this->validate($request, [
 //            'title' =>'required',
 //            'date' =>'required|date_format:Y-m-d',
-//            'main_image' => 'nullable|image|max:8000'
+//
 //        ]);
 
         $model = Project::add($validated);
