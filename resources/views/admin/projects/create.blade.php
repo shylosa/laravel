@@ -41,15 +41,23 @@
                        name="{{ $locale }}_title">
               @endforeach
             </div>
-
-            <div class="form-group">
-              <div>
-                <label for="photos">{{ __('Фотографии проекта') }}</label>
+            <!-- Load images -->
+            <div class="form-group js-photos-container">
+              <div class="js-photos">
+                <div>
+                  <label for="photos[0]">{{ __('Главная фотография проекта') }}</label>
+                </div>
+                <div class="img-preview"></div>
+                <input id="photos[0]" type="file" class="btn btn-dark" name="photos[0]" placeholder="Выберите файл...">
               </div>
-              <div id="imgPreview"></div>
-              <input id="photos" required type="file" class="btn btn-dark" name="image[]" placeholder="Выберите файлы..." multiple>
+              <div class="mt-2">
+                <div>
+                  <label for="js-add-image">{{ __('Фотографии проекта') }}</label>
+                </div>
+                <button id="js-add-image" class="btn btn-dark js-add-image">Добавить ещё фото...</button>
+              </div>
             </div>
-
+            <!-- /Load images -->
             <div class="form-group">
               <label>Категория</label>
               {{Form::select('category_id',
@@ -128,17 +136,70 @@
   </div>
   <!-- /.content-wrapper -->
   <script type="text/javascript">
-      const $photos = document.querySelector('#photos');
+      const $photos = document.querySelector('.js-photos-container');
       $photos.addEventListener('change', function (event) {
-        const $imgPreview = document.querySelector('#imgPreview');
-        const $total_file = document.getElementById("photos").files.length;
-        const image = [];
-        for (var i = 0; i < $total_file; i++) {
-            image[i] = document.createElement('img');
-            image[i].style.cssText = 'width: 200px; padding: 5px;';
-            image[i].setAttribute('src', URL.createObjectURL(event.target.files[i]));
-            $imgPreview.appendChild(image[i]);
+        if (event.target.tagName === 'INPUT') {
+            addImagePreview(event.target);
         }
       });
+
+      $photos.addEventListener('click', function (event) {
+          const $target = event.target;
+          const $jsAddImage = document.getElementById('js-add-image');
+
+          if ($target.id === 'js-add-image') {
+              event.preventDefault();
+              //container
+              const field = document.createElement('div');
+              field.classList.add('js-photos');
+              $jsAddImage.insertAdjacentElement('beforebegin', field);
+              //preview
+              const preview = document.createElement('div');
+              preview.classList.add('img-preview');
+              field.appendChild(preview);
+              //new input element
+              const input = document.createElement('input');
+              input.classList.add('btn', 'btn-dark');
+              input.type = 'file';
+              input.name = 'photos[]';
+              input.style.display = 'none';
+              input.classList.add('mb-2', 'mt-2');
+              field.appendChild(input);
+
+              input.click();
+          } else if ($target.classList.contains('js-cancel-button')) {
+              $target.parentNode.parentNode.remove();
+          }
+      });
+      function addImagePreview($target)
+      {
+          const $imgPreview = $target.parentNode.querySelector('.img-preview');
+          const image = document.createElement('img');
+          image.style.cssText = 'width: 200px; padding: 5px;';
+          image.setAttribute('src', URL.createObjectURL(event.target.files[0]));
+          $imgPreview.appendChild(image);
+          //cancel button
+          const cancelButton = document.createElement('div');
+          //cancelButton.innerHTML = '&#10006;';
+          cancelButton.classList.add('js-cancel-button', 'far', 'fa-times-circle', 'fa-2x');
+          cancelButton.title = 'Удалить фото';
+          image.insertAdjacentElement('beforebegin', cancelButton);
+      }
   </script>
+  <style>
+    .js-cancel-button {
+        position: absolute;
+        color: #007bff;
+        left: 15px;
+        top: 15px;
+    }
+
+    .js-cancel-button:hover {
+        color: yellow;
+        cursor: pointer;
+    }
+    .img-preview {
+        position: relative;
+    }
+  </style>
 @endsection
