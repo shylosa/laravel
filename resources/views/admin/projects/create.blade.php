@@ -48,7 +48,7 @@
                   <label for="photos[0]">{{ __('Главная фотография проекта') }}</label>
                 </div>
                 <div class="img-preview"></div>
-                <input id="photos[0]" type="file" class="btn btn-dark" name="photos[0]" placeholder="Выберите файл...">
+                <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]" placeholder="Выберите файл...">
               </div>
               <div class="mt-2">
                 <div>
@@ -59,38 +59,22 @@
             </div>
             <!-- /Load images -->
             <div class="form-group">
-              <label>Категория</label>
-              {{Form::select('category_id',
-                  $categories,
-                  null,
-                  ['class' => 'form-control select2'])
-              }}
+              <label>{{ __('Категория') }}</label>
+              {{Form::select('category_id', $categories, null, ['class' => 'form-control select2']) }}
             </div>
 
             <div class="form-group">
-              <label>Теги</label>
-              {{Form::select('tags[]',
-                  $tags,
-                  null,
-                  ['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите теги'])
-              }}
+              <label>{{ __('Теги') }}</label>
+              {{Form::select('tags[]', $tags, null,
+                  ['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите теги']) }}
             </div>
             <!-- Date -->
-          <!--<div class="form-group">
-              <label>Дата:</label>
-              <div class="input-group date"id="datetimepicker4" data-target-input="nearest">
-                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" id="datepicker" name="date" value="{{old('date')}}">
-                <div class="input-group-addon">
-                  <i class="fa fa-calendar"></i>
-                </div>
-            </div>-->
             <div class="form-group">
-              <label>{{ __('Дата') }}</label>
+              <label for="date">{{ __('Дата') }}</label>
               <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
                 <div class="input-group-append" data-target="#datetimepicker4"
                      data-toggle="datetimepicker"></div>
-                <input type="date" class="form-control select2" name="date"
-                       value="{{ App\Project::getCurrentDate() }}"/>
+                <input id="date" type="date" class="form-control select2" name="date" value="{{ App\Project::getCurrentDate() }}"/>
               </div>
             </div>
             <!-- /.input group -->
@@ -147,6 +131,7 @@
           const $target = event.target;
           const $jsAddImage = document.getElementById('js-add-image');
 
+          //Add preview block
           if ($target.id === 'js-add-image') {
               event.preventDefault();
               //container
@@ -167,8 +152,17 @@
               field.appendChild(input);
 
               input.click();
-          } else if ($target.classList.contains('js-cancel-button')) {
-              $target.parentNode.parentNode.remove();
+          }
+
+          //Remove preview block
+          if ($target.classList.contains('js-cancel-button')) {
+              if ($target.parentNode.parentNode.getElementsByClassName('js-main-photo')[0]) {
+                  $target.parentNode.removeChild($target.parentNode.getElementsByTagName('img')[0]);
+                  $target.parentNode.removeChild($target.parentNode.getElementsByClassName('js-cancel-button')[0]);
+                  document.getElementById('photos[0]').value = "";
+              } else {
+                  $target.parentNode.parentNode.remove();
+              }
           }
       });
       function addImagePreview($target)
