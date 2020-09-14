@@ -42,4 +42,41 @@ class Photo extends AppModel
     {
         return $this->belongsTo(Project::class);
     }
+
+    /**
+     * Add new photo
+     *
+     * @param array $fields
+     * @return static
+     */
+    public static function add(array $fields): self
+    {
+        $photo = new static();
+        $photo->fill($fields);
+        $photo->save();
+
+        return $photo;
+    }
+
+    /**
+     * Getting a photo belonging to the project
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        if ($this->image === null) {
+            self::noImage();
+        }
+
+        return '/uploads/' . $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public static function noPhoto()
+    {
+        return '/img/no-image.png';
+    }
 }

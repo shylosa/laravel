@@ -48,7 +48,8 @@
                   <label for="photos[0]">{{ __('Главная фотография проекта') }}</label>
                 </div>
                 <div class="img-preview"></div>
-                <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]" placeholder="Выберите файл...">
+                <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]"
+                       placeholder="Выберите файл...">
               </div>
               <div class="mt-2">
                 <div>
@@ -74,7 +75,8 @@
               <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
                 <div class="input-group-append" data-target="#datetimepicker4"
                      data-toggle="datetimepicker"></div>
-                <input id="date" type="date" class="form-control select2" name="date" value="{{ App\Project::getCurrentDate() }}"/>
+                <input id="date" type="date" class="form-control select2" name="date"
+                       value="{{ App\Project::getCurrentDate() }}"/>
               </div>
             </div>
             <!-- /.input group -->
@@ -114,30 +116,34 @@
       <!-- /.box-footer-->
 
       <!-- /.box -->
-      {{Form::close()}}
+      {{ Form::close() }}
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <script type="text/javascript">
-      const $photos = document.querySelector('.js-photos-container');
-      $photos.addEventListener('change', function (event) {
-        if (event.target.tagName === 'INPUT') {
-            addImagePreview(event.target);
-        }
+      const photos = document.querySelector('.js-photos-container');
+      photos.addEventListener('change', function (event) {
+          let t = event.target;
+          if (t.tagName === 'INPUT') {
+              if (isMainPhoto(t)) {
+                  removeMainPhoto(t);
+              }
+              addPhoto(t);
+          }
       });
 
-      $photos.addEventListener('click', function (event) {
-          const $target = event.target;
-          const $jsAddImage = document.getElementById('js-add-image');
+      photos.addEventListener('click', function (event) {
+          const t = event.target;
+          const jsAddImage = document.getElementById('js-add-image');
 
           //Add preview block
-          if ($target.id === 'js-add-image') {
+          if (t.id === 'js-add-image') {
               event.preventDefault();
               //container
               const field = document.createElement('div');
               field.classList.add('js-photos');
-              $jsAddImage.insertAdjacentElement('beforebegin', field);
+              jsAddImage.insertAdjacentElement('beforebegin', field);
               //preview
               const preview = document.createElement('div');
               preview.classList.add('img-preview');
@@ -155,45 +161,72 @@
           }
 
           //Remove preview block
-          if ($target.classList.contains('js-cancel-button')) {
-              if ($target.parentNode.parentNode.getElementsByClassName('js-main-photo')[0]) {
-                  $target.parentNode.removeChild($target.parentNode.getElementsByTagName('img')[0]);
-                  $target.parentNode.removeChild($target.parentNode.getElementsByClassName('js-cancel-button')[0]);
-                  document.getElementById('photos[0]').value = "";
+          if (t.classList.contains('js-cancel-button')) {
+              if (isMainPhoto(t)) {
+                  removePhoto(t.parentNode);
+                  document.getElementById('photos[0]').value = '';
               } else {
-                  $target.parentNode.parentNode.remove();
+                  t.parentNode.parentNode.remove();
               }
           }
       });
-      function addImagePreview($target)
-      {
-          const $imgPreview = $target.parentNode.querySelector('.img-preview');
-          const image = document.createElement('img');
-          image.style.cssText = 'width: 200px; padding: 5px;';
-          image.setAttribute('src', URL.createObjectURL(event.target.files[0]));
-          $imgPreview.appendChild(image);
+
+      function addPhoto(t) {
+          if (isMainPhoto(t)) {
+              removePhoto(t);
+          }
+          let imgPreview = t.parentNode.querySelector('.img-preview');
+          let image = document.createElement('img');
+          //image.style.cssText = 'width: 200px; padding: 5px;';
+          image.setAttribute('src', URL.createObjectURL(t.files[0]));
+          imgPreview.appendChild(image);
           //cancel button
-          const cancelButton = document.createElement('div');
+          let cancelButton = document.createElement('div');
           //cancelButton.innerHTML = '&#10006;';
           cancelButton.classList.add('js-cancel-button', 'far', 'fa-times-circle', 'fa-2x');
           cancelButton.title = 'Удалить фото';
           image.insertAdjacentElement('beforebegin', cancelButton);
       }
+
+      function isMainPhoto(t) {
+          return !!(t.classList.contains('js-main-photo') || t.parentNode.parentNode.getElementsByClassName('js-main-photo').length > 0);
+      }
+
+      function removePhoto(t) {
+          let photo = t.getElementsByTagName('img')[0];
+          let button = t.getElementsByClassName('js-cancel-button')[0];
+          if (photo) {
+              t.removeChild(photo);
+              t.removeChild(button);
+          }
+      }
+
+      function removeMainPhoto(t) {
+          let trg = t.parentNode.getElementsByClassName('img-preview')[0];
+          removePhoto(trg);
+      }
+
   </script>
   <style>
-    .js-cancel-button {
-        position: absolute;
-        color: #007bff;
-        left: 15px;
-        top: 15px;
-    }
+      .img-preview > img {
+          width: 200px;
+          padding: 5px;
+      }
 
-    .js-cancel-button:hover {
-        color: yellow;
-        cursor: pointer;
-    }
-    .img-preview {
-        position: relative;
-    }
+      .js-cancel-button {
+          position: absolute;
+          color: #007bff;
+          left: 15px;
+          top: 15px;
+      }
+
+      .js-cancel-button:hover {
+          color: yellow;
+          cursor: pointer;
+      }
+
+      .img-preview {
+          position: relative;
+      }
   </style>
 @endsection

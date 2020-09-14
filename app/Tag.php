@@ -89,4 +89,12 @@ class Tag extends AppModel implements TranslatableContract
 
         return $model;
     }
+
+    /**
+     * @return array
+     */
+    public static function getAllTagsList()
+    {
+        return Tag::with('translations')->get()->pluck('title', 'id')->all();
+    }
 }

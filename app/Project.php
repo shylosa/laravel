@@ -102,7 +102,7 @@ class Project extends AppModel implements TranslatableContract
      *
      * @var array
      */
-    protected $fillable = ['status', 'is_popular', 'date'];
+    protected $fillable = ['category_id', 'status', 'is_popular', 'date'];
 
     /**
      * Category Database Dependencies
@@ -190,26 +190,34 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Upload image
      *
-     * @param $image
+     * @param array $images
      */
-    public function uploadImage($image)
+    public function uploadImages(array $images)
     {
-        if ($image === null) {
+        if (empty($images)) {
             return;
         }
 
-        $this->removeImage();
-        $filename = Str::random(10) . '.' . mb_strtolower($image->getClientOriginalExtension());
-        $image = Image::make($image)->resize(800, null, static function ($constraint) {
-            $constraint->aspectRatio();
-        });
         $path = 'uploads';
-
         // Check for the existence of a directory and create it if necessary
         $this->checkDirectory($path);
-        $image->save($path . '/' . $filename);
-        $this->main_image = $filename;
-        $this->save();
+
+        foreach ($images as $key => $image) {
+            $fields = [];
+            $filename = Str::random(10) . '.' . mb_strtolower($image->getClientOriginalExtension());
+            $photo = Image::make($image)->resize(800, null, static function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $photo->save($path . '/' . $filename);
+            $fields = [
+                'project_id' => $this->id,
+                'image' => $filename,
+                'is_main' => $key === 0 ? (int)true : (int)false
+            ];
+            Photo::add($fields);
+        }
+
+        //$this->removeImage();
     }
 
     /**

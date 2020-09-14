@@ -73,4 +73,12 @@ class Category extends AppModel implements TranslatableContract
 
         return $model;
     }
+
+    /**
+     * @return array
+     */
+    public static function getAllCategoriesList()
+    {
+        return Category::with('translations')->get()->pluck('title', 'id')->all();
+    }
 }

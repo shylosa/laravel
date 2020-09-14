@@ -40,8 +40,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $categories = Category::with('translations')->get()->pluck('title', 'id')->all();
-        $tags = Tag::with('translations')->get()->pluck('title', 'id')->all();
+        $categories = Category::getAllCategoriesList();
+        $tags = Tag::getAllTagsList();
 
         return view('admin.projects.create', compact('categories', 'tags'));
     }
@@ -62,7 +62,7 @@ class ProjectController extends Controller
             'status' => 'sometimes|accepted',
             'is_popular' => 'sometimes|accepted',
             'date' =>'required|date_format:Y-m-d',
-            'image.*' => 'nullable|image|max:8000'
+            'photos.*' => 'nullable|image|max:8000'
         ]);
 
 //        $this->validate($request, [
@@ -72,7 +72,6 @@ class ProjectController extends Controller
 //        ]);
 
         $model = Project::add($validated);
-
         foreach (app(Locales::class)->all() as $locale) {
             $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
 
@@ -90,8 +89,10 @@ class ProjectController extends Controller
         }
         $model->save();
 
-        $model->uploadImage($request->file('main_image'));
-        $model->setCategory($request->get('category_id'));
+        if (isset($validated['photos']) && !empty($validated['photos'])) {
+            $model->uploadImages($validated['photos']);
+        }
+
         $model->setTags($request->get('tags'));
         $model->toggleStatus($request->get('status'));
         $model->togglePopular($request->get('is_popular'));
@@ -108,13 +109,14 @@ class ProjectController extends Controller
     public function edit(int $id)
     {
         $project = Project::find($id);
-        $categories = Category::with('translations')->get()->pluck('title', 'id')->all();
-        $tags = Tag::with('translations')->get()->pluck('title', 'id')->all();
+        $categories = Category::getAllCategoriesList();
+        $tags = Tag::getAllTagsList();
         $selectedTags = $project->tags->pluck('id')->all();
+        $photos = $project->photos->pluck('id')->all();
 
         return view(
             'admin.projects.edit',
-            compact('categories', 'tags', 'project', 'selectedTags')
+            compact('categories', 'tags', 'project', 'selectedTags', 'photos')
         );
     }
 
@@ -126,7 +128,7 @@ class ProjectController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $this->validate($request, [
             'title' =>'required',
@@ -136,7 +138,8 @@ class ProjectController extends Controller
 
         $projects = Project::find($id);
         $projects->edit($request->all());
-        $projects->uploadImage($request->file('image'));
+
+        $projects->uploadImages($request->file('image'));
         $projects->setCategory($request->get('category_id'));
         $projects->setTags($request->get('tags'));
         $projects->toggleStatus($request->get('status'));
