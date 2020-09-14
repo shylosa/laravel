@@ -83,10 +83,7 @@ class ProjectController extends Controller
         }
         $model->save();
 
-        if (isset($validated['photos']) && !empty($validated['photos'])) {
-            $model->uploadImages($validated['photos']);
-        }
-
+        $model->uploadImages($request->get('photos'));
         $model->setTags($request->get('tags'));
         $model->toggleStatus($request->get('status'));
         $model->togglePopular($request->get('is_popular'));
@@ -108,10 +105,7 @@ class ProjectController extends Controller
         $selectedTags = $project->tags->pluck('id')->all();
         $photos = $project->photos->pluck('id')->all();
 
-        return view(
-            'admin.projects.edit',
-            compact('categories', 'tags', 'project', 'selectedTags', 'photos')
-        );
+        return view('admin.projects.edit', compact('categories', 'tags', 'project', 'selectedTags', 'photos'));
     }
 
     /**
@@ -120,20 +114,24 @@ class ProjectController extends Controller
      * @param Request $request
      * @param int $id
      * @return RedirectResponse
-     * @throws ValidationException
      */
     public function update(Request $request, int $id)
     {
-        $this->validate($request, [
-            'title' =>'required',
-            'date'  =>  'required|date_format:Y-m-d',
-            'image' =>  'nullable|image|max:8000'
+        $validated = $request->validate([
+            '*_title' => 'required|string',
+            '*_description' => 'sometimes|string|nullable',
+            'customer_name' => 'sometimes|string|nullable',
+            'address' => 'sometimes|string|nullable',
+            'status' => 'sometimes|accepted',
+            'is_popular' => 'sometimes|accepted',
+            'date' =>'required|date_format:Y-m-d',
+            'photos.*' => 'nullable|image|max:8000'
         ]);
 
         $projects = Project::find($id);
-        $projects->edit($request->all());
+        $projects->edit($validated);
 
-        $projects->uploadImages($request->file('image'));
+        $projects->uploadImages($request->get('photos'));
         $projects->setCategory($request->get('category_id'));
         $projects->setTags($request->get('tags'));
         $projects->toggleStatus($request->get('status'));

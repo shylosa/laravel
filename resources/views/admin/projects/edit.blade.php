@@ -58,7 +58,7 @@
                     @endif
                   </div>
                   <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]"
-                         placeholder="Выберите файл...">
+                         placeholder="Выберите файл..." value="{{ $project->photos[0] }}">
                 </div>
                 <div class="mt-2">
                   <div>
@@ -71,7 +71,7 @@
                           <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
                           <img src="{{ $project->photos[$i]->getPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
                         </div>
-                        <input class="btn btn-dark mb-2 mt-2" type="file" name="photos[]" style="display: none;">
+                        <input class="btn btn-dark mb-2 mt-2" type="file" name="photos[]" style="display: none;" value="{{ $project->photos[$i] }}">
                       </div>
                     @endfor
                   @endif

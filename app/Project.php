@@ -57,7 +57,7 @@ use Astrotomic\Translatable\Translatable;
  * @property int $views
  * @property int $is_popular
  * @property string $date
- * @property string|null $main_image
+ * @property array $photos
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Category|null $category
