@@ -33,9 +33,11 @@
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Название</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder=""
-                     value="{{ $project->title }}" name="title">
+              @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
+                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder=""
+                       name="{{ $locale }}_title" value="{{ $project->translate($locale)->title }}">
+              @endforeach
             </div>
 
             <div class="form-group">
@@ -55,7 +57,8 @@
                       <img src="{{ $project->photos[0]->getPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
                     @endif
                   </div>
-                  <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]" placeholder="Выберите файл...">
+                  <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]"
+                         placeholder="Выберите файл...">
                 </div>
                 <div class="mt-2">
                   <div>
@@ -76,134 +79,61 @@
                 </div>
               </div>
               <!-- /Load images -->
-            <div class="form-group">
-              <label>Категория</label>
-              {{ Form::select('category_id', $categories, $project->getCategoryID(), ['class' => 'form-control select2']) }}
-            </div>
-            <div class="form-group">
-              <label>Теги</label>
-              {{ Form::select('tags[]', $tags, $selectedTags, [
-                    'class' => 'form-control select2',
-                    'multiple'=>'multiple',
-                    'data-placeholder' => 'Выберите теги'
-                    ]) }}
-            </div>
-            <!-- Date -->
-            <div class="form-group">
-              <label>Дата:</label>
-
-              <div class="input-group date">
-                <div class="input-group-addon">
-                  <i class="fa fa-calendar"></i>
-                </div>
-                <input type="text" class="form-control pull-right" id="datepicker" value="{{ $project->date }}"
-                       name="date">
+              <div class="form-group">
+                <label>Категория</label>
+                {{ Form::select('category_id', $categories, $project->getCategoryID(), ['class' => 'form-control select2']) }}
               </div>
-              <!-- /.input group -->
+              <div class="form-group">
+                <label>Теги</label>
+                {{ Form::select('tags[]', $tags, $selectedTags, [
+                      'class' => 'form-control select2',
+                      'multiple'=>'multiple',
+                      'data-placeholder' => 'Выберите теги'
+                      ]) }}
+              </div>
+              <!-- Date -->
+              <div class="form-group">
+                <label for="date">{{ __('Дата') }}</label>
+                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                  <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker"></div>
+                  <input id="date" type="date" class="form-control select2" name="date" value="{{ $project->date }}"/>
+                </div>
+              </div>
+              <!-- ./Date -->
+              <!-- checkbox -->
+              <div class="form-group">
+                <label>{{ Form::checkbox('is_popular', '1', $project->is_popular, ['class'=>'minimal']) }}</label>
+                <label>Рекомендовать</label>
+              </div>
+              <div class="form-group">
+                <label>{{ Form::checkbox('status', '1', $project->status, ['class'=>'minimal']) }}</label>
+                <label>Черновик</label>
+              </div>
+              <!-- checkbox -->
             </div>
-
-            <!-- checkbox -->
-            <div class="form-group">
-              <label>
-                {{Form::checkbox('is_popular', '1', $project->is_popular, ['class'=>'minimal'])}}
-              </label>
-              <label>
-                Рекомендовать
-              </label>
+            <div class="col-md-12">
+              <div class="form-group">
+                @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                  <label for="{{ $locale }}_description">Описание-{{ $locale }}</label>
+                  <textarea class="form-control" id="{{ $locale }}_description" name="{{ $locale }}_description" cols="30" rows="8">
+                    {{ $project->translate($locale)->description }}
+                  </textarea>
+                @endforeach
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button class="btn btn-warning pull-right">{{ __('Изменить') }}</button>
+              </div>
+              <!-- /.box-footer-->
             </div>
-            <!-- checkbox -->
-            <div class="form-group">
-              <label>
-                {{Form::checkbox('status', '1', $project->status, ['class'=>'minimal'])}}
-              </label>
-              <label>
-                Черновик
-              </label>
-            </div>
+            <!-- /.box -->
           </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Описание</label>
-              <textarea name="description" id="" cols="30" rows="10"
-                        class="form-control">{{ $project->description }}</textarea>
-            </div>
-          </div>
-          <!-- /.box-body -->
-          <div class="box-footer">
-            <button class="btn btn-warning pull-right">{{ __('Изменить') }}</button>
-          </div>
-          <!-- /.box-footer-->
-        </div>
-        <!-- /.box -->
-      </div>
-      {{Form::close()}}
+      {{ Form::close() }}
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <script type="text/javascript">
-      const $photos = document.querySelector('.js-photos-container');
-      $photos.addEventListener('change', function (event) {
-          if (event.target.tagName === 'INPUT') {
-              addImagePreview(event.target);
-          }
-      });
-
-      $photos.addEventListener('click', function (event) {
-          const $target = event.target;
-          const $jsAddImage = document.getElementById('js-add-image');
-
-          //Add preview block
-          if ($target.id === 'js-add-image') {
-              event.preventDefault();
-              //container
-              const field = document.createElement('div');
-              field.classList.add('js-photos');
-              $jsAddImage.insertAdjacentElement('beforebegin', field);
-              //preview
-              const preview = document.createElement('div');
-              preview.classList.add('img-preview');
-              field.appendChild(preview);
-              //new input element
-              const input = document.createElement('input');
-              input.classList.add('btn', 'btn-dark');
-              input.type = 'file';
-              input.name = 'photos[]';
-              input.style.display = 'none';
-              input.classList.add('mb-2', 'mt-2');
-              field.appendChild(input);
-
-              input.click();
-          }
-
-          //Remove preview block
-          if ($target.classList.contains('js-cancel-button')) {
-              if ($target.parentNode.parentNode.getElementsByClassName('js-main-photo')[0]) {
-                  const $imgMainPhoto = $target.parentNode.getElementsByTagName('img')[0];
-                  const $btnMainPhoto = $target.parentNode.getElementsByClassName('js-cancel-button')[0];
-                  $target.parentNode.removeChild($imgMainPhoto);
-                  $target.parentNode.removeChild($btnMainPhoto);
-                  document.getElementById('photos[0]').value = '';
-              } else {
-                  $target.parentNode.parentNode.remove();
-              }
-          }
-      });
-      function addImagePreview($target)
-      {
-          const $imgPreview = $target.parentNode.querySelector('.img-preview');
-          const image = document.createElement('img');
-          //image.style.cssText = 'width: 200px; padding: 5px;';
-          image.setAttribute('src', URL.createObjectURL(event.target.files[0]));
-          $imgPreview.appendChild(image);
-          //cancel button
-          const cancelButton = document.createElement('div');
-          //cancelButton.innerHTML = '&#10006;';
-          cancelButton.classList.add('js-cancel-button', 'far', 'fa-times-circle', 'fa-2x');
-          cancelButton.title = 'Удалить фото';
-          image.insertAdjacentElement('beforebegin', cancelButton);
-      }
-  </script>
+  <script type="text/javascript" src="/js/project-photos.js"></script>
   <style>
       .img-preview > img {
           width: 200px;
@@ -221,6 +151,7 @@
           color: yellow;
           cursor: pointer;
       }
+
       .img-preview {
           position: relative;
       }

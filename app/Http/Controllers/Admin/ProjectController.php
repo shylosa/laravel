@@ -65,12 +65,6 @@ class ProjectController extends Controller
             'photos.*' => 'nullable|image|max:8000'
         ]);
 
-//        $this->validate($request, [
-//            'title' =>'required',
-//            'date' =>'required|date_format:Y-m-d',
-//
-//        ]);
-
         $model = Project::add($validated);
         foreach (app(Locales::class)->all() as $locale) {
             $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
