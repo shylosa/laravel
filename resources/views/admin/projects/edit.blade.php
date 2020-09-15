@@ -54,26 +54,26 @@
                   <div class="img-preview">
                     @if ($project->photos->count() > 0)
                       <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
-                      <img src="{{ $project->photos[0]->getPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
+                      <img class="image-{{ $project->getMainPhotoID() }}" src="{{ $project->getMainPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
                     @endif
                   </div>
                   <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]"
-                         placeholder="Выберите файл..." value="{{ $project->photos[0] }}">
+                         placeholder="Выберите файл...">
                 </div>
                 <div class="mt-2">
                   <div>
                     <label for="js-add-image">{{ __('Фотографии проекта') }}</label>
                   </div>
                   @if ($project->photos->count() > 1)
-                    @for ($i = 1; $i < $project->photos->count(); $i++)
+                    @foreach ($photos as $photo)
                       <div class="js-photos">
                         <div class="img-preview">
                           <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
-                          <img src="{{ $project->photos[$i]->getPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
+                          <img class="image-{{ $photo->id }}" src="{{ $photo->getPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
                         </div>
-                        <input class="btn btn-dark mb-2 mt-2" type="file" name="photos[]" style="display: none;" value="{{ $project->photos[$i] }}">
+                        <input class="btn btn-dark mb-2 mt-2" type="file" name="photos[]" style="display: none;">
                       </div>
-                    @endfor
+                    @endforeach
                   @endif
                   <button id="js-add-image" class="btn btn-dark js-add-image">Добавить ещё фото...</button>
                 </div>

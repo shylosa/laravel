@@ -481,4 +481,52 @@ class Project extends AppModel implements TranslatableContract
             File::makeDirectory($path, 0777, true, true);
         }
     }
+
+    /**
+     * @return mixed|string
+     */
+    public function getMainPhoto()
+    {
+        if (empty($this->photos)) {
+            return Photo::noPhoto();
+        }
+
+        foreach ($this->photos as $photo) {
+            if ($photo->is_main === (int)true) {
+                return '/uploads/' . $photo->image;
+            }
+        }
+
+        return '/uploads/' . $this->photos[0];
+    }
+
+    /**
+     * @return string
+     */
+    public function getMainPhotoID()
+    {
+        if (empty($this->photos)) {
+            return '';
+        }
+
+        foreach ($this->photos as $photo) {
+            if ($photo->is_main === (int)true) {
+                return $photo->id;
+            }
+        }
+
+        return $this->photos[0]->id;
+    }
+
+    /**
+     * @return array|HasMany
+     */
+    public function getAdditionalPhotos()
+    {
+        if (empty($this->photos)) {
+            return [];
+        }
+
+        return $this->photos->where('is_main', '<>', (int)true)->all();
+    }
 }

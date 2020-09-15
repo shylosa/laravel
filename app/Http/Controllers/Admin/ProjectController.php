@@ -103,7 +103,8 @@ class ProjectController extends Controller
         $categories = Category::getAllCategoriesList();
         $tags = Tag::getAllTagsList();
         $selectedTags = $project->tags->pluck('id')->all();
-        $photos = $project->photos->pluck('id')->all();
+        //$photos = $project->photos->pluck('id')->all();
+        $photos = $project->getAdditionalPhotos();
 
         return view('admin.projects.edit', compact('categories', 'tags', 'project', 'selectedTags', 'photos'));
     }
@@ -146,7 +147,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //Удаление записей о тегах из промежуточной таблицы
         Project::find($id)->tags()->detach();
