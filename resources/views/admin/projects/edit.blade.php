@@ -54,7 +54,8 @@
                   <div class="img-preview">
                     @if ($project->photos->count() > 0)
                       <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
-                      <img class="image-{{ $project->getMainPhotoID() }}" src="{{ $project->getMainPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
+                      <img src="{{ $project->getMainPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
+                      <input class="old-photos" type="hidden" name="old_photos[0]" value="{{ $project->getMainPhotoID() }}">
                     @endif
                   </div>
                   <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="photos[0]"
@@ -70,6 +71,7 @@
                         <div class="img-preview">
                           <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
                           <img class="image-{{ $photo->id }}" src="{{ $photo->getPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
+                          <input class="old-photos" type="hidden" name="old_photos[]" value="{{ $photo->id }}">
                         </div>
                         <input class="btn btn-dark mb-2 mt-2" type="file" name="photos[]" style="display: none;">
                       </div>

@@ -81,3 +81,12 @@ function removeMainPhoto(t) {
     let trg = t.parentNode.getElementsByClassName('img-preview')[0];
     removePhoto(trg);
 }
+
+function createHiddenField()
+{
+    let hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'oldImages[]';
+    hiddenField.classList.add('db-img');
+    hiddenField.value = ''; //Где-то берём ID картинки в базе данных
+}
