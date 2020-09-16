@@ -491,13 +491,12 @@ class Project extends AppModel implements TranslatableContract
             return Photo::noPhoto();
         }
 
-        foreach ($this->photos as $photo) {
-            if ($photo->is_main === (int)true) {
-                return '/uploads/' . $photo->image;
-            }
+        $photo = $this->photos->where('is_main', (int)true)->first();
+        if (empty($photo)) {
+            return '/uploads/' . $this->photos[0];
         }
 
-        return '/uploads/' . $this->photos[0];
+        return '/uploads/' . $photo->image;
     }
 
     /**
@@ -509,10 +508,9 @@ class Project extends AppModel implements TranslatableContract
             return '';
         }
 
-        foreach ($this->photos as $photo) {
-            if ($photo->is_main === (int)true) {
-                return $photo->id;
-            }
+        $photo = $this->photos->where('is_main', (int)true)->first();
+        if (empty($photo)) {
+            return $photo->id;
         }
 
         return $this->photos[0]->id;
