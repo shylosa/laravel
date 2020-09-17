@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AppModel;
 use App\Project;
 use App\Tag;
 use App\Category;
@@ -66,7 +67,7 @@ class ProjectController extends Controller
         ]);
 
         $model = Project::add($validated);
-        foreach (app(Locales::class)->all() as $locale) {
+        foreach (AppModel::getLocales() as $locale) {
             $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
 
             if (in_array($locale . '_customer_name', $validated, true) && $validated[$locale . '_customer_name']) {
@@ -83,7 +84,8 @@ class ProjectController extends Controller
         }
         $model->save();
 
-        $model->uploadImages($request->get('photos'));
+
+        $model->setPhotos($request->get('photos'), $request->get('old_photos'));
         $model->setTags($request->get('tags'));
         $model->toggleStatus($request->get('status'));
         $model->togglePopular($request->get('is_popular'));
@@ -126,13 +128,16 @@ class ProjectController extends Controller
             'status' => 'sometimes|accepted',
             'is_popular' => 'sometimes|accepted',
             'date' =>'required|date_format:Y-m-d',
-            'photos.*' => 'nullable|image|max:8000'
+            'photos.*' => 'nullable|image|max:8000',
+            'old_photos.*' => 'sometimes|integer|exists:photos,id',
         ]);
 
         $projects = Project::find($id);
         $projects->edit($validated);
 
-        $projects->uploadImages($request->get('photos'));
+        if (isset($validated['photos'])) {
+            $projects->setPhotos($validated);
+        }
         $projects->setCategory($request->get('category_id'));
         $projects->setTags($request->get('tags'));
         $projects->toggleStatus($request->get('status'));

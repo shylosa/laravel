@@ -92,6 +92,7 @@ class Project extends AppModel implements TranslatableContract
     public const IS_STANDARD = 0;
     public const IS_POPULAR = 1;
 
+    public const UPLOAD_PATH = 'uploads/';
     /**
      * @var string[]
      */
@@ -145,7 +146,7 @@ class Project extends AppModel implements TranslatableContract
      * @param array $fields
      * @return static
      */
-    public static function add(array $fields): self
+    public static function add($fields): self
     {
         $project = new static();
         $project->fill($fields);
@@ -183,32 +184,32 @@ class Project extends AppModel implements TranslatableContract
     public function removeImage()
     {
         if ($this->main_image !== null) {
-            Storage::delete('uploads/' . $this->main_image);
+            Storage::delete(self::UPLOAD_PATH . $this->main_image);
         }
     }
 
     /**
      * Upload image
      *
-     * @param array $images
+     * @param array $photos
+     * @param array $old_photos
      */
-    public function uploadImages(array $images)
+    public function setPhotos(array $photos = [], array $old_photos = [])
     {
-        if (empty($images)) {
+        if (empty($photos) && empty($old_photos)) {
             return;
         }
 
-        $path = 'uploads';
         // Check for the existence of a directory and create it if necessary
-        $this->checkDirectory($path);
+        $this->checkDirectory(self::UPLOAD_PATH);
 
-        foreach ($images as $key => $image) {
+        foreach ($photos as $key => $image) {
             $fields = [];
             $filename = Str::random(10) . '.' . mb_strtolower($image->getClientOriginalExtension());
             $photo = Image::make($image)->resize(800, null, static function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $photo->save($path . '/' . $filename);
+            $photo->save(self::UPLOAD_PATH . $filename);
             $fields = [
                 'project_id' => $this->id,
                 'image' => $filename,
@@ -231,7 +232,7 @@ class Project extends AppModel implements TranslatableContract
             return '/img/no-image.png';
         }
 
-        return '/uploads/' . $this->main_image;
+        return '/' . self::UPLOAD_PATH . $this->main_image;
     }
 
     /**
@@ -251,9 +252,9 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Set tag for current project
      *
-     * @param $ids
+     * @param array $ids
      */
-    public function setTags($ids): void
+    public function setTags(array $ids): void
     {
         if ($ids === null) {
             return;
@@ -493,10 +494,10 @@ class Project extends AppModel implements TranslatableContract
 
         $photo = $this->photos->where('is_main', (int)true)->first();
         if (empty($photo)) {
-            return '/uploads/' . $this->photos[0];
+            return '/' . self::UPLOAD_PATH . $this->photos[0];
         }
 
-        return '/uploads/' . $photo->image;
+        return '/' . self::UPLOAD_PATH . $photo->image;
     }
 
     /**

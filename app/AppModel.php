@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Astrotomic\Translatable\Locales;
 use DB;
 use Doctrine\DBAL\Driver\PDOException;
 use Illuminate\Database\Eloquent\Model;
@@ -31,5 +32,13 @@ abstract class AppModel extends Model
         }
 
         return $count;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getLocales()
+    {
+        return app(Locales::class)->all();
     }
 }

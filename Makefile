@@ -1,3 +1,21 @@
+#!/usr/bin/make
+
+SHELL := /bin/sh
+CURRENT_UID := $(shell id -u)
+CURRENT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
+test:
+	@echo $(CURRENT_UID)
+
+#remove folder with request cache
+clear:
+	sudo rm -R frontend/runtime/redirectCache
+
+#change owner and permissions for project folder
+owner:
+	sudo chown -R $(CURRENT_UID):www-data $(CURRENT_DIR)
+	sudo chmod -R 775 $(CURRENT_DIR)
+
 docker-up: memory
 	docker-compose up -d
 
