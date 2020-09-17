@@ -194,7 +194,7 @@ class Project extends AppModel implements TranslatableContract
      * @param array $photos
      * @param array $old_photos
      */
-    public function setPhotos(array $photos = [], array $old_photos = [])
+    public function setPhotos($photos = [], $old_photos = [])
     {
         if (empty($photos) && empty($old_photos)) {
             return;
@@ -202,7 +202,9 @@ class Project extends AppModel implements TranslatableContract
 
         // Check for the existence of a directory and create it if necessary
         $this->checkDirectory(self::UPLOAD_PATH);
-
+        //remove records about existing files from database
+        $oldPhotoFiles = $this->photos->whereNotIn('id', array_map('intval', $old_photos))->all();
+        //upload new files
         foreach ($photos as $key => $image) {
             $fields = [];
             $filename = Str::random(10) . '.' . mb_strtolower($image->getClientOriginalExtension());

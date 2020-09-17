@@ -132,18 +132,16 @@ class ProjectController extends Controller
             'old_photos.*' => 'sometimes|integer|exists:photos,id',
         ]);
 
-        $projects = Project::find($id);
-        $projects->edit($validated);
+        $model = Project::find($id);
+        $model->edit($validated);
 
-        if (isset($validated['photos'])) {
-            $projects->setPhotos($validated);
-        }
-        $projects->setCategory($request->get('category_id'));
-        $projects->setTags($request->get('tags'));
-        $projects->toggleStatus($request->get('status'));
-        $projects->togglePopular($request->get('is_popular'));
+        $model->setPhotos($request->get('photos'), $request->get('old_photos'));
+        $model->setCategory($request->get('category_id'));
+        $model->setTags($request->get('tags'));
+        $model->toggleStatus($request->get('status'));
+        $model->togglePopular($request->get('is_popular'));
 
-        return redirect()->route('projects.index');
+        return redirect()->route('model.index');
     }
 
     /**
