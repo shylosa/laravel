@@ -15,10 +15,12 @@
         <div class="col-xs-12 col-md-6">
           <div class="about-text">
             <h3>{{__('main.factory')}}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed
+              commodo
               nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
             <h3>{{__('main.what_we_make')}}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed
+              commodo
               nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare.</p>
           </div>
         </div>
@@ -80,19 +82,20 @@
         <div class="clearfix"></div>
       </div>
       <div class="row portfolio-items">
-          @foreach($projects as $project)
-            <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
-                <div class="hover-bg">
-                  <a href="{{route('project.show', $project->translate()->slug)}}" title="{{$project->translate()->title}}" data-lightbox-gallery="gallery1">
-                    <div class="hover-text">
-                      <h4>{{$project->translate()->title}}</h4>
-                    </div>
-                    <img src="{{$project->getImage()}}" alt="{{$project->translate()->title}}">
-                  </a>
-
+        @foreach($projects as $project)
+          <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
+            <div class="hover-bg">
+              <a href="{{route('project.show', $project->translate()->slug)}}" title="{{$project->translate()->title}}"
+                 data-lightbox-gallery="gallery1">
+                <div class="hover-text">
+                  <h4>{{$project->translate()->title}}</h4>
                 </div>
+                <img src="{{$project->getImage()}}" alt="{{$project->translate()->title}}">
+              </a>
+
             </div>
-          @endforeach
+          </div>
+        @endforeach
       </div>
     </div>
   </section>

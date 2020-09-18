@@ -22,8 +22,8 @@
 
     <!-- Main content -->
     <section class="content">
-		{{Form::open(['route'	=>	'users.store', 'files'	=>	true])}}
-      <!-- Default box -->
+    {{ Form::open(['route'	=>	'users.store', 'files'	=>	true]) }}
+    <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
           <h4 class="box-title">Добавляем пользователя</h4>
@@ -32,41 +32,44 @@
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Имя</label>
-              <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="" value="{{old('name')}}">
+              <label for="name">Имя</label>
+              <input type="text" name="name" class="form-control" id="name" placeholder=""
+                     value="{{ old('name') }}">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">E-mail</label>
-              <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="" value="{{old('email')}}">
+              <label for="email">E-mail</label>
+              <input type="text" name="email" class="form-control" id="email" placeholder=""
+                     value="{{ old('email') }}">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Пароль</label>
-              <input type="password" name="password" class="form-control" id="exampleInputEmail1" placeholder="">
+              <label for="password">Пароль</label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="">
             </div>
-            <div class="form-group">
-              <div class="card w-50">
-                <img src="/img/no-image.png" alt="/img/no-image.png" class="card-img">
+            <div class="form-group  js-photos-container">
+              <div class="js-photos">
+                <div>
+                  <label for="photos[0]">{{ __('Аватар') }}</label>
                 </div>
+                <div class="img-preview"></div>
+                <input id="photos[0]" type="file" class="btn btn-dark js-main-photo" name="avatar"
+                       placeholder="Выберите файл...">
+                <p class="help-block">jpeg, jpg, png, bmp</p>
               </div>
-              <div>
-                <label for="exampleInputFile">Аватар</label>
-              </div>
-              <input type="file" name="avatar" id="exampleInputFile">
-
-              <p class="help-block">jpeg, jpg, png, bmp</p>
             </div>
+          </div>
         </div>
       </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <button class="btn btn-success pull-right">Добавить</button>
-        </div>
-        <!-- /.box-footer-->
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button class="btn btn-success pull-right">Добавить</button>
+      </div>
+      <!-- /.box-footer-->
 
       <!-- /.box -->
-	{{Form::close()}}
+      {{Form::close()}}
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <script type="text/javascript" src="/js/project-photos.js"></script>
 @stop

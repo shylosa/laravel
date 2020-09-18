@@ -16,19 +16,20 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
-    table.table form
-    {
-      display: inline-block;
-      margin-left: 10px;
-    }
-    button.delete
-    {
-      background: transparent;
-      border: none;
-      color: #007bff;
-      padding: 0px;
-    }
+      table.table form {
+          display: inline-block;
+          margin-left: 10px;
+      }
+
+      button.delete {
+          background: transparent;
+          border: none;
+          color: #007bff;
+          padding: 0px;
+      }
   </style>
+  <!-- Admin styles -->
+  <link rel="stylesheet" href="/css/project-photos.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -63,7 +64,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Language Dropdown Menu -->
-        @include('admin._language-menu')
+      @include('admin._language-menu')
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -78,15 +79,15 @@
     </a>
 
     <!-- Sidebar -->
-      <!-- Sidebar Menu -->
-        @include('admin._sidebar')
-      <!-- /.sidebar-menu -->
+    <!-- Sidebar Menu -->
+  @include('admin._sidebar')
+  <!-- /.sidebar-menu -->
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-    @yield('content')
-  <!-- /.content-wrapper -->
+@yield('content')
+<!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

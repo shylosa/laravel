@@ -47,10 +47,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'  =>  'required',
-            'email' =>  'required|email|unique:users',
-            'password'  =>  'required',
-            'avatar'    =>  'nullable|image'
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'avatar' => 'nullable|image|max:1000'
         ]);
 
         $user = User::add($request->all());
@@ -66,9 +66,9 @@ class UserController extends Controller
      * @param int $id
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('admin.users.edit', ['user' => $user]);
     }
 
@@ -80,31 +80,24 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         $this->validate($request, [
-            'name'  =>  'required',
-            'email' =>  [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($user->id),
-            ],
-            'avatar' => 'nullable|image'
+            'name' => 'required',
+            'email' =>  ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'avatar' => 'nullable|image|max:1000'
         ]);
 
-        $user->edit($request->all()); //name,email
+        $user->edit($request->all()); //name, email
         $user->generatePassword($request->get('password'));
 
-        switch ($request->input('update')) {
-            case 'delete-avatar':
-                $user->deleteAvatar();
-                break;
-
-            case 'update-user':
-                $user->uploadAvatar($request->file('avatar'));
-                break;
+        if (empty($request->get('old_photos'))) {
+            $user->deleteAvatar();
+        }
+        if ($request->file('avatar')) {
+            $user->uploadAvatar($request->file('avatar'));
         }
 
         return redirect()->route('users.index');
@@ -116,9 +109,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        User::find($id)->remove();
+        User::findOrFail($id)->remove();
         return redirect()->route('users.index');
     }
 

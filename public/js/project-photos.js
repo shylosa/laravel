@@ -53,12 +53,10 @@ function addPhoto(t) {
     }
     let imgPreview = t.parentNode.querySelector('.img-preview');
     let image = document.createElement('img');
-    //image.style.cssText = 'width: 200px; padding: 5px;';
     image.setAttribute('src', URL.createObjectURL(t.files[0]));
     imgPreview.appendChild(image);
     //cancel button
     let cancelButton = document.createElement('div');
-    //cancelButton.innerHTML = '&#10006;';
     cancelButton.classList.add('js-cancel-button', 'far', 'fa-times-circle', 'fa-2x');
     cancelButton.title = 'Удалить фото';
     image.insertAdjacentElement('beforebegin', cancelButton);

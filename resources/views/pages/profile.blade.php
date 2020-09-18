@@ -17,7 +17,8 @@
             @include('admin.errors')
             <br>
             <img src="{{$user->getImage()}}" alt="" class="profile-image">
-            <form class="form-horizontal contact-form" role="form" method="post" action="/profile" enctype="multipart/form-data">
+            <form class="form-horizontal contact-form" role="form" method="post" action="/profile"
+                  enctype="multipart/form-data">
 
               {{csrf_field()}}
               <div class="form-group">
@@ -29,7 +30,7 @@
               <div class="form-group">
                 <div class="col-md-12">
                   <input type="email" class="form-control" id="email" name="email"
-                         placeholder="Email" value="{{$user->email}}" >
+                         placeholder="Email" value="{{$user->email}}">
                 </div>
               </div>
               <div class="form-group">

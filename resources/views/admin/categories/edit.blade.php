@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-<!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -30,16 +30,17 @@
           @include('admin.errors')
         </div>
         <div class="box-body">
-        {{Form::open(['route'=>['categories.update',$category->id], 'method'=>'put'])}}
+          {{Form::open(['route'=>['categories.update',$category->id], 'method'=>'put'])}}
           <div class="col-md-6">
             <div class="form-group">
               @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
-                <input type="text" class="form-control" id="{{ $locale }}_title" name="{{ $locale }}_title" placeholder="" value="{{$category->translate($locale)->title}}">
+                <input type="text" class="form-control" id="{{ $locale }}_title" name="{{ $locale }}_title"
+                       placeholder="" value="{{$category->translate($locale)->title}}">
               @endforeach
             </div>
+          </div>
         </div>
-      </div>
         <!-- /.box-body -->
         <div class="box-footer">
           <button class="btn btn-default">Назад</button>

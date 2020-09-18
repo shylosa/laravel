@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-<!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -25,7 +25,7 @@
 
       <!-- Default box -->
       <div class="box">
-      {!! Form::open(['route' => 'tags.store']) !!}
+        {!! Form::open(['route' => 'tags.store']) !!}
         <div class="box-header with-border">
           <h4 class="box-title">Добавляем тег</h4>
           @include('admin.errors')
@@ -35,11 +35,12 @@
             <div class="form-group">
               @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
-                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder="" name="{{ $locale }}_title">
+                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder=""
+                       name="{{ $locale }}_title">
               @endforeach
             </div>
+          </div>
         </div>
-      </div>
         <!-- /.box-body -->
         <div class="box-footer">
           <button class="btn btn-success pull-right">Добавить</button>

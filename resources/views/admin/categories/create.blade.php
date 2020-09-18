@@ -36,7 +36,8 @@
             <div class="form-group">
               @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
-                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder="" name="{{ $locale }}_title">
+                <input type="text" class="form-control" id="{{ $locale }}_title" placeholder=""
+                       name="{{ $locale }}_title">
               @endforeach
             </div>
           </div>

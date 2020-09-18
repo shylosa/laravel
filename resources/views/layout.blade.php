@@ -138,9 +138,9 @@
           </aside>
         </div>
         <div class="col-md-4 address">
-            <h4 class="text-uppercase">{{ __('main.where') }}:</h4>
-            <p>{{ __('main.Novomoskovsk') }}</p>
-            <p>{{ __('main.Dnipropetrovsk_region') }}</p>
+          <h4 class="text-uppercase">{{ __('main.where') }}:</h4>
+          <p>{{ __('main.Novomoskovsk') }}</p>
+          <p>{{ __('main.Dnipropetrovsk_region') }}</p>
         </div>
       </div>
     </div>
@@ -157,7 +157,6 @@
   </div>
 </footer>
 <!-- ./footer -->
-
 
 
 <!-- js files -->

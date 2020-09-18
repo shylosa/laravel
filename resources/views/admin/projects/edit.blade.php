@@ -128,26 +128,4 @@
   </div>
   <!-- /.content-wrapper -->
   <script type="text/javascript" src="/js/project-photos.js"></script>
-  <style>
-      .img-preview > img {
-          width: 200px;
-          padding: 5px;
-      }
-
-      .js-cancel-button {
-          position: absolute;
-          color: #007bff;
-          left: 15px;
-          top: 15px;
-      }
-
-      .js-cancel-button:hover {
-          color: yellow;
-          cursor: pointer;
-      }
-
-      .img-preview {
-          position: relative;
-      }
-  </style>
 @stop

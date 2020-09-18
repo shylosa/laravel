@@ -8,15 +8,18 @@
         <div class="col-md-8">
           <article class="post">
             <div class="post-thumb">
-              <a href="{{ route('project.show', $project->slug) }}"><img src="{{ $project->getMainPhoto() }}" alt=""></a>
+              <a href="{{ route('project.show', $project->slug) }}">
+                <img src="{{ $project->getMainPhoto() }}" alt="">
+              </a>
             </div>
             <div class="post-content">
               <header class="entry-header text-center text-uppercase">
                 @if($project->hasCategory())
-                  <h6><a href="{{route('category.show', $project->category->slug)}}"> {{$project->getCategoryTitle()}}</a></h6>
+                  <h6><a
+                        href="{{route('category.show', $project->category->slug)}}"> {{$project->getCategoryTitle()}}</a>
+                  </h6>
                 @endif
                 <h1 class="entry-title"><a href="{{route('project.show', $project->slug)}}">{{$project->title}}</a></h1>
-
 
               </header>
               <div class="entry-content">

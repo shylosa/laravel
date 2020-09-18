@@ -95,7 +95,6 @@ class User extends Authenticatable
     public function edit($fields): void
     {
         $this->fill($fields); //name,email
-
         $this->save();
     }
 
@@ -149,7 +148,7 @@ class User extends Authenticatable
     public function removeAvatar()
     {
         if ($this->avatar !== null) {
-            Storage::delete('uploads/' . $this->avatar);
+            Storage::delete(Project::UPLOAD_PATH . $this->avatar);
         }
     }
 
