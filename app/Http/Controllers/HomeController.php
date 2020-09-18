@@ -58,7 +58,7 @@ class HomeController extends Controller
         $tag = Tag::where('slug', $slug)->firstOrFail();
         $projects = $tag->projects()->paginate(self::PROJECTS_ON_PAGE);
 
-        return view('pages.list', ['projects'  =>  $projects]);
+        return view('pages.list', ['projects' => $projects]);
     }
 
     /**
@@ -72,6 +72,6 @@ class HomeController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
         $projects = $category->projects()->paginate(self::PROJECTS_ON_PAGE);
 
-        return view('pages.list', ['projects'  =>  $projects]);
+        return view('pages.list', ['projects' => $projects]);
     }
 }
