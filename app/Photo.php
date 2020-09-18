@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Photo
@@ -78,5 +79,15 @@ class Photo extends AppModel
     public static function noPhoto()
     {
         return '/img/no-image.png';
+    }
+
+    /**
+     * Remove image from uploads directory
+     */
+    public function removePhoto()
+    {
+        if ($this->image !== null) {
+            Storage::delete(Project::UPLOAD_PATH . $this->image);
+        }
     }
 }

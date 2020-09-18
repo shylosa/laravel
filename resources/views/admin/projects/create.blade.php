@@ -38,7 +38,7 @@
               @foreach(\app\AppModel::getLocales() as $locale)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
                 <input type="text" class="form-control" id="{{ $locale }}_title" placeholder=""
-                       name="{{ $locale }}_title">
+                       name="{{ $locale }}_title" value="{{ old($locale . '_title') }}">
               @endforeach
             </div>
             <!-- Load images -->
@@ -76,7 +76,7 @@
                 <div class="input-group-append" data-target="#datetimepicker4"
                      data-toggle="datetimepicker"></div>
                 <input id="date" type="date" class="form-control select2" name="date"
-                       value="{{ App\Project::getCurrentDate() }}"/>
+                       value="{{ old('date', App\Project::getCurrentDate()) }}"/>
               </div>
             </div>
             <!-- checkbox -->
@@ -94,7 +94,7 @@
                 @foreach(\app\AppModel::getLocales() as $locale)
                   <label for="{{ $locale }}_description">Описание-{{ $locale }}</label>
                   <textarea class="form-control" id="{{ $locale }}_description"
-                            name="{{ $locale }}_description" cols="30" rows="8"></textarea>
+                            name="{{ $locale }}_description" cols="30" rows="8">{{ old($locale . '_description') }}</textarea>
                 @endforeach
               </div>
             </div>

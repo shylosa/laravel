@@ -39,7 +39,7 @@ photos.addEventListener('click', function (event) {
     //Remove preview block
     if (t.classList.contains('js-cancel-button')) {
         if (isMainPhoto(t)) {
-            removePhoto(t.parentNode);
+            removeMainPhoto(t.parentNode);
             document.getElementById('photos[0]').value = '';
         } else {
             t.parentNode.parentNode.remove();
@@ -79,14 +79,9 @@ function removePhoto(t) {
 
 function removeMainPhoto(t) {
     let trg = t.parentNode.getElementsByClassName('img-preview')[0];
+    let mainPhotoOldInput = trg.getElementsByTagName('input')[0];
+    if (typeof mainPhotoOldInput != "undefined") {
+        trg.removeChild(mainPhotoOldInput);
+    }
     removePhoto(trg);
-}
-
-function createHiddenField()
-{
-    let hiddenField = document.createElement('input');
-    hiddenField.type = 'hidden';
-    hiddenField.name = 'oldImages[]';
-    hiddenField.classList.add('db-img');
-    hiddenField.value = ''; //Где-то берём ID картинки в базе данных
 }

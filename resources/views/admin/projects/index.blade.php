@@ -27,7 +27,7 @@
         <!-- /.box-header -->
         <div class="box-body">
           <div class="form-group">
-            <a href="{{route('projects.create')}}" class="btn btn-success">Добавить</a>
+            <a href="{{ route('projects.create') }}" class="btn btn-success">Добавить</a>
           </div>
           <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -43,24 +43,22 @@
             <tbody>
             @foreach($projects as $project)
               <tr>
-
-                <td>{{$project->id}}</td>
-                <td>{{$project->title}}</td>
-                <td>{{$project->getCategoryTitle()}}</td>
-                <td>{{$project->getTagsTitles()}}</td>
+                <td>{{ $project->id }}</td>
+                <td>{{ $project->title }}</td>
+                <td>{{ $project->getCategoryTitle() }}</td>
+                <td>{{ $project->getTagsTitles() }}</td>
                 <td>
-                  <img src="{{$project->getImage()}}" alt="" width="100">
+                  <img src="{{ $project->getMainPhoto() }}" alt="" width="100">
                 </td>
                 <td>
-
-                  <a href="{{route('projects.edit', $project->id)}}" class="fas fa-pencil-alt fa-2x"
+                  <a href="{{ route('projects.edit', $project->id) }}" class="fas fa-pencil-alt fa-2x"
                      title="Изменить запись"></a>
 
-                  {{Form::open(['route'=>['projects.destroy', $project->id], 'method'=>'delete'])}}
+                  {{ Form::open(['route'=>['projects.destroy', $project->id], 'method'=>'delete']) }}
                   <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                     <i class="fas fa-times fa-2x" title="Удалить запись"></i>
                   </button>
-                  {{Form::close()}}
+                  {{ Form::close() }}
                 </td>
               </tr>
             @endforeach

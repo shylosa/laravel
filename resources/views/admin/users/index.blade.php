@@ -28,7 +28,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="form-group">
-                <a href="{{route('users.create')}}" class="btn btn-success">Добавить</a>
+                <a href="{{ route('users.create') }}" class="btn btn-success">Добавить</a>
               </div>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -43,18 +43,18 @@
                 <tbody>
                 @foreach($users as $user)
 	                <tr>
-	                  <td>{{$user->id}}</td>
-	                  <td>{{$user->name}}</td>
-	                  <td>{{$user->email}}</td>
+	                  <td>{{ $user->id }}</td>
+	                  <td>{{ $user->name }}</td>
+	                  <td>{{ $user->email }}</td>
 	                  <td>
-	                    <img src="{{$user->getImage()}}" alt="" class="img-responsive" width="120">
+	                    <img src="{{ $user->getAvatar() }}" alt="" class="img-responsive" width="120">
 	                  </td>
-	                  <td><a href="{{route('users.edit', $user->id)}}" class="fas fa-pencil-alt fa-2x" title="Изменить запись"></a>
-	                  {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
+	                  <td><a href="{{ route('users.edit', $user->id) }}" class="fas fa-pencil-alt fa-2x" title="Изменить запись"></a>
+	                  {{ Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete']) }}
                           <button onclick="return confirm('Вы уверены?')" type="submit" class="delete">
                           <i class="fas fa-times fa-2x" title="Удалить запись"></i>
                           </button>
-	                  {{Form::close()}}
+	                  {{ Form::close() }}
 	                  </td>
 	                </tr>
                 @endforeach

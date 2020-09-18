@@ -8,6 +8,7 @@ use App\Tag;
 use App\Category;
 use Astrotomic\Translatable\Locales;
 use Eloquent;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ class ProjectController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws Exception
      */
     public function store(Request $request)
     {
@@ -63,29 +65,19 @@ class ProjectController extends Controller
             'status' => 'sometimes|accepted',
             'is_popular' => 'sometimes|accepted',
             'date' =>'required|date_format:Y-m-d',
-            'photos.*' => 'nullable|image|max:8000'
+            'photos.0' => 'required|image|max:8000',
+            'photos.*' => 'nullable|image|max:8000',
+        ], [
+            'photos.0.required' => 'Проект должен иметь главную фотографию',
+            'ru_title.required' => 'Поле "Название-ru" обязательное',
+            'ua_title.required' => 'Поле "Название-ua" обязательное',
+            'en_title.required' => 'Поле "Название-en" обязательное',
         ]);
 
         $model = Project::add($validated);
-        foreach (AppModel::getLocales() as $locale) {
-            $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
+        $model->saveTranslationsData($validated);
 
-            if (in_array($locale . '_customer_name', $validated, true) && $validated[$locale . '_customer_name']) {
-                $model->translateOrNew($locale)->customer_name = $validated[$locale . '_customer_name'];
-            }
-
-            if (in_array($locale . '_address', $validated, true) && $validated[$locale . '_address']) {
-                $model->translateOrNew($locale)->address = $validated[$locale . '_address'];
-            }
-
-            if (in_array($locale . '_description', $validated, true) && $validated[$locale . '_description']) {
-                $model->translateOrNew($locale)->description = $validated[$locale . '_description'];
-            }
-        }
-        $model->save();
-
-
-        $model->setPhotos($request->get('photos'), $request->get('old_photos'));
+        $model->setPhotos($request->file('photos'), $request->get('old_photos'));
         $model->setTags($request->get('tags'));
         $model->toggleStatus($request->get('status'));
         $model->togglePopular($request->get('is_popular'));
@@ -117,6 +109,7 @@ class ProjectController extends Controller
      * @param Request $request
      * @param int $id
      * @return RedirectResponse
+     * @throws Exception
      */
     public function update(Request $request, int $id)
     {
@@ -130,18 +123,29 @@ class ProjectController extends Controller
             'date' =>'required|date_format:Y-m-d',
             'photos.*' => 'nullable|image|max:8000',
             'old_photos.*' => 'sometimes|integer|exists:photos,id',
+        ], [
+            'ru_title.required' => 'Поле "Название-ru" обязательное',
+            'ua_title.required' => 'Поле "Название-ua" обязательное',
+            'en_title.required' => 'Поле "Название-en" обязательное'
         ]);
 
-        $model = Project::find($id);
+        $model = Project::findOrFail($id);
+        if ($model->photos->isEmpty()
+            && empty($request->file('photos'))
+            && empty($request->get('old_photos'))
+        ) {
+            throw ValidationException::withMessages(['photos[0]' => 'Проект должен иметь хотя бы одно фото']);
+        }
         $model->edit($validated);
+        $model->saveTranslationsData($validated);
 
-        $model->setPhotos($request->get('photos'), $request->get('old_photos'));
+        $model->setPhotos($request->file('photos'), $request->get('old_photos'));
         $model->setCategory($request->get('category_id'));
         $model->setTags($request->get('tags'));
         $model->toggleStatus($request->get('status'));
         $model->togglePopular($request->get('is_popular'));
 
-        return redirect()->route('model.index');
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -152,10 +156,11 @@ class ProjectController extends Controller
      */
     public function destroy(int $id)
     {
-        //Удаление записей о тегах из промежуточной таблицы
-        Project::find($id)->tags()->detach();
-        //Удаление записи
-        Project::find($id)->remove();
+        //Remove records from tags table
+        Project::findOrFail($id)->tags()->detach();
+        //Remove model
+        Project::findOrFail($id)->remove();
+
         return redirect()->route('projects.index');
     }
 }

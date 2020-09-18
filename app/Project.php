@@ -27,6 +27,7 @@ use App;
 use Carbon\Carbon;
 
 use Eloquent;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -171,56 +172,57 @@ class Project extends AppModel implements TranslatableContract
      */
     public function remove(): void
     {
-        $this->removeImage();
+        foreach ($this->photos as $photo) {
+            if ($photo instanceof Photo) {
+                $photo->removePhoto();
+            }
+        }
         try {
             $this->delete();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
         }
     }
 
-    /**
-     * Remove image from uploads directory
-     */
-    public function removeImage()
-    {
-        if ($this->main_image !== null) {
-            Storage::delete(self::UPLOAD_PATH . $this->main_image);
-        }
-    }
 
     /**
      * Upload image
      *
      * @param array $photos
      * @param array $old_photos
+     * @throws Exception
      */
-    public function setPhotos($photos = [], $old_photos = [])
+    public function setPhotos($photos, $old_photos)
     {
-        if (empty($photos) && empty($old_photos)) {
-            return;
-        }
-
         // Check for the existence of a directory and create it if necessary
         $this->checkDirectory(self::UPLOAD_PATH);
-        //remove records about existing files from database
-        $oldPhotoFiles = $this->photos->whereNotIn('id', array_map('intval', $old_photos))->all();
-        //upload new files
-        foreach ($photos as $key => $image) {
-            $fields = [];
-            $filename = Str::random(10) . '.' . mb_strtolower($image->getClientOriginalExtension());
-            $photo = Image::make($image)->resize(800, null, static function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $photo->save(self::UPLOAD_PATH . $filename);
-            $fields = [
-                'project_id' => $this->id,
-                'image' => $filename,
-                'is_main' => $key === 0 ? (int)true : (int)false
-            ];
-            Photo::add($fields);
-        }
 
-        //$this->removeImage();
+        // Remove old files and their database records
+        if (!empty($old_photos)) {
+            $photosToDelete = $this->photos->whereNotIn('id', array_map('intval', $old_photos))->all();
+            foreach ($photosToDelete as $photoToDelete) {
+                if ($photoToDelete instanceof Photo) {
+                    $photoToDelete->removePhoto();
+                    $photoToDelete->delete();
+                }
+            }
+        }
+        //Upload new files and save records in database
+        if (!empty($photos)) {
+            foreach ($photos as $key => $photo) {
+                $fields = [];
+                $filename = Str::random(10) . '.' . mb_strtolower($photo->getClientOriginalExtension());
+                $file = Image::make($photo)->resize(800, null, static function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $file->save(self::UPLOAD_PATH . $filename);
+                $fields = [
+                    'project_id' => $this->id,
+                    'image' => $filename,
+                    'is_main' => $key === 0 ? (int)true : (int)false
+                ];
+                Photo::add($fields);
+            }
+        }
     }
 
     /**
@@ -254,9 +256,9 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Set tag for current project
      *
-     * @param array $ids
+     * @param $ids
      */
-    public function setTags(array $ids): void
+    public function setTags($ids): void
     {
         if ($ids === null) {
             return;
@@ -490,13 +492,13 @@ class Project extends AppModel implements TranslatableContract
      */
     public function getMainPhoto()
     {
-        if (empty($this->photos)) {
-            return Photo::noPhoto();
+        if ($this->photos->isEmpty()) {
+            return '';
         }
 
         $photo = $this->photos->where('is_main', (int)true)->first();
         if (empty($photo)) {
-            return '/' . self::UPLOAD_PATH . $this->photos[0];
+            return '/' . self::UPLOAD_PATH . $this->photos->first()->image;
         }
 
         return '/' . self::UPLOAD_PATH . $photo->image;
@@ -507,16 +509,13 @@ class Project extends AppModel implements TranslatableContract
      */
     public function getMainPhotoID()
     {
-        if (empty($this->photos)) {
+        if ($this->photos->isEmpty()) {
             return '';
         }
 
         $photo = $this->photos->where('is_main', (int)true)->first();
-        if (empty($photo)) {
-            return $photo->id;
-        }
 
-        return $this->photos[0]->id;
+        return $photo->id ?? $this->photos[0]->id;
     }
 
     /**
@@ -524,10 +523,34 @@ class Project extends AppModel implements TranslatableContract
      */
     public function getAdditionalPhotos()
     {
-        if (empty($this->photos)) {
+        if ($this->photos->isEmpty()) {
             return [];
         }
 
         return $this->photos->where('is_main', '<>', (int)true)->all();
+    }
+
+    /**
+     * @param $validated
+     * @return void
+     */
+    public function saveTranslationsData($validated)
+    {
+        foreach (AppModel::getLocales() as $locale) {
+            $this->translateOrNew($locale)->title = $validated[$locale . '_title'];
+
+            if (array_key_exists($locale . '_customer_name', $validated) && $validated[$locale . '_customer_name']) {
+                $this->translateOrNew($locale)->customer_name = $validated[$locale . '_customer_name'];
+            }
+
+            if (array_key_exists($locale . '_address', $validated) && $validated[$locale . '_address']) {
+                $this->translateOrNew($locale)->address = $validated[$locale . '_address'];
+            }
+
+            if (array_key_exists($locale . '_description', $validated) && $validated[$locale . '_description']) {
+                $this->translateOrNew($locale)->description = $validated[$locale . '_description'];
+            }
+        }
+        $this->save();
     }
 }

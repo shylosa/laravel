@@ -171,13 +171,13 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getImage()
+    public function getAvatar()
     {
         if ($this->avatar === null) {
             return '/img/no-image.png';
         }
 
-        return '/uploads/' . $this->avatar;
+        return '/' . Project::UPLOAD_PATH . $this->avatar;
     }
 
     /**
@@ -185,7 +185,7 @@ class User extends Authenticatable
      */
     public function makeAdmin(): void
     {
-        $this->is_admin = 1;
+        $this->is_admin = (int)true;
         $this->save();
     }
 
