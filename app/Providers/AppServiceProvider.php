@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\AppModel;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,20 +16,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        if ($this->app->environment() !== 'production') {
-//                $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-//            }
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(IdeHelperServiceProvider::class);
+        }
     }
 
     /**
      * Bootstrap any application services.
      *
+     * @param Request $request
      * @return void
      */
-    public function boot()
+    public function boot(Request $request)
     {
-        view()->composer('admin._sidebar', static function ($view){
-            $view->with('count', \App\AppModel::sidebarCount());
+        // Set the app locale according to the URL
+        app()->setLocale($request->segment(1));
+        view()->composer('admin._sidebar', static function ($view) {
+            $view->with('count', AppModel::sidebarCount());
         });
     }
 }

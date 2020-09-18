@@ -114,6 +114,4 @@ class UserController extends Controller
         User::findOrFail($id)->remove();
         return redirect()->route('users.index');
     }
-
-
 }
