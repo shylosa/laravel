@@ -13,8 +13,8 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-
+Route::get('/', 'HomeController@index')->name(trans('routes.home'));
+#Route::get(trans('routes.home'), 'HomeController@index')->name('home');
 Route::get('/project/{slug}', 'HomeController@show')->name('project.show');
 Route::get('/tag/{slug}', 'HomeController@tag')->name('tag.show');
 Route::get('/category/{slug}', 'HomeController@category')->name('category.show');

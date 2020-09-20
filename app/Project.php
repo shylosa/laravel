@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 
 use Intervention\Image\Facades\Image;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
