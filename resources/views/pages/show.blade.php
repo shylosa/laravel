@@ -8,18 +8,18 @@
         <div class="col-md-8">
           <article class="post">
             <div class="post-thumb">
-              <a href="{{ route('project.show', $project->slug) }}">
+              <a href="{{ route('pages.show', $project->translate()->slug) }}">
                 <img src="{{ $project->getMainPhoto() }}" alt="">
               </a>
             </div>
             <div class="post-content">
               <header class="entry-header text-center text-uppercase">
                 @if($project->hasCategory())
-                  <h6><a
-                        href="{{route('category.show', $project->category->slug)}}"> {{$project->getCategoryTitle()}}</a>
+                  <h6>
+                    <a href="{{ route('categories.show', $project->category->translate()->slug) }}">{{ $project->getCategoryTitle() }}</a>
                   </h6>
                 @endif
-                <h1 class="entry-title"><a href="{{route('project.show', $project->slug)}}">{{$project->title}}</a></h1>
+                <h1 class="entry-title"><a href="{{ route('pages.show', $project->translate()->slug) }}">{{ $project->translate()->title }}</a></h1>
 
               </header>
               <div class="entry-content">
@@ -27,7 +27,7 @@
               </div>
               <div class="decoration">
                 @foreach($project->tags as $tag)
-                  <a href="{{route('tag.show', $tag->slug)}}" class="btn btn-default">{{$tag->title}}</a>
+                  <a href="{{ route('tags.show', $tag->translate()->slug) }}" class="btn btn-default">{{ $tag->translate()->title }}</a>
                 @endforeach
               </div>
 
@@ -52,14 +52,14 @@
             <div class="col-md-6">
               @if($project->hasPrevious())
                 <div class="single-blog-box">
-                  <a href="{{route('project.show', $project->getPrevious()->slug)}}">
-                    <img src="{{$project->getPrevious()->getImage()}}" alt="">
+                  <a href="{{ route('pages.show', $project->getPrevious()->translate()->slug) }}">
+                    <img src="{{ $project->getPrevious()->getMainPhoto() }}" alt="">
 
                     <div class="overlay">
 
                       <div class="promo-text">
                         <p><i class=" pull-left fa fa-angle-left"></i></p>
-                        <h5>{{$project->getPrevious()->title}}</h5>
+                        <h5>{{ $project->getPrevious()->translate()->title }}</h5>
                       </div>
                     </div>
 
@@ -71,13 +71,13 @@
             <div class="col-md-6">
               @if($project->hasNext())
                 <div class="single-blog-box">
-                  <a href="{{route('project.show', $project->getNext()->slug)}}">
-                    <img src="{{$project->getNext()->getImage()}}" alt="">
+                  <a href="{{ route('pages.show', $project->getNext()->translate()->slug) }}">
+                    <img src="{{ $project->getNext()->getMainPhoto() }}" alt="">
 
                     <div class="overlay">
                       <div class="promo-text">
                         <p><i class=" pull-right fa fa-angle-right"></i></p>
-                        <h5>{{$project->getNext()->title}}</h5>
+                        <h5>{{ $project->getNext()->translate()->title }}</h5>
 
                       </div>
                     </div>
@@ -93,10 +93,9 @@
             <div class="items">
               @foreach($project->related() as $item)
                 <div class="single-item">
-                  <a href="{{route('project.show', $item->slug)}}">
-                    <img src="{{$item->getImage()}}" alt="">
-
-                    <p>{{$item->title}}</p>
+                  <a href="{{ route('pages.show', $item->translate()->slug) }}">
+                    <img src="{{ $item->getMainPhoto() }}" alt="">
+                    <p>{{ $item->translate()->title }}</p>
                   </a>
                 </div>
               @endforeach

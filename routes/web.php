@@ -14,10 +14,10 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name(trans('routes.home'));
-Route::get('/projects/{slug}', 'HomeController@show')->name('projects.show');
+Route::get('/projects/{slug}', 'HomeController@show')->name('pages.show');
 Route::get('/tags/{slug}', 'HomeController@tag')->name('tags.show');
 Route::get('/categories/{slug}', 'HomeController@category')->name('categories.show');
-Route::get('lang/{language}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
+Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 
 Route::group(['middleware' => 'auth'], static function () {
     Route::get('/profile', 'ProfileController@index');

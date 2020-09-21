@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- favicon icon -->
-  <title>{{config('app.name')}}</title>
+  <title>{{ config('app.name') }}</title>
 
   <!-- common css -->
   <link rel="stylesheet" href="/css/front.css">
@@ -25,7 +25,7 @@
 
 <nav class="main-header">
   <div class="nav navbar fixed-top navbar-expand-lg">
-    <a class="navbar-brand page-scroll" href="/"><img src="/images/logo.png" alt="">{{config('app.name')}}</a>
+    <a class="navbar-brand page-scroll" href="/"><img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,11 +33,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{__('main.about')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{__('main.services')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{__('main.portfolio')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{__('main.gallery')}}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{__('main.contacts')}}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{ __('main.about') }}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{ __('main.services') }}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{ __('main.portfolio') }}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{ __('main.gallery') }}</a></li>
+        <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{ __('main.contacts') }}</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -45,32 +45,38 @@
   <!-- /.navbar-expand-->
   <div class="overlay">
     <div>
-      <h1>{{config('app.name')}}<span>/</span>Handcrafted Furniture Factory</h1>
+      <h1>{{ config('app.name') }}<span>/</span>Handcrafted Furniture Factory</h1>
     </div>
     <div>
-      <p>{{__('main.slogan')}}</p>
+      <p>{{ __('main.slogan') }}</p>
     </div>
-    <a href="#about" class="btn btn-custom page-scroll">{{__('main.more')}}</a>
+    <a href="#about" class="btn btn-custom page-scroll">{{ __('main.more') }}</a>
   </div>
 </nav>
 <!-- /.main-header-->
 
 <!-- .language -->
 <div class="language">
-  <div class="soc">
-    <button class="lang_button active">UA</button>
-  </div>
-  <div class="soc">
-    <a href="/ru">
-      <button class="lang_button noactive">RU</button>
-    </a>
-  </div>
-  <div class="soc">
-    <a href="/en">
-      <button class="lang_button noactive">EN</button>
-    </a>
-  </div>
+  <div class="soc"><a href="/ua"><button class="lang_button active">UA</button></a></div>
+  <div class="soc"><a href="/ru"><button class="lang_button noactive">RU</button></a></div>
+  <div class="soc"><a href="/en"><button class="lang_button noactive">EN</button></a></div>
 </div>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
+  </a>
+  <ul class="dropdown-menu">
+    @foreach (config('translatable.locales') as $lang => $language)
+      @if ($lang !== app()->getLocale())
+        <li>
+          <a href="{{ route('lang.switch', $lang) }}">
+            {{ $language }}
+          </a>
+        </li>
+      @endif
+    @endforeach
+  </ul>
+</li>
 <!-- ./language -->
 
 @yield('content')
@@ -79,7 +85,7 @@
 <div class="section-instagram" id="gallery">
   <div class="container-fluid">
     <div class="section-title">
-      <h3>{{__('main.gallery')}}</h3>
+      <h3>{{ __('main.gallery') }}</h3>
     </div>
     <div class="row">
       <div class="col">
@@ -116,14 +122,16 @@
   <div class="container">
     <div class="container">
       <div class="section-title">
-        <h2>{{__('main.how_contacts')}}</h2>
+        <h2>{{ __('main.how_contacts') }}</h2>
         <hr>
       </div>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
       <div class="row">
         <div class="col-md-4">
           <aside class="contact-widget">
-            <div class="about-img"><img src="/images/footer-logo.png" alt=""><span>{{config('app.name')}}</span></div>
+            <div class="about-img">
+              <img src="/images/footer-logo.png" alt=""><span>{{ config('app.name') }}</span>
+            </div>
             <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
               eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
               accusam et justo duo dlores et ea rebum magna text ar koto din.
@@ -151,7 +159,7 @@
 <!-- footer -->
 <footer class="footer">
   <div class="container">
-    <div class="text-center">&copy; 2020 <a href="#">{{config('app.name')}}, </a>
+    <div class="text-center">&copy; 2020 <a href="#">{{ config('app.name') }}, </a>
       Designed by <a href="#">shylosa</a>
     </div>
   </div>

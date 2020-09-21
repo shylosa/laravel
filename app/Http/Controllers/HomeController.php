@@ -6,7 +6,9 @@ use App\Project;
 use App\Tag;
 use App\Category;
 use Eloquent;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -38,11 +40,15 @@ class HomeController extends Controller
      * Display one selected project
      *
      * @param $slug
-     * @return Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function show($slug)
     {
-        $project = Project::where('slug', $slug)->firstOrFail();
+        $project = Project::whereTranslation('slug', $slug)->firstOrFail();
+
+        if ($project->translate()->where('slug', $slug)->first()->locale !== app()->getLocale()) {
+            return redirect()->route('pages.show', $project->translate()->slug);
+        }
 
         return view('pages.show', compact('project'));
     }
