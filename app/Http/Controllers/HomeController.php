@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projects = Project::paginate(self::PROJECTS_ON_PAGE);
+        $projects = Project::has('translation')->paginate(self::PROJECTS_ON_PAGE);
 
         return view('pages.index')->with('projects', $projects);
     }

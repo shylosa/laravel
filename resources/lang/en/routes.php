@@ -2,4 +2,5 @@
 
 return [
     'home' => 'home',
+    'login' => 'login'
 ];

@@ -554,4 +554,19 @@ class Project extends AppModel implements TranslatableContract
         }
         $this->save();
     }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function translatedProjects()
+    {
+        $allProjects = Project::all();
+        $projects = [];
+        foreach ($allProjects as $project) {
+            if ($project->hasTranslation()) {
+                $projects[] = $project;
+            }
+        }
+        return collect($projects);
+    }
 }

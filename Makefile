@@ -4,12 +4,14 @@ SHELL := /bin/sh
 CURRENT_UID := $(shell id -u)
 CURRENT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-test:
-	@echo $(CURRENT_UID)
+#test:
+#	@echo $(CURRENT_UID)
 
 #remove folder with request cache
-clear:
-	sudo rm -R frontend/runtime/redirectCache
+flush:
+	php artisan route:clear
+	php artisan config:clear
+	php artisan cache:clear
 
 #change owner and permissions for project folder
 owner:

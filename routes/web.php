@@ -14,10 +14,9 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name(trans('routes.home'));
-#Route::get(trans('routes.home'), 'HomeController@index')->name('home');
-Route::get('/project/{slug}', 'HomeController@show')->name('project.show');
-Route::get('/tag/{slug}', 'HomeController@tag')->name('tag.show');
-Route::get('/category/{slug}', 'HomeController@category')->name('category.show');
+Route::get('/projects/{slug}', 'HomeController@show')->name('projects.show');
+Route::get('/tags/{slug}', 'HomeController@tag')->name('tags.show');
+Route::get('/categories/{slug}', 'HomeController@category')->name('categories.show');
 Route::get('lang/{language}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 
 Route::group(['middleware' => 'auth'], static function () {
