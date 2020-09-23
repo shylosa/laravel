@@ -21,8 +21,8 @@
               </div>
               <div class="form-group">
                 <div class="col-md-12">
-                  <input type="text" value="{{ old('email') }}" class="form-control" id="email" name="email"
-                         placeholder="{{ __('main.email') }}">
+                  <input type="text" class="form-control" id="email" name="email"
+                         placeholder="{{ __('main.email') }}" value="{{ old('email') }}">
                 </div>
               </div>
               <div class="form-group">

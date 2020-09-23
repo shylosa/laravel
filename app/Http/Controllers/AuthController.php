@@ -36,16 +36,18 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
 
-        $user = User::add($request->all());
+        $user = User::add($validated);
         $user->generatePassword($request->get('password'));
 
-        return redirect('/login')->with('success', 'Вы успешно зарегистрировались и теперь можете войти на сайт');
+        return redirect()
+            ->route('login')
+            ->with('success', __('You have successfully registered and you can now enter the site'));
 
     }
 
@@ -80,7 +82,7 @@ class AuthController extends Controller
             return redirect()->route('home');
         }
 
-        return redirect()->back()->with('status', 'Неправильный логин или пароль');
+        return redirect()->back()->with('status', __('Incorrect login or password'));
     }
 
     /**

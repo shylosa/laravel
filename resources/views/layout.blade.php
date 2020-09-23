@@ -26,8 +26,7 @@
 <nav class="main-header">
   <div class="nav navbar fixed-top navbar-expand-lg">
     <a class="navbar-brand page-scroll" href="{{ route('home') }}"><img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
@@ -38,6 +37,9 @@
         <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{ __('main.portfolio') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{ __('main.gallery') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{ __('main.contacts') }}</a></li>
+        @if (Auth::check())
+          <li class="nav-item"><a class="nav-link page-scroll" href="{{ route('logout') }}">{{ __('main.logout') }}</a></li>
+        @endif
       </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -57,9 +59,15 @@
 
 <!-- .language -->
 <div class="language">
-  <div class="soc"><a href="/ua"><button class="lang_button active">UA</button></a></div>
-  <div class="soc"><a href="/ru"><button class="lang_button noactive">RU</button></a></div>
-  <div class="soc"><a href="/en"><button class="lang_button noactive">EN</button></a></div>
+  <div class="soc"><a href="/ua">
+      <button class="lang_button active">UA</button>
+    </a></div>
+  <div class="soc"><a href="/ru">
+      <button class="lang_button noactive">RU</button>
+    </a></div>
+  <div class="soc"><a href="/en">
+      <button class="lang_button noactive">EN</button>
+    </a></div>
 </div>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
