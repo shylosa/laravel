@@ -34,34 +34,14 @@ class AuthController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse|Redirector
-     * @throws ValidationException
      */
     public function register(Request $request)
     {
-        $validated = $this->validate($request, [
+        $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
-
-//        $validator = Validator::make($request->all(), [
-//            'name' => 'required',
-//            'email' => 'required|email|unique:users',
-//            'password' => 'required'
-//        ], [
-//            'name.required' => __('validation.required'),
-//            'email.required' => __('validation.required'),
-//            'email.email' => __('validation.email'),
-//            'email.unique' => __('validation.unique'),
-//            'password.required' => __('validation.required')
-//        ]);
-//
-//        if ($validator->fails()) {
-//            return redirect()
-//                ->back()
-//                ->withErrors($validator)
-//                ->withInput();
-//        }
 
         $user = User::add($validated);
         $user->generatePassword($request->get('password'));
@@ -90,7 +70,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
