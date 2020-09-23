@@ -37,9 +37,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'name'	=>	'required',
-            'email'	=>	'required|email|unique:users',
-            'password'	=>	'required'
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
         ]);
 
         $user = User::add($request->all());
@@ -69,15 +69,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email'	=>	'required|email',
-            'password'	=>	'required'
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
         if (Auth::attempt([
-            'email'	=>	$request->get('email'),
-            'password'	=>	$request->get('password')
+            'email' => $request->get('email'),
+            'password' => $request->get('password')
         ])) {
-            return redirect('/');
+            return redirect()->route('home');
         }
 
         return redirect()->back()->with('status', 'Неправильный логин или пароль');
@@ -91,6 +91,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }

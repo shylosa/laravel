@@ -30,7 +30,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Request $request)
     {
         // Set the app locale according to the URL
-        app()->setLocale($request->segment(1));
+        if (array_key_exists($request->segment(1), config('translatable.locales'))) {
+            app()->setLocale($request->segment(1));
+        }
+
         view()->composer('admin._sidebar', static function ($view) {
             $view->with('count', AppModel::sidebarCount());
         });

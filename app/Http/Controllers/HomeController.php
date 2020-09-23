@@ -39,10 +39,10 @@ class HomeController extends Controller
     /**
      * Display one selected project
      *
-     * @param $slug
+     * @param string $slug
      * @return Application|Factory|RedirectResponse|View
      */
-    public function show($slug)
+    public function show(string $slug)
     {
         $project = Project::whereTranslation('slug', $slug)->firstOrFail();
 

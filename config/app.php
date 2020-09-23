@@ -1,5 +1,8 @@
 <?php
 
+use App\Services\Localization\LocalizationService;
+use App\Services\Localization\LocalizationServiceProvider;
+
 return [
 
     /*
@@ -178,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Astrotomic\Translatable\TranslatableServiceProvider::class,
+        LocalizationServiceProvider::class
     ],
 
     /*
@@ -232,6 +236,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'LocalizationService' => LocalizationService::class,
     ],
 
 ];

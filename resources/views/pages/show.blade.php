@@ -19,8 +19,9 @@
                     <a href="{{ route('categories.show', $project->category->translate()->slug) }}">{{ $project->getCategoryTitle() }}</a>
                   </h6>
                 @endif
-                <h1 class="entry-title"><a href="{{ route('pages.show', $project->translate()->slug) }}">{{ $project->translate()->title }}</a></h1>
-
+                <h1 class="entry-title">
+                  <a href="{{ route('pages.show', $project->translate()->slug) }}">{{ $project->translate()->title }}</a>
+                </h1>
               </header>
               <div class="entry-content">
                 {!! $project->content !!}
@@ -30,9 +31,7 @@
                   <a href="{{ route('tags.show', $tag->translate()->slug) }}" class="btn btn-default">{{ $tag->translate()->title }}</a>
                 @endforeach
               </div>
-
               <div class="social-share">
-
                 <ul class="text-center pull-right">
                   <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
@@ -44,7 +43,6 @@
           <div class="top-comment"><!--top comment-->
             <img src="/images/comment.jpg" class="pull-left img-circle" alt="">
             <h4>Rubel Miah</h4>
-
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy hello ro mod tempor
               invidunt ut labore et dolore magna aliquyam erat.</p>
           </div><!--top comment end-->
@@ -54,16 +52,12 @@
                 <div class="single-blog-box">
                   <a href="{{ route('pages.show', $project->getPrevious()->translate()->slug) }}">
                     <img src="{{ $project->getPrevious()->getMainPhoto() }}" alt="">
-
                     <div class="overlay">
-
                       <div class="promo-text">
                         <p><i class=" pull-left fa fa-angle-left"></i></p>
                         <h5>{{ $project->getPrevious()->translate()->title }}</h5>
                       </div>
                     </div>
-
-
                   </a>
                 </div>
               @endif
@@ -73,12 +67,10 @@
                 <div class="single-blog-box">
                   <a href="{{ route('pages.show', $project->getNext()->translate()->slug) }}">
                     <img src="{{ $project->getNext()->getMainPhoto() }}" alt="">
-
                     <div class="overlay">
                       <div class="promo-text">
                         <p><i class=" pull-right fa fa-angle-right"></i></p>
                         <h5>{{ $project->getNext()->translate()->title }}</h5>
-
                       </div>
                     </div>
                   </a>
@@ -99,10 +91,8 @@
                   </a>
                 </div>
               @endforeach
-
             </div>
           </div><!--related post carousel-->
-
         </div>
         @include('pages._sidebar')
       </div>

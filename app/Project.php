@@ -471,7 +471,7 @@ class Project extends AppModel implements TranslatableContract
      */
     public function related()
     {
-        return self::all()->except($this->id);
+        return self::has('translation')->get()->except($this->id);
     }
 
     /**
