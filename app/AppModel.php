@@ -39,6 +39,6 @@ abstract class AppModel extends Model
      */
     public static function getLocales()
     {
-        return app(Locales::class)->all();
+        return config('translatable.locales');
     }
 }

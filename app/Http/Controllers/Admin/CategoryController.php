@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AppModel;
 use App\Category;
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Exception;
@@ -78,7 +79,7 @@ class CategoryController extends Controller
      */
     public function edit(int $id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
 
         return view('admin.categories.edit', compact('category'));
     }
@@ -97,15 +98,14 @@ class CategoryController extends Controller
             Rule::unique('categories')->ignore($id),
         ]);
 
-        $model = Category::find($id);
+        $model = Category::findOrFail($id);
         if ($model) {
             $categoryData = [];
-            foreach (app(Locales::class)->all() as $locale) {
+            foreach (AppModel::getLocales() as $locale => $language) {
                 $categoryData[$locale] = [
                     'title' => $validated[$locale . '_title']
                 ];
             }
-
             $model->update($categoryData);
         }
 

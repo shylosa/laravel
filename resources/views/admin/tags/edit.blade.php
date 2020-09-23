@@ -30,13 +30,13 @@
           @include('admin.errors')
         </div>
         <div class="box-body">
-          {{Form::open(['route'=>['tags.update',$tag->id], 'method'=>'put'])}}
+          {{ Form::open(['route' => ['tags.update',$tag->id], 'method' => 'put']) }}
           <div class="col-md-6">
             <div class="form-group">
-              @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+              @foreach(\App\AppModel::getLocales() as $locale => $language)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
                 <input type="text" class="form-control" id="{{ $locale }}_title" name="{{ $locale }}_title"
-                       placeholder="" value="{{$tag->translate($locale)->title}}">
+                       placeholder="" value="{{ $tag->translate($locale)->title }}">
               @endforeach
             </div>
           </div>

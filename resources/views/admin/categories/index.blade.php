@@ -22,13 +22,12 @@
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
       <div class="box">
         <!-- /.box-header -->
         <div class="box-body">
           <div class="form-group">
-            <a href="{{route('categories.create')}}" class="btn btn-success">Добавить</a>
+            <a href="{{ route('categories.create') }}" class="btn btn-success">Добавить</a>
           </div>
           <table id="categories-table" class="table table-bordered table-striped">
             <thead>
@@ -43,22 +42,20 @@
               <tr>
                 <td>{{$category->id}}</td>
                 <td>
-                  @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                  @foreach(\App\AppModel::getLocales() as $locale => $language)
                     @if ($category->hasTranslation($locale))
                       <li class="category">{{ $category->translate($locale)->title }}</li>
                     @endif
                   @endforeach
                 </td>
-                <td><a href="{{route('categories.edit', $category->id)}}" class="fas fa-pencil-alt fa-2x"
-                       title="Изменить запись"></a>
-
-                  {{Form::open(['route'=>['categories.destroy', $category->id], 'method'=>'delete'])}}
+                <td>
+                  <a href="{{ route('categories.edit', $category->id) }}" class="fas fa-pencil-alt fa-2x"
+                     title="Изменить запись"></a>
+                  {{ Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) }}
                   <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                     <i class="fas fa-times fa-2x" title="Удалить запись"></i>
                   </button>
-
                   {{Form::close()}}
-
                 </td>
               </tr>
             @endforeach

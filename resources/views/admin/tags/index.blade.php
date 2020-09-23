@@ -27,7 +27,7 @@
           <!-- /.box-header -->
           <div class="box-body">
             <div class="form-group">
-              <a href="{{route('tags.create')}}" class="btn btn-success">Добавить</a>
+              <a href="{{ route('tags.create') }}" class="btn btn-success">Добавить</a>
             </div>
             <table id="example1" class="table table-bordered table-striped">
               <thead>
@@ -42,7 +42,7 @@
                 <tr>
                   <td>{{$tag->id}}</td>
                   <td>
-                    @foreach(app(\Astrotomic\Translatable\Locales::class)->all() as $locale)
+                    @foreach(\App\AppModel::getLocales() as $locale => $language)
                       @if ($tag->hasTranslation($locale))
                         <li class="category">{{ $tag->translate($locale)->title }}</li>
                       @endif
@@ -50,7 +50,7 @@
                   </td>
                   <td><a href="{{route('tags.edit', $tag->id)}}" class="fas fa-pencil-alt fa-2x"
                          title="Изменить запись"></a>
-                    {{Form::open(['route'=>['tags.destroy', $tag->id], 'method'=>'delete'])}}
+                    {{ Form::open(['route' => ['tags.destroy', $tag->id], 'method' => 'delete']) }}
                     <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                       <i class="fas fa-times fa-2x" title="Удалить запись"></i>
                     </button>
