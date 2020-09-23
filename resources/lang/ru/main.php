@@ -22,8 +22,8 @@ return [
     'register' => 'регистрация',
     'email' => 'email',
     'password' => 'пароль',
-    'completed_projects' => 'completed projects',
-    'Novomoskovsk' => 'Novomoskovsk city',
-    'Dnipropetrovsk_region' => 'Dnipropetrovsk region',
+    'completed_projects' => 'выполненные проекты',
+    'Novomoskovsk' => 'г. Новомосковск',
+    'Dnipropetrovsk_region' => 'Днепропетровская обл.',
     'name' => 'имя'
 ];

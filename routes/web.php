@@ -30,7 +30,7 @@ Route::group(['middleware' => 'language', 'prefix' => LocalizationService::local
 
     Route::group(['middleware' => 'guest'], static function () {
         Route::get('/register', 'AuthController@registerForm')->name('register');
-        Route::post('/register', 'AuthController@register');
+        Route::post('/register', 'AuthController@register')->name('register.store');
         Route::get('/login', 'AuthController@loginForm')->name('login');
         Route::post('/login', 'AuthController@login');
     });

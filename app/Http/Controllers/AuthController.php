@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\User;
 use Auth;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
@@ -42,13 +44,31 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
+//        $validator = Validator::make($request->all(), [
+//            'name' => 'required',
+//            'email' => 'required|email|unique:users',
+//            'password' => 'required'
+//        ], [
+//            'name.required' => __('validation.required'),
+//            'email.required' => __('validation.required'),
+//            'email.email' => __('validation.email'),
+//            'email.unique' => __('validation.unique'),
+//            'password.required' => __('validation.required')
+//        ]);
+//
+//        if ($validator->fails()) {
+//            return redirect()
+//                ->back()
+//                ->withErrors($validator)
+//                ->withInput();
+//        }
+
         $user = User::add($validated);
         $user->generatePassword($request->get('password'));
 
         return redirect()
             ->route('login')
             ->with('success', __('You have successfully registered and you can now enter the site'));
-
     }
 
     /**

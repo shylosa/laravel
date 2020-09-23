@@ -11,8 +11,8 @@
             <h3 class="text-uppercase">{{ __('main.register') }}</h3>
             @include('admin.errors')
             <br>
-            <form class="form-horizontal contact-form" role="form" method="post" action="/register">
-              {{csrf_field()}}
+            <form class="form-horizontal contact-form" role="form" method="post" action="{{ route('register.store') }}">
+              {{ csrf_field() }}
               <div class="form-group">
                 <div class="col-md-12">
                   <input type="text" class="form-control" id="name" name="name"
@@ -32,11 +32,9 @@
                 </div>
               </div>
               <button type="submit" class="btn send-btn capitalize">{{ __('main.register') }}</button>
-
             </form>
           </div><!--end leave comment-->
         </div>
-        @include('pages._sidebar')
       </div>
     </div>
   </div>

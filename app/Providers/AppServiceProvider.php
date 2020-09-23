@@ -32,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
         // Set the app locale according to the URL
         if (array_key_exists($request->segment(1), config('translatable.locales'))) {
             app()->setLocale($request->segment(1));
+        } else {
+            app()->setLocale(config('app.fallback_locale'));
         }
 
         view()->composer('admin._sidebar', static function ($view) {

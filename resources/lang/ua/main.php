@@ -19,11 +19,11 @@ return [
     'stairs' => 'сходи',
     'login' => 'вхід',
     'logout' => 'вихід',
-    'register' => 'регістрація',
+    'register' => 'реєстрація',
     'email' => 'email',
     'password' => 'пароль',
     'completed_projects' => 'виконані проекти',
-    'Novomoskovsk' => 'Новомосковськ',
+    'Novomoskovsk' => 'м. Новомосковськ',
     'Dnipropetrovsk_region' => 'Дніпропетровська обл.',
     'name' => 'ім\'я'
 ];
