@@ -2,7 +2,6 @@
 
 @section('content')
 
-
   <!-- .section-about -->
   <section class="section-about" id="about">
     <div class="container">
@@ -85,14 +84,14 @@
         @foreach($projects as $project)
           <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
             <div class="hover-bg">
-              <a href="{{ route('projects.show', $project->translate()->slug) }}" title="{{ $project->translate()->title }}"
+              <a href="{{ route('projects.show', $project->translate()->slug) }}"
+                 title="{{ $project->translate()->title }}"
                  data-lightbox-gallery="gallery1">
                 <div class="hover-text">
                   <h4>{{ $project->translate()->title }}</h4>
                 </div>
                 <img src="{{ $project->getMainPhoto() }}" alt="{{ $project->translate()->title }}">
               </a>
-
             </div>
           </div>
         @endforeach

@@ -62,10 +62,7 @@
     </form>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Language Dropdown Menu -->
-      @include('admin._language-menu')
-    </ul>
+    <ul class="navbar-nav ml-auto"></ul>
   </nav>
   <!-- /.navbar -->
 

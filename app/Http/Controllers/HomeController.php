@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         $projects = Project::has('translation')->paginate(self::PROJECTS_ON_PAGE);
 
-        return view('pages.index')->with('projects', $projects);
+        return view('pages.index', ['projects' => $projects]);
     }
 
     /**

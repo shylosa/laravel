@@ -4,41 +4,39 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <!-- favicon icon -->
   <title>{{ config('app.name') }}</title>
-
   <!-- common css -->
   <link rel="stylesheet" href="/css/front.css">
-
   <!-- HTML5 shim and Respond.js IE9 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="assets/js/html5shiv.js"></script>
   <script src="assets/js/respond.js"></script>
   <![endif]-->
-
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
-
 <body>
-
 <nav class="main-header">
   <div class="nav navbar fixed-top navbar-expand-lg">
     <a class="navbar-brand page-scroll" href="{{ route('home') }}"><img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#jw-navbar"
+            aria-controls="jw-navbar" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="jw-navbar">
       <ul class="nav navbar-nav ml-auto">
+        <!-- .language -->
+      @include('pages._language-menu')
+      <!-- ./language -->
         <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{ __('main.about') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{ __('main.services') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{ __('main.portfolio') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{ __('main.gallery') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{ __('main.contacts') }}</a></li>
         @if (Auth::check())
-          <li class="nav-item"><a class="nav-link page-scroll" href="{{ route('logout') }}">{{ __('main.logout') }}</a></li>
+          <li class="nav-item"><a class="nav-link page-scroll" href="{{ route('logout') }}">{{ __('main.logout') }}</a>
+          </li>
         @endif
       </ul>
     </div>
@@ -56,36 +54,6 @@
   </div>
 </nav>
 <!-- /.main-header-->
-
-<!-- .language -->
-<div class="language">
-  <div class="soc"><a href="/ua">
-      <button class="lang_button active">UA</button>
-    </a></div>
-  <div class="soc"><a href="/ru">
-      <button class="lang_button noactive">RU</button>
-    </a></div>
-  <div class="soc"><a href="/en">
-      <button class="lang_button noactive">EN</button>
-    </a></div>
-</div>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    {{ app()->getLocale() }} <i class="fa fa-caret-down"></i>
-  </a>
-  <ul class="dropdown-menu">
-    @foreach (config('translatable.locales') as $lang => $language)
-      @if ($lang !== app()->getLocale())
-        <li>
-          <a href="{{ route('lang.switch', $lang) }}">
-            {{ $language }}
-          </a>
-        </li>
-      @endif
-    @endforeach
-  </ul>
-</li>
-<!-- ./language -->
 
 @yield('content')
 
@@ -167,14 +135,11 @@
 <!-- footer -->
 <footer class="footer">
   <div class="container">
-    <div class="text-center">&copy; 2020 <a href="#">{{ config('app.name') }}, </a>
-      Designed by <a href="#">shylosa</a>
+    <div class="text-center">&copy;2020<a href="#">{{ config('app.name') }}, </a>Designed by <a href="#">shylosa</a>
     </div>
   </div>
 </footer>
 <!-- ./footer -->
-
-
 <!-- js files -->
 <script src="/js/front.js"></script>
 </body>
