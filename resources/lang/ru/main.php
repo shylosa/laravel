@@ -17,4 +17,13 @@ return [
     'playgrounds' => 'детские площадки',
     'restoration' => 'реставрация',
     'stairs' => 'лестницы',
+    'login' => 'вход',
+    'logout' => 'выход',
+    'register' => 'регистрация',
+    'email' => 'email',
+    'password' => 'пароль',
+    'completed_projects' => 'completed projects',
+    'Novomoskovsk' => 'Novomoskovsk city',
+    'Dnipropetrovsk_region' => 'Dnipropetrovsk region',
+    'name' => 'имя'
 ];

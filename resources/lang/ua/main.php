@@ -17,4 +17,13 @@ return [
     'playgrounds' => 'дитячі майданчики',
     'restoration' => 'реставрація',
     'stairs' => 'сходи',
+    'login' => 'вхід',
+    'logout' => 'вихід',
+    'register' => 'регістрація',
+    'email' => 'email',
+    'password' => 'пароль',
+    'completed_projects' => 'виконані проекти',
+    'Novomoskovsk' => 'Новомосковськ',
+    'Dnipropetrovsk_region' => 'Дніпропетровська обл.',
+    'name' => 'ім\'я'
 ];

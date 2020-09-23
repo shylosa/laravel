@@ -17,7 +17,13 @@ return [
     'playgrounds' => 'playgrounds',
     'restoration' => 'restoration',
     'stairs' => 'stairs',
+    'login' => 'login',
+    'logout' => 'logout',
+    'register' => 'register',
+    'email' => 'email',
+    'password' => 'password',
     'completed_projects' => 'completed projects',
     'Novomoskovsk' => 'Novomoskovsk city',
-    'Dnipropetrovsk_region' => 'Dnipropetrovsk region'
+    'Dnipropetrovsk_region' => 'Dnipropetrovsk region',
+    'name' => 'name'
 ];

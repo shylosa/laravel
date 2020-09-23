@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
   <!--main content start-->
@@ -6,10 +6,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-
-          <div class="leave-comment mr0"><!--leave comment-->
-
-            <h3 class="text-uppercase">Регистрация</h3>
+          <div class="leave-comment mr0">
+            <!--leave comment-->
+            <h3 class="text-uppercase">{{ __('main.register') }}</h3>
             @include('admin.errors')
             <br>
             <form class="form-horizontal contact-form" role="form" method="post" action="/register">
@@ -17,22 +16,22 @@
               <div class="form-group">
                 <div class="col-md-12">
                   <input type="text" class="form-control" id="name" name="name"
-                         placeholder="Name" value="{{old('name')}}">
+                         placeholder="{{ __('main.name') }}" value="{{ old('name') }}">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-12">
-                  <input type="text" value="{{old('email')}}" class="form-control" id="email" name="email"
-                         placeholder="Email">
+                  <input type="text" value="{{ old('email') }}" class="form-control" id="email" name="email"
+                         placeholder="{{ __('main.email') }}">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-12">
                   <input type="password" class="form-control" id="password" name="password"
-                         placeholder="password">
+                         placeholder="{{ __('main.password') }}">
                 </div>
               </div>
-              <button type="submit" class="btn send-btn">Регистрация</button>
+              <button type="submit" class="btn send-btn capitalize">{{ __('main.register') }}</button>
 
             </form>
           </div><!--end leave comment-->
