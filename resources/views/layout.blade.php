@@ -34,6 +34,10 @@
         <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{ __('main.portfolio') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{ __('main.gallery') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{ __('main.contacts') }}</a></li>
+        @if (Auth::user()->isAdmin())
+          <li class="nav-item"><a class="nav-link page-scroll" href="{{ route('admin') }}">{{ __('main.admin_page') }}</a>
+          </li>
+        @endif
         @if (Auth::check())
           <li class="nav-item"><a class="nav-link page-scroll" href="{{ route('logout') }}">{{ __('main.logout') }}</a>
           </li>

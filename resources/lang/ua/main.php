@@ -25,5 +25,6 @@ return [
     'completed_projects' => 'виконані проекти',
     'Novomoskovsk' => 'м. Новомосковськ',
     'Dnipropetrovsk_region' => 'Дніпропетровська обл.',
-    'name' => 'ім\'я'
+    'name' => 'ім\'я',
+    'admin_page' => 'адмін-панель'
 ];

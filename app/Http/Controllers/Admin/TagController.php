@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AppModel;
 use App\Tag;
 use Astrotomic\Translatable\Locales;
 use Exception;
@@ -58,7 +59,7 @@ class TagController extends Controller
         ]);
 
         $model = Tag::add();
-        foreach (app(Locales::class)->all() as $locale) {
+        foreach (AppModel::getLocales() as $locale => $language) {
             $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
         }
         $model->save();
@@ -74,7 +75,7 @@ class TagController extends Controller
      */
     public function edit(int $id)
     {
-        $tag = Tag::find($id);
+        $tag = Tag::findOrFail($id);
 
         return view('admin.tags.edit', compact('tag'));
     }
@@ -93,10 +94,10 @@ class TagController extends Controller
             Rule::unique('tags')->ignore($id),
         ]);
 
-        $model = Tag::find($id);
+        $model = Tag::findOrFail($id);
         if ($model) {
             $tagData = [];
-            foreach (app(Locales::class)->all() as $locale) {
+            foreach (AppModel::getLocales() as $locale => $language) {
                 $tagData[$locale] = [
                     'title' => $validated[$locale . '_title']
                 ];
@@ -117,7 +118,7 @@ class TagController extends Controller
      */
     public function destroy(int $id)
     {
-        $model = Tag::find($id);
+        $model = Tag::findOrFail($id);
 
         if ($model) {
             $model->deleteTranslations();

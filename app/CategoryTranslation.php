@@ -5,10 +5,17 @@ namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class CategoryTranslation
+ * @package App
+ */
 class CategoryTranslation extends AppModel
 {
     use Sluggable;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['title'];
 
     /**

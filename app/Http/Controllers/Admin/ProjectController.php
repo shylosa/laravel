@@ -93,11 +93,10 @@ class ProjectController extends Controller
      */
     public function edit(int $id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
         $categories = Category::getAllCategoriesList();
         $tags = Tag::getAllTagsList();
         $selectedTags = $project->tags->pluck('id')->all();
-        //$photos = $project->photos->pluck('id')->all();
         $photos = $project->getAdditionalPhotos();
 
         return view('admin.projects.edit', compact('categories', 'tags', 'project', 'selectedTags', 'photos'));

@@ -63,7 +63,7 @@ class CategoryController extends Controller
         ]);
 
         $model = Category::add();
-        foreach (app(Locales::class)->all() as $locale) {
+        foreach (AppModel::getLocales() as $locale => $language) {
             $model->translateOrNew($locale)->title = $validated[$locale . '_title'];
         }
         $model->save();
@@ -121,7 +121,7 @@ class CategoryController extends Controller
      */
     public function destroy(int $id)
     {
-        $model = Category::find($id);
+        $model = Category::findOrFail($id);
         if ($model) {
             $model->deleteTranslations();
             $model->delete();

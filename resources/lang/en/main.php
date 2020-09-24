@@ -25,5 +25,6 @@ return [
     'completed_projects' => 'completed projects',
     'Novomoskovsk' => 'Novomoskovsk city',
     'Dnipropetrovsk_region' => 'Dnipropetrovsk region',
-    'name' => 'name'
+    'name' => 'name',
+    'admin_page' => 'admin page'
 ];
