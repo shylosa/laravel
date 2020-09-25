@@ -20,7 +20,6 @@ Route::group(['middleware' => 'language', 'prefix' => LocalizationService::local
     Route::get('/projects/{slug}', 'HomeController@show')->name('pages.show');
     Route::get('/tags/{slug}', 'HomeController@tag')->name('tags.show');
     Route::get('/categories/{slug}', 'HomeController@category')->name('categories.show');
-    Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 
     Route::group(['middleware' => 'auth'], static function () {
         Route::get('/profile', 'ProfileController@index');
@@ -35,6 +34,8 @@ Route::group(['middleware' => 'language', 'prefix' => LocalizationService::local
         Route::post('/login', 'AuthController@login');
     });
 });
+
+Route::get('lang/{language}', 'LanguageController@switchLang')->name('lang.switch');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], static function () {
     Route::get('/', 'DashboardController@index')->name('admin');

@@ -18,6 +18,7 @@
 </head>
 <body>
 <nav class="main-header">
+  @include('pages._language-menu')
   <div class="nav navbar fixed-top navbar-expand-lg">
     <a class="navbar-brand page-scroll" href="{{ route('home') }}"><img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#jw-navbar"
@@ -27,7 +28,6 @@
     <div class="collapse navbar-collapse" id="jw-navbar">
       <ul class="nav navbar-nav ml-auto">
         <!-- .language -->
-      @include('pages._language-menu')
       <!-- ./language -->
         <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{ __('main.about') }}</a></li>
         <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{ __('main.services') }}</a></li>

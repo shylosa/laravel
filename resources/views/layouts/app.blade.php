@@ -37,6 +37,7 @@
 
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
+        @include('pages._language-menu')
           <!-- Authentication Links -->
           @guest
             @if (!Request::is('*login*'))
