@@ -16,6 +16,7 @@
         left: 50%;
         transform: translate(-50%);
         padding-left: 0;
+        z-index: 9000;
     }
 
     .language-item__current,

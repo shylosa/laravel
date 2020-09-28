@@ -24,44 +24,17 @@ class LanguageController extends Controller
         // Get Query Parameters if applicable
         $query = $previous_request->query();
 
-        // In case the route name was translated
-        //TODO Crash on match method
-        $route_name = app('router')->getRoutes()->match($previous_request)->getCompiled()->getStaticPrefix();
-
         // Store the segments of the last request as an array
+        $prefix = $previous_request->segment(1, '');
         $segments = $previous_request->segments();
-
-        // Check if the first segment matches a language code
-        if (array_key_exists($lang, config('translatable.locales'))) {
-
-            // If it was indeed a translated route name
-            if ($route_name && Lang::has('routes.' . $route_name, $lang)) {
-
-                // Translate the route name to get the correct URI in the required language, and redirect to that URL.
-                if (count($query)) {
-                    return redirect()->to($lang . '/' . trans('routes.' . $route_name, [], $lang) . '?' . http_build_query($query));
-                }
-
-                return redirect()->to($lang . '/' . trans('routes.' . $route_name, [], $lang));
-            }
-
-//            // Replace the first segment by the new language code
-//            $segments[0] = $lang;
-//
-//            // Redirect to the required URL
-//            if (count($query)) {
-//                return redirect()->to(implode('/', $segments) . '?' . http_build_query($query));
-//            }
-//
-//            return redirect()->to(implode('/', $segments));
-            // Redirect to the required URL
-            if (count($query)) {
-                return redirect()->to($lang . $route_name . '?' . http_build_query($query));
-            }
-
-            return redirect()->to($lang . $route_name);
+        if (array_key_exists($prefix, config('translatable.locales'))) {
+            array_shift($segments);
         }
 
-        return redirect()->back();
+        if (count($query)) {
+            return redirect()->to($lang . '/' . implode('/', $segments) . '?' . http_build_query($query));
+        }
+
+        return redirect()->to($lang . '/' . implode('/', $segments));
     }
 }
