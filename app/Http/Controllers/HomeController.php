@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 
 /**
@@ -31,7 +32,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projects = Project::has('translation')->paginate(self::PROJECTS_ON_PAGE);
+        //$projects = Project::has('translation')->paginate(self::PROJECTS_ON_PAGE);
+        $projects = Project::has('translation')
+            ->leftJoin('project_translations', 'projects.id', '=', 'project_translations.project_id')
+            ->where('project_translations.locale', '=', app()->getLocale())
+            ->paginate(self::PROJECTS_ON_PAGE);
 
         return view('pages.index', ['projects' => $projects]);
     }

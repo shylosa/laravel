@@ -29,15 +29,6 @@ class Language
             return redirect()->to(implode('/', $segments));
         }
 
-        // Check if the first segment matches a language code
-//        if (!array_key_exists($request->segment(1), config('translatable.locales'))) {
-//            // Store segments in array
-//            $segments = $request->segments();
-//            // Set the default language code as the first segment
-//            $segments = Arr::prepend($segments, config('app.fallback_locale'));
-//             //Redirect to the correct url
-//            return redirect()->to(implode('/', $segments));
-//        }
         return $next($request);
     }
 }
