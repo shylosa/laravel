@@ -58,12 +58,12 @@ class HomeController extends Controller
     /**
      * Filtration projects by tags
      *
-     * @param $slug
+     * @param string $slug
      * @return Factory|View
      */
-    public function tag($slug)
+    public function tag(string $slug)
     {
-        $tag = Tag::where('slug', $slug)->firstOrFail();
+        $tag = Tag::whereTranslation('slug', $slug)->firstOrFail();
         $projects = $tag->projects()->paginate(self::PROJECTS_ON_PAGE);
 
         return view('pages.list', ['projects' => $projects]);
@@ -72,12 +72,12 @@ class HomeController extends Controller
     /**
      * Filtration projects by categories
      *
-     * @param $slug
+     * @param string $slug
      * @return Factory|View
      */
-    public function category($slug)
+    public function category(string $slug)
     {
-        $category = Category::where('slug', $slug)->firstOrFail();
+        $category = Category::whereTranslation('slug', $slug)->firstOrFail();
         $projects = $category->projects()->paginate(self::PROJECTS_ON_PAGE);
 
         return view('pages.list', ['projects' => $projects]);
