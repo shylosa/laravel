@@ -33,11 +33,6 @@ class HomeController extends Controller
     public function index()
     {
         $projects = Project::translatedIn(app()->getLocale())->paginate(self::PROJECTS_ON_PAGE);
-        //$projects = Project::has('translation')->paginate(self::PROJECTS_ON_PAGE);
-//        $projects = Project::has('translation')
-//            ->leftJoin('project_translations', 'projects.id', '=', 'project_translations.project_id')
-//            ->where('project_translations.locale', '=', app()->getLocale())
-//            ->paginate(self::PROJECTS_ON_PAGE);
 
         return view('pages.index', ['projects' => $projects]);
     }

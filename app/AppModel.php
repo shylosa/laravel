@@ -41,4 +41,27 @@ abstract class AppModel extends Model
     {
         return config('translatable.locales');
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        $locale = app()->getLocale();
+        if ($this->hasTranslation($locale)) {
+            return $this->translate($locale)->slug;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        $locale = app()->getLocale();
+        if ($this->hasTranslation($locale)) {
+            return $this->translateOrDefault($locale)->title;
+        }
+    }
 }

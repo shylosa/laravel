@@ -23,9 +23,6 @@
                   <a href="{{ route('pages.show', $project->getSlug()) }}">{{ $project->getTitle() }}</a>
                 </h1>
               </header>
-              <div class="entry-content">
-                {!! $project->content !!}
-              </div>
               <div class="decoration">
                 @foreach($project->tags as $tag)
                   <a href="{{ route('tags.show', $tag->getSlug()) }}" class="btn btn-default">{{ $tag->getTitle() }}</a>
