@@ -554,4 +554,20 @@ class Project extends AppModel implements TranslatableContract
         }
         $this->save();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->translate(app()->getLocale())->slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->translate(app()->getLocale())->title;
+    }
 }
