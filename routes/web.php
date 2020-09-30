@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'language', 'prefix' => LocalizationService::locale()], static function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/projects/{slug}', 'HomeController@show')->name('pages.show');
+    Route::get('/projects/{slug}', 'HomeController@show')->name('projects.show_all');
     Route::get('/tags/{slug}', 'HomeController@tag')->name('tags.show');
     Route::get('/categories/{slug}', 'HomeController@category')->name('categories.show');
 

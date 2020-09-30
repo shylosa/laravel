@@ -84,7 +84,7 @@
         @foreach($projects as $project)
           <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
             <div class="hover-bg">
-              <a href="{{ route('pages.show', $project->getSlug()) }}" title="{{ $project->getTitle() }}" data-lightbox-gallery="gallery1">
+              <a href="{{ route('projects.show_all', $project->getSlug()) }}" title="{{ $project->getTitle() }}" data-lightbox-gallery="gallery1">
                 <div class="hover-text">
                   <h4>{{ $project->getTitle() }}</h4>
                 </div>

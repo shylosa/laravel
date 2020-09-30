@@ -8,7 +8,7 @@
         <div class="col-md-8">
           <article class="post">
             <div class="post-thumb">
-              <a href="{{ route('pages.show', $project->getSlug()) }}">
+              <a href="{{ route('projects.show_all', $project->getSlug()) }}">
                 <img src="{{ $project->getMainPhoto() }}" alt="">
               </a>
             </div>
@@ -20,7 +20,7 @@
                   </h6>
                 @endif
                 <h1 class="entry-title">
-                  <a href="{{ route('pages.show', $project->getSlug()) }}">{{ $project->getTitle() }}</a>
+                  <a href="{{ route('projects.show_all', $project->getSlug()) }}">{{ $project->getTitle() }}</a>
                 </h1>
               </header>
               <div class="decoration">
@@ -47,7 +47,7 @@
             <div class="col-md-6">
               @if($project->hasPrevious())
                 <div class="single-blog-box">
-                  <a href="{{ route('pages.show', $project->getPrevious()->getSlug()) }}">
+                  <a href="{{ route('projects.show_all', $project->getPrevious()->getSlug()) }}">
                     <img src="{{ $project->getPrevious()->getMainPhoto() }}" alt="">
                     <div class="overlay">
                       <div class="promo-text">
@@ -62,7 +62,7 @@
             <div class="col-md-6">
               @if($project->hasNext())
                 <div class="single-blog-box">
-                  <a href="{{ route('pages.show', $project->getNext()->getSlug()) }}">
+                  <a href="{{ route('projects.show_all', $project->getNext()->getSlug()) }}">
                     <img src="{{ $project->getNext()->getMainPhoto() }}" alt="">
                     <div class="overlay">
                       <div class="promo-text">
@@ -82,7 +82,7 @@
             <div class="items">
               @foreach($project->related() as $item)
                 <div class="single-item">
-                  <a href="{{ route('pages.show', $item->getSlug()) }}">
+                  <a href="{{ route('projects.show_all', $item->getSlug()) }}">
                     <img src="{{ $item->getMainPhoto() }}" alt="">
                     <p>{{ $item->getTitle() }}</p>
                   </a>
