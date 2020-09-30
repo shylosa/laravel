@@ -450,8 +450,7 @@ class Project extends AppModel implements TranslatableContract
      */
     public function hasNext()
     {
-        //TODO Fix if it does not exist
-        return self::where('id', '>', $this->id)->min('id');
+        return self::has('translation')->where('id', '>', $this->id)->min('id');
     }
 
     /**
