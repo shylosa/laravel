@@ -213,9 +213,17 @@ function main() {
 
     //Scroll to top link
     const scrollToTopLink = document.getElementsByClassName('js-scroll-to-top')[0];
-    window.onscroll = function() {scrollFunction()};
+    scrollToTopLink.addEventListener("click", function () {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    window.addEventListener("scroll",function() {
+        scrollFunction();
+    });
     function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
             scrollToTopLink.style.display = "block";
         } else {
             scrollToTopLink.style.display = "none";

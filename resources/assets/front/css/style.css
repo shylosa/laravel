@@ -605,6 +605,11 @@ ol.type li a:hover {
     width: 40px;
     height: 40px;
 }
+
+.js-scroll-to-top:hover {
+    cursor: pointer;
+}
+
 /* ============================= /Scroll to  top button ============================== */
 /* ============================= Large Devices, Wide Screens ============================== */
 @media only screen and (max-width: 1200px) {

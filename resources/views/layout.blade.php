@@ -97,7 +97,7 @@
   </div>
 </section>
 <!-- ./section-contacts -->
-<a class="js-scroll-to-top" href="javascript:window.scrollTo({top: 0, behavior: 'smooth'});">@include('pages._scrollToTop')</a>
+<div class="js-scroll-to-top">@include('pages._scrollToTop')</div>
 <!-- footer -->
 <footer class="footer">
   <div class="container">
