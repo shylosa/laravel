@@ -18,33 +18,31 @@
 </head>
 <body>
 <nav class="main-header">
-  @include('pages._language-menu')
-  <div class="nav navbar fixed-top navbar-expand-lg">
-    <a class="navbar-brand page-scroll" href="{{ route('home') }}"><img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#jw-navbar"
-            aria-controls="jw-navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="jw-navbar">
-      <ul class="nav navbar-nav ml-auto">
-        <!-- .language -->
-      <!-- ./language -->
-        <li class="nav-item"><a class="nav-link page-scroll" href="#about">{{ __('main.about') }}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#services">{{ __('main.services') }}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#portfolio">{{ __('main.portfolio') }}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#gallery">{{ __('main.gallery') }}</a></li>
-        <li class="nav-item"><a class="nav-link page-scroll" href="#contacts">{{ __('main.contacts') }}</a></li>
+  <div class="navbar-wrapper">
+    <input id="menu__toggle" type="checkbox"/>
+    <label class="menu__btn" for="menu__toggle"><span></span></label>
+
+    <div class="menu__box">
+      <a class="navbar-brand page-scroll" href="{{ route('home') }}">
+        <img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
+      @include('pages._language-menu')
+      <ul class="menu__list" onclick="document.getElementById('menu__toggle').checked=false">
+        <li><a class="menu__item" href="#about">{{ __('main.about') }}</a></li>
+        <li><a class="menu__item" href="#services">{{ __('main.services') }}</a></li>
+        <li><a class="menu__item" href="#portfolio">{{ __('main.portfolio') }}</a></li>
+        <li><a class="menu__item" href="#contacts">{{ __('main.contacts') }}</a></li>
         @if (Auth::check() && Auth::user()->isAdmin())
-          <li class="nav-item"><a class="nav-link page-scroll" href="{{ route('admin') }}">{{ __('main.admin_page') }}</a>
+          <li>
+            <a class="menu__item" href="{{ route('admin') }}">{{ __('main.admin_page') }}</a>
           </li>
         @endif
         @if (Auth::check())
-          <li class="nav-item"><a class="nav-link page-scroll" href="{{ route('logout') }}">{{ __('main.logout') }}</a>
+          <li>
+            <a class="menu__item" href="{{ route('logout') }}">{{ __('main.logout') }}</a>
           </li>
         @endif
       </ul>
     </div>
-    <!-- /.navbar-collapse -->
   </div>
   <!-- /.navbar-expand-->
   <div class="overlay">
@@ -60,42 +58,6 @@
 <!-- /.main-header-->
 
 @yield('content')
-
-<!-- section-instagram start-->
-<div class="section-instagram" id="gallery">
-  <div class="container-fluid">
-    <div class="section-title">
-      <h3>{{ __('main.gallery') }}</h3>
-    </div>
-    <div class="row">
-      <div class="col">
-        <a href="#"><img src="/images/ins-1.jpg" alt=""></a>
-      </div>
-      <div class="col">
-        <a href="#"><img src="/images/ins-2.jpg" alt=""></a>
-      </div>
-      <div class="col">
-        <a href="#"><img src="/images/ins-3.jpg" alt=""></a>
-      </div>
-      <div class="col">
-        <a href="#"><img src="/images/ins-4.jpg" alt=""></a>
-      </div>
-      <div class="col">
-        <a href="#"><img src="/images/ins-5.jpg" alt=""></a>
-      </div>
-      <div class="col">
-        <a href="#"><img src="/images/ins-6.jpg" alt=""></a>
-      </div>
-      <div class="col">
-        <a href="#"><img src="/images/ins-7.jpg" alt=""></a>
-      </div>
-      <div class="col">
-        <a href="#"><img src="/images/ins-8.jpg" alt=""></a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ./section-instagram -->
 
 <!-- section-contacts -->
 <section class="section-contacts" id="contacts">
@@ -135,7 +97,7 @@
   </div>
 </section>
 <!-- ./section-contacts -->
-
+<a class="js-scroll-to-top" href="javascript:window.scrollTo({top: 0, behavior: 'smooth'});">@include('pages._scrollToTop')</a>
 <!-- footer -->
 <footer class="footer">
   <div class="container">

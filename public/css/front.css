@@ -3493,40 +3493,39 @@ Common Stylesheet
     font-style: normal;
     font-weight: 400;
     src: local('Arsenal Regular'), local('Arsenal-Regular'),
-    url('../fonts/Arsenal-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('../fonts/Arsenal-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('../fonts/Arsenal-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/Arsenal-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+
 /* arsenal-700 - cyrillic_latin */
 @font-face {
     font-family: 'Arsenal';
     font-style: normal;
     font-weight: 700;
     src: local('Arsenal Bold'), local('Arsenal-Bold'),
-    url('../fonts/Arsenal-Bold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('../fonts/Arsenal-Bold.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('../fonts/Arsenal-Bold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/Arsenal-Bold.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+
 /* arsenal-italic - cyrillic_latin */
 @font-face {
     font-family: 'Arsenal';
     font-style: italic;
     font-weight: 400;
     src: local('Arsenal Italic'), local('Arsenal-Italic'),
-    url('../fonts/Arsenal-Italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('../fonts/Arsenal-Italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('../fonts/Arsenal-Italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/Arsenal-Italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+
 /* arsenal-700italic - cyrillic_latin */
 @font-face {
     font-family: 'Arsenal';
     font-style: italic;
     font-weight: 700;
     src: local('Arsenal Bold Italic'), local('Arsenal-BoldItalic'),
-    url('../fonts/Arsenal-BoldItalic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('../fonts/Arsenal-BoldItalic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('../fonts/Arsenal-BoldItalic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/Arsenal-BoldItalic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 /* =============================elements============================== */
 body {
-    width:100%;
+    width: 100%;
     font-family: 'Arsenal', sans-serif;
     background: #F4F4F4;
 }
@@ -3536,11 +3535,11 @@ img {
     height: auto;
 }
 
-section{
+section {
     padding: 70px 0;
 }
 
-h2{
+h2 {
     font-size: 40px;
     font-weight: 400;
     font-family: 'Arsenal', sans-serif;
@@ -3548,14 +3547,14 @@ h2{
     margin: 0 0 20px 0;
 }
 
-h3{
+h3 {
     font-size: 30px;
     font-weight: 400;
     font-family: 'Arsenal', sans-serif;
     text-transform: capitalize;
 }
 
-h4{
+h4 {
     font-weight: 400;
     font-size: 26px;
     margin-bottom: 20px;
@@ -3575,46 +3574,26 @@ h4{
     position: relative;
 }
 
+.main-header .nav.navbar-nav {
+    width: 100%;
+}
+
 .main-header .navbar-brand,
-.main-header ul li a{
+.main-header ul li a {
     color: #5f3f3f;
     font-weight: 700;
     font-family: 'Arsenal', sans-serif;
 }
 
 .main-header .navbar-brand {
-    font-size: 41px;
-}
-
-.main-header .navbar-toggler {
-    color: #5f3f3f;
-}
-
-.main-header ul li a{
-    font-size: 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.main-header ul li a::after {
-    content: '';
-    display: block;
-    width: 100%;
-    background-color: #5f3f3f;
-    height: 1px;
-    transform: scale(0);
-    transition: all .4s;
-}
-
-.main-header ul li a:hover::after {
-    transform: scale(1);
+    font-size: 40px;
 }
 
 .main-header .top-menu {
     background: rgba(0, 0, 0, 0.25);
 }
 
-.main-header .overlay{
+.main-header .overlay {
     padding-top: 300px;
     text-align: center;
 }
@@ -3624,7 +3603,7 @@ h4{
     padding: 0 10px;
     font-size: 68px;
     font-weight: 700;
-    background: -webkit-linear-gradient(left, rgba(225,206,199,0.6) 0%, rgba(241,222,215,0.6) 100%);
+    background: -webkit-linear-gradient(left, rgba(225, 206, 199, 0.7) 0%, rgba(241, 222, 215, 0.7) 100%);
     line-height: 1.5em;
     color: #5f3f3f;
 }
@@ -3635,7 +3614,7 @@ h4{
     font-size: 24px;
     font-weight: 700;
     color: #5f3f3f;
-    background: -webkit-linear-gradient(left, rgba(239,212,201,0.6) 0%, rgba(235,197,178,0.6) 100%);
+    background: -webkit-linear-gradient(left, rgba(239, 212, 201, 0.7) 0%, rgba(235, 197, 178, 0.7) 100%);
     line-height: 2em;
 }
 
@@ -3657,49 +3636,176 @@ h4{
     transition: all 0.5s;
 }
 
-.btn-custom:hover, .btn-custom:focus, .btn-custom.focus, .btn-custom:active, .btn-custom.active {
-    color: rgba(255,255,255,0.8);
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom.focus,
+.btn-custom:active,
+.btn-custom.active {
+    color: rgba(255, 255, 255, 0.8);
     background-color: #724F4F;
 }
 
 .section-title {
     margin-bottom: 70px;
 }
+/* =============================.menu-expand============================== */
+#menu__toggle {
+    opacity: 0;
+}
+
+#menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+}
+#menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+}
+#menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+}
+
+.menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #5f3f3f;
+    transition-duration: .3s;
+}
+
+.menu__btn > span::before {
+    content: '';
+    top: -8px;
+}
+
+.menu__btn > span::after {
+    content: '';
+    top: 8px;
+}
+
+.menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: rgba(230,200,180,0.9);
+    box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
+    transition-duration: .5s;
+}
+
+.menu__box ul {
+    padding: 0;
+    list-style: none;
+    text-transform: uppercase;
+}
+
+.menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .3s;
+}
+
+.menu__item:hover {
+    background-color: #CFD8DC;
+    text-decoration: none;
+    padding-left: 30px;
+    transition-duration: .3s;
+}
+
+/* =============================./menu-expand============================== */
 
 /* =============================.language============================== */
-.language{
-    position:fixed;
-    right:0;
-    top:40%;
-    z-index:9;
+.header-topline {
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
-.lang_button{
-    font-size:15px;
-    padding-left:4px;
-    padding-top:1px;
-    width:30px;
-    font-weight:900;
-    height:35px;
-    color:#fff;
-    margin-bottom:0;
-    opacity:1;
-    border: 0;
+
+.language-item__current,
+.language-item__noncurrent,
+.header-topline .language-item__noncurrent a {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Arsenal', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
 }
-.lang_button:hover{
-    color:#fff;
+
+.language-item__current {
+    color: #a07373;
 }
-.lang_button.active{
-    background:#5f3f3f;
+
+.language-item__noncurrent {
+    color: #5f3f3f;
 }
-.lang_button.noactive{
-    background:#5f3f3f;
-    opacity:0.3;
+
+.language-item__current:hover,
+.language-item__noncurrent:hover {
+    background-color: #CFD8DC;
+    padding-left: 5px;
+    padding-right: 5px;
+    transform: scale(1.1);
+    transition-duration: .3s;
 }
+
+.header-topline li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.header-topline li:last-child {
+    margin-right: 0;
+}
+/* =============================./language============================== */
 
 /* =============================.section-about============================== */
 
 .section-about {
     background: #EFEFEF;
+}
+
+.section-about .row {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.section-about .row .col-xs-12,
+.section-about .row .col-xs-12 {
+    padding: 0;
+}
+
+.section-about .history-image {
+    padding: 0;
+    margin-left: 15px;
 }
 
 .section-about h2 {
@@ -3721,8 +3827,9 @@ hr {
 }
 
 .section-about .about-text {
-    margin-left: 10px;
+    margin-left: 0;
     margin-top: 20px;
+    text-align: center;
 }
 
 .section-about img {
@@ -3737,8 +3844,21 @@ hr {
     text-align: center;
 }
 
-.service img {
-    width: 300px;
+.section-services .row {
+    width: 100%;
+    margin: 0;
+}
+
+.section-services .services {
+    padding: 0;
+    text-align: center;
+}
+
+.services-image {
+    margin-right: 15px;
+}
+
+.services img {
     border-radius: 75px 0 75px 0;
     box-shadow: 15px 0 #5f3f3f;
 }
@@ -3854,7 +3974,7 @@ ol.type li a:hover {
     border-radius: 0 50px 0 50px;
 }
 
-.hover-bg .hover-text>h4 {
+.hover-bg .hover-text > h4 {
     text-transform: uppercase;
     opacity: 0;
     color: #333;
@@ -3865,7 +3985,7 @@ ol.type li a:hover {
     font-weight: 400;
 }
 
-.hover-bg:hover .hover-text>h4 {
+.hover-bg:hover .hover-text > h4 {
     opacity: 1;
     -webkit-backface-visibility: hidden;
     -webkit-transform: translateY(0);
@@ -3886,7 +4006,8 @@ ol.type li a:hover {
     text-align: center;
     text-transform: uppercase;
 }
-.section-instagram .row div{
+
+.section-instagram .row div {
     padding: 0;
 }
 
@@ -3939,9 +4060,10 @@ ol.type li a:hover {
 .footer {
     background-color: #5f3f3f;
     padding: 50px 0 15px 0;
+    font-size: 12px;
 }
 
-.footer .container div{
+.footer .container div {
     color: #fff;
 }
 
@@ -3950,16 +4072,34 @@ ol.type li a:hover {
     text-decoration: none;
     font-weight: 700;
 }
+/* ============================= Scroll to top button ============================== */
+.js-scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    margin: 5px;
+}
 
+.js-scroll-to-top svg {
+    width: 40px;
+    height: 40px;
+}
+/* ============================= /Scroll to  top button ============================== */
 /* ============================= Large Devices, Wide Screens ============================== */
-@media only screen and (max-width : 1200px) {
+@media only screen and (max-width: 1200px) {
 
 }
 
 /* ============================= Medium Devices, Desktops ============================== */
-@media only screen and (max-width : 992px) {
-    .main-header-text{
-        background-color: rgba(0,0,0,.3);
+@media only screen and (max-width: 992px) {
+    .main-header-text {
+        background-color: rgba(0, 0, 0, .3);
     }
 
     .main-header .overlay h1 {
@@ -3968,32 +4108,21 @@ ol.type li a:hover {
 
 }
 
-@media only screen and (max-width : 991px) {
-    .navbar-nav{
-        background: rgba(0, 0, 0, 0.7);
-        position: relative;
-        z-index: 1;
-        padding: 0 15px;
-    }
-
-    .main-header ul li a {
-        color: #fff;
-    }
-}
-
 /* ============================= Small Devices, Tablets ============================== */
-@media only screen and (max-width : 768px) {
-    .main-header-text{
+@media only screen and (max-width: 768px) {
+    .main-header-text {
         left: 0;
         margin: 0 20px;
         max-width: 100%;
     }
 
-    h3, h4{
+    h3, h4 {
         font-size: 30px;
     }
 
     .main-header .navbar-brand {
+        margin-top: 60px;
+        margin-left: 20px;
         font-size: 30px;
     }
 
@@ -4022,10 +4151,6 @@ ol.type li a:hover {
         margin: 0 auto 10px;
     }
 
-    /*.section-portfolio ul.cat li {*/
-    /*    display: inline-block;*/
-    /*}*/
-
     .section-portfolio ol.type li a {
         display: block;
     }
@@ -4050,16 +4175,18 @@ ol.type li a:hover {
     }
 }
 
-@media only screen and (max-width : 600px) {
-    .main-header-text{
+@media only screen and (max-width: 600px) {
+    .main-header-text {
         top: 90px;
     }
-    .main-header-buttons .btn{
+
+    .main-header-buttons .btn {
         display: block;
         width: 100%;
         margin-bottom: 15px;
     }
-    .main-header-buttons .btn:last-child{
+
+    .main-header-buttons .btn:last-child {
         margin-top: 0;
     }
 
@@ -4077,7 +4204,7 @@ ol.type li a:hover {
 }
 
 /* ============================= Extra Small Devices, Phones ============================== */
-@media only screen and (max-width : 480px) {
+@media only screen and (max-width: 480px) {
     .main-header .overlay h1 {
         font-size: 30px;
     }
@@ -4091,8 +4218,15 @@ ol.type li a:hover {
     }
 }
 
-@media only screen and (max-width : 380px) {
-    .main-header .navbar-brand{
+@media only screen and (max-width: 380px) {
+    .main-header .overlay {
+        padding-top: 180px;
+    }
+
+    .navbar {
+        padding: 5%;
+    }
+    .main-header .navbar-brand {
         font-size: 30px;
     }
 }
