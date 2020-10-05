@@ -37,6 +37,8 @@ node_modules/
 npm-debug.log
 /public/images/
 /public/img/
+/public/fonts/
+/public/webfonts/
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -60,3 +62,7 @@ Homestead.json
 /.phpunit.result.cache
 /logs/access_log
 /logs/error_log
+
+/resources/assets/front/images
+/resources/assets/front/fonts
+/resources/assets/front/webfonts
