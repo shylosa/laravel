@@ -203,12 +203,26 @@ function main() {
     function clickHandler(e) {
         e.preventDefault();
         const href = this.getAttribute("href");
-        const offsetTop = document.querySelector(href).offsetTop;
+        if (isValidUrl(href)) {
+            window.location.href = href;
+        } else {
+            const offsetTop = document.querySelector(href).offsetTop;
 
-        scroll({
-            top: offsetTop,
-            behavior: "smooth"
-        });
+            scroll({
+                top: offsetTop,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    function isValidUrl(string) {
+        try {
+            new URL(string);
+        } catch (_) {
+            return false;
+        }
+
+        return true;
     }
 
     //Scroll to top link
