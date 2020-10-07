@@ -3770,8 +3770,6 @@ h4 {
 .language-item__current:hover,
 .language-item__noncurrent:hover {
     background-color: #CFD8DC;
-    padding-left: 5px;
-    padding-right: 5px;
     border-radius: 8px;
     transform: scale(1.1);
     transition-duration: .6s;
@@ -3779,11 +3777,8 @@ h4 {
 
 .header-topline li {
     display: inline-block;
-    margin-right: 5px;
-}
-
-.header-topline li:last-child {
-    margin-right: 0;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 /* =============================./language============================== */
 
