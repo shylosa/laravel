@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang={{ str_replace('_', '-', app()->getLocale()) }}>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -27,7 +27,7 @@
         <img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
       @include('pages._language-menu')
       <ul class="menu__list" onclick="document.getElementById('menu__toggle').checked=false">
-        <li><a class="menu__item" href="{{ route('home') . '/' . app()->getLocale() }}#about">{{ __('main.about') }}</a></li>
+        <li><a class="menu__item" href="#about">{{ __('main.about') }}</a></li>
         <li><a class="menu__item" href="#services">{{ __('main.services') }}</a></li>
         <li><a class="menu__item" href="#portfolio">{{ __('main.portfolio') }}</a></li>
         <li><a class="menu__item" href="#contacts">{{ __('main.contacts') }}</a></li>
@@ -60,7 +60,7 @@
 @yield('content')
 
 <!-- section-contacts -->
-<section class="section-contacts" id="contacts">
+<section class="section-contacts js-anchor" id="contacts">
   <div class="container">
     <div class="container">
       <div class="section-title">

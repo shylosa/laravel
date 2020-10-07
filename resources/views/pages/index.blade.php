@@ -3,7 +3,7 @@
 @section('content')
 
   <!-- .section-about -->
-  <section class="section-about" id="about">
+  <section class="section-about js-anchor" id="about">
     <div class="container">
       <div class="section-title">
         <h2>{{ __('main.history') }}</h2>
@@ -29,7 +29,7 @@
   <!-- /.section-about -->
 
   <!-- .section-services -->
-  <section class="section-services" id="services">
+  <section class="section-services js-anchor" id="services">
     <div class="container">
       <div class="section-title">
         <h2>{{ __('main.our_services') }}</h2>
@@ -66,7 +66,7 @@
   <!-- /.section-services -->
 
   <!-- .section-portfolio -->
-  <section class="section-portfolio" id="portfolio">
+  <section class="section-portfolio js-anchor" id="portfolio">
     <div class="container">
       <div class="section-title">
         <h2>{{ __('main.completed_projects') }}</h2>

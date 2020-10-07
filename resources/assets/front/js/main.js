@@ -8,26 +8,32 @@ function main() {
     function clickHandler(e) {
         e.preventDefault();
         const href = this.getAttribute("href");
-        if (isValidUrl(href)) {
-            window.location.href = href;
-        } else {
-            const offsetTop = document.querySelector(href).offsetTop;
 
+        if (isHasAnchors()) {
+            const offsetTop = document.querySelector(href).offsetTop;
             scroll({
                 top: offsetTop,
                 behavior: "smooth"
             });
+        } else {
+            window.location.href = window.location.origin + '/' + getLocale() + href;
         }
     }
 
-    function isValidUrl(string) {
-        try {
-            new URL(string);
-        } catch (_) {
-            return false;
+    function isHasAnchors()
+    {   // 1 - because footer has 'contacts' anchor
+        return document.querySelectorAll('.js-anchor').length > 1;
+    }
+
+    function getLocale()
+    {
+        let defaultLocale = 'ru';
+        let locale = document.getElementsByTagName("html")[0].getAttribute("lang");
+        if (typeof locale === 'string' && locale !== defaultLocale) {
+            return locale;
         }
 
-        return true;
+        return '';
     }
 
     //Scroll to top link
