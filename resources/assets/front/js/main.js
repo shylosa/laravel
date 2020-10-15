@@ -1,4 +1,5 @@
 function main() {
+
     //Scroll page to selected menu item
     const links = document.querySelectorAll(".menu__item");
     for (const link of links) {
@@ -8,6 +9,10 @@ function main() {
     function clickHandler(e) {
         e.preventDefault();
         const href = this.getAttribute("href");
+
+        //Close menu bar
+        document.getElementById('menu__toggle').checked = false;
+        toggleLockScroll();
 
         if (isHasAnchorsOnCurrentPage() && isHasHash(href)) {
             const offsetTop = document.querySelector(href).offsetTop;
@@ -44,13 +49,14 @@ function main() {
     }
 
     //Scroll to top link
-    const scrollToTopLink = document.getElementsByClassName('js-scroll-to-top')[0];
+    const scrollToTopLink = document.getElementById('js-scroll-to-top');
     scrollToTopLink.addEventListener("click", function () {
         window.scroll({
             top: 0,
             behavior: 'smooth'
         });
     });
+
     window.addEventListener("scroll",function() {
         showScrollToTopLink();
     });
@@ -62,26 +68,34 @@ function main() {
         }
     }
 
-    window.addEventListener('click', function (e) {
-        //Lock page body when menu open
-        if (e.target.getAttribute("id") === 'menu__toggle') {
-            toggleLockScroll();
+    //Lock page when menu is open
+    const menuToggle = document.getElementById('menu__toggle');
+    menuToggle.addEventListener('click', function () {
+        let scrollPositionX = '0';
+        let scrollPositionY = '0';
+        if (localStorage.getItem('scrollPositionX') === null && localStorage.getItem('scrollPositionY') === null) {
+            scrollPositionX = document.body.scrollLeft || document.documentElement.scrollLeft;
+            scrollPositionY = document.body.scrollTop || document.documentElement.scrollTop;
+            localStorage.setItem('scrollPositionX', scrollPositionX);
+            localStorage.setItem('scrollPositionY', scrollPositionY);
+        } else {
+            scrollPositionX = parseInt(localStorage.getItem('scrollPositionX'));
+            scrollPositionY = parseInt(localStorage.getItem('scrollPositionY'));
         }
-        //Close menu bar
-        if (e.target.classList.contains('menu__item')) {
-            document.getElementById('menu__toggle').checked = false;
-            toggleLockScroll();
-        }
+
+        toggleLockScroll();
+        window.scrollTo(scrollPositionX, scrollPositionY);
     });
 
     function toggleLockScroll()
     {
-        let pageBody = document.body;
+        let pageClass = document.body.classList;
         let jsClass = 'js-disable-scroll';
-        if (pageBody.classList.contains(jsClass) ) {
-            pageBody.classList.remove(jsClass);
+
+        if (pageClass.contains(jsClass)) {
+            pageClass.remove(jsClass);
         } else {
-            pageBody.classList.add(jsClass);
+            pageClass.add(jsClass);
         }
     }
 }
