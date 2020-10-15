@@ -9,20 +9,27 @@ function main() {
         e.preventDefault();
         const href = this.getAttribute("href");
 
-        if (isHasAnchors()) {
+        if (isHasAnchorsOnCurrentPage() && isHasHash(href)) {
             const offsetTop = document.querySelector(href).offsetTop;
             scroll({
                 top: offsetTop,
                 behavior: "smooth"
             });
+        } else if (!isHasHash(href)) {
+            window.location.href = href;
         } else {
             window.location.href = window.location.origin + '/' + getLocale() + href;
         }
     }
 
-    function isHasAnchors()
+    function isHasAnchorsOnCurrentPage()
     {   // 1 - because footer has 'contacts' anchor
         return document.querySelectorAll('.js-anchor').length > 1;
+    }
+
+    function isHasHash(href)
+    {
+        return href.indexOf("#") !== -1;
     }
 
     function getLocale()
