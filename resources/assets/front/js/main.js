@@ -52,13 +52,36 @@ function main() {
         });
     });
     window.addEventListener("scroll",function() {
-        scrollFunction();
+        showScrollToTopLink();
     });
-    function scrollFunction() {
+    function showScrollToTopLink() {
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
             scrollToTopLink.style.display = "block";
         } else {
             scrollToTopLink.style.display = "none";
+        }
+    }
+
+    window.addEventListener('click', function (e) {
+        //Lock page body when menu open
+        if (e.target.getAttribute("id") === 'menu__toggle') {
+            toggleLockScroll();
+        }
+        //Close menu bar
+        if (e.target.classList.contains('menu__item')) {
+            document.getElementById('menu__toggle').checked = false;
+            toggleLockScroll();
+        }
+    });
+
+    function toggleLockScroll()
+    {
+        let pageBody = document.body;
+        let jsClass = 'js-disable-scroll';
+        if (pageBody.classList.contains(jsClass) ) {
+            pageBody.classList.remove(jsClass);
+        } else {
+            pageBody.classList.add(jsClass);
         }
     }
 }

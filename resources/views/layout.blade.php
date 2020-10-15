@@ -26,7 +26,7 @@
       <a class="navbar-brand page-scroll" href="{{ route('home') }}">
         <img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
       @include('pages._language-menu')
-      <ul class="menu__list" onclick="document.getElementById('menu__toggle').checked=false">
+      <ul class="menu__list">
         <li><a class="menu__item" href="#about">{{ __('main.about') }}</a></li>
         <li><a class="menu__item" href="#services">{{ __('main.services') }}</a></li>
         <li><a class="menu__item" href="#portfolio">{{ __('main.portfolio') }}</a></li>
