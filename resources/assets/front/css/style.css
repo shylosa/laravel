@@ -193,7 +193,7 @@ h4 {
     width: 26px;
     height: 26px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 9999;
 }
 
 .menu__btn > span,
@@ -227,6 +227,7 @@ h4 {
     height: 100%;
     margin: 0;
     background-color: rgba(230,200,180,0.9);
+    z-index: 9998;
     box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
     transition-duration: .5s;
 }
