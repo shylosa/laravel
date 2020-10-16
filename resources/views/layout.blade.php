@@ -19,11 +19,11 @@
 <body>
 <nav class="main-header">
   <div class="navbar-wrapper">
-    <input id="menu__toggle" type="checkbox"/>
-    <label class="menu__btn" for="menu__toggle"><span></span></label>
+{{--    <input id="menu__toggle" type="checkbox"/>--}}
+    <div id="menu__toggle" class="menu__toggle"><span></span></div>
 
-    <div class="menu__box">
-      <a class="navbar-brand page-scroll" href="{{ route('home') }}">
+    <div id="menu__box" class="menu__box">
+      <a class="navbar-brand" href="{{ route('home') }}">
         <img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
       @include('pages._language-menu')
       <ul class="menu__list">
@@ -52,7 +52,7 @@
     <div>
       <p>{{ __('main.slogan') }}</p>
     </div>
-    <a href="#about" class="btn btn-custom page-scroll">{{ __('main.more') }}</a>
+    <a id="js-more-button" href="#about" class="btn btn-custom">{{ __('main.more') }}</a>
   </div>
 </nav>
 <!-- /.main-header-->
