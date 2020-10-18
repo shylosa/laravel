@@ -19,13 +19,29 @@
 <body>
 <nav class="main-header">
   <div class="navbar-wrapper">
-    <input id="menu__toggle" type="checkbox"/>
-    <label class="menu__btn" for="menu__toggle"><span></span></label>
-    <div class="menu__box">
-      <a class="navbar-brand page-scroll" href="{{ route('home') }}">
+{{--    <input id="menu__toggle" type="checkbox"/>--}}
+    <div id="menu__toggle" class="menu__toggle"><span></span></div>
+
+    <div id="menu__box" class="menu__box">
+      <a class="navbar-brand" href="{{ route('home') }}">
         <img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
       @include('pages._language-menu')
-      @include('pages._header-menu')
+      <ul class="menu__list">
+        <li><a class="menu__item" href="#about">{{ __('main.about') }}</a></li>
+        <li><a class="menu__item" href="#services">{{ __('main.services') }}</a></li>
+        <li><a class="menu__item" href="#portfolio">{{ __('main.portfolio') }}</a></li>
+        <li><a class="menu__item" href="#contacts">{{ __('main.contacts') }}</a></li>
+        @if (Auth::check() && Auth::user()->isAdmin())
+          <li>
+            <a class="menu__item" href="{{ route('admin') }}">{{ __('main.admin_page') }}</a>
+          </li>
+        @endif
+        @if (Auth::check())
+          <li>
+            <a class="menu__item" href="{{ route('logout') }}">{{ __('main.logout') }}</a>
+          </li>
+        @endif
+      </ul>
     </div>
   </div>
   <!-- /.navbar-expand-->
@@ -36,7 +52,7 @@
     <div>
       <p>{{ __('main.slogan') }}</p>
     </div>
-    <a href="#about" class="btn btn-custom page-scroll">{{ __('main.more') }}</a>
+    <a id="js-more-button" href="#about" class="btn btn-custom">{{ __('main.more') }}</a>
   </div>
 </nav>
 <!-- /.main-header-->
@@ -81,7 +97,7 @@
   </div>
 </section>
 <!-- ./section-contacts -->
-<div class="js-scroll-to-top">@include('pages._scrollToTop')</div>
+<div id="js-scroll-to-top" class="js-scroll-to-top">@include('pages._scrollToTop')</div>
 <!-- footer -->
 <footer class="footer">
   <div class="container">
