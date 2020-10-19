@@ -37,6 +37,7 @@ mix.scripts([
     'resources/assets/front/js/menu.js',
     'resources/assets/front/js/main.js',
     'resources/assets/front/js/scripts.js',
+    'resources/assets/front/js/swiper.js',
 ], 'public/js/front.js');
 
 mix.copy('resources/assets/front/fonts', 'public/fonts');
