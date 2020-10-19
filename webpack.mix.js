@@ -22,6 +22,7 @@ mix.styles([
     'resources/assets/front/css/owl.theme.css',
     'resources/assets/front/css/owl.transitions.css',
     'resources/assets/front/css/nivo-lightbox.min.css',
+    'resources/assets/front/css/swiper-bundle.min.css',
     'resources/assets/front/css/style.css',
     'resources/assets/front/css/responsive.css'
 ],'public/css/front.css');
@@ -37,6 +38,7 @@ mix.scripts([
     'resources/assets/front/js/menu.js',
     'resources/assets/front/js/main.js',
     'resources/assets/front/js/scripts.js',
+    'resources/assets/front/js/swiper-bundle.min.js',
     'resources/assets/front/js/swiper.js',
 ], 'public/js/front.js');
 

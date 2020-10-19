@@ -72,6 +72,32 @@
         <h2>{{ __('main.completed_projects') }}</h2>
         <hr>
       </div>
+      <!-- Slider -->
+      <div class="swiper-container">
+        <div class="swiper-wrapper" id="main-slider">
+          <!-- Slides -->
+          @foreach($projects as $project)
+            <div class="swiper-slide">
+              <div class="hover-bg">
+                <a href="{{ route('projects.show_all', $project->getSlug()) }}" title="{{ $project->getTitle() }}" data-lightbox-gallery="gallery1">
+                  <div class="hover-text">
+                    <h4>{{ $project->getTitle() }}</h4>
+                  </div>
+                  <img src="{{ $project->getMainPhoto() }}" alt="{{ $project->getTitle() }}">
+                </a>
+              </div>
+            </div>
+          @endforeach
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+      </div>
+      <!-- /Slider -->
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
       <div class="categories">
         <ul class="cat">
@@ -87,30 +113,6 @@
         <div class="clearfix"></div>
       </div>
       <div class="row portfolio-items">
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            @foreach($projects as $project)
-              <div class="swiper-slide portfolio-item">
-                <div class="hover-bg">
-                  <a href="{{ route('projects.show_all', $project->getSlug()) }}" title="{{ $project->getTitle() }}" data-lightbox-gallery="gallery1">
-                    <div class="hover-text">
-                      <h4>{{ $project->getTitle() }}</h4>
-                    </div>
-                    <img src="{{ $project->getMainPhoto() }}" alt="{{ $project->getTitle() }}">
-                  </a>
-                </div>
-              </div>
-            @endforeach
-          </div>
-          <!-- If we need pagination -->
-          <div class="swiper-pagination"></div>
-          <!-- If we need navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-          <!-- If we need scrollbar -->
-          <div class="swiper-scrollbar"></div>
-        </div>
         @foreach($projects as $project)
           <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
             <div class="hover-bg">
