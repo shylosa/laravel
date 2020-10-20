@@ -38,8 +38,8 @@ mix.scripts([
     'node_modules/swiper/swiper-bundle.min.js',
     'resources/assets/front/js/menu.js',
     'resources/assets/front/js/main.js',
-    'resources/assets/front/js/scripts.js',
     'resources/assets/front/js/swiper.js',
+    'resources/assets/front/js/scripts.js',
 ], 'public/js/front.js');
 
 mix.copy('resources/assets/front/fonts', 'public/fonts');
