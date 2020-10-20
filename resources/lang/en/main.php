@@ -26,5 +26,6 @@ return [
     'Novomoskovsk' => 'Novomoskovsk city',
     'Dnipropetrovsk_region' => 'Dnipropetrovsk region',
     'name' => 'name',
-    'admin_page' => 'admin page'
+    'admin_page' => 'admin page',
+    'warning_javascript_disabled' => 'Javascript is disabled in your browser. Some features may be unavailable.',
 ];

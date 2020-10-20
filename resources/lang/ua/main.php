@@ -26,5 +26,6 @@ return [
     'Novomoskovsk' => 'м. Новомосковськ',
     'Dnipropetrovsk_region' => 'Дніпропетровська обл.',
     'name' => 'ім\'я',
-    'admin_page' => 'адмін-панель'
+    'admin_page' => 'адмін-панель',
+    'warning_javascript_disabled' => 'У вашому браузері відключений javascript. Деякі функції можуть бути недоступні.',
 ];

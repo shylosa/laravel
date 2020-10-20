@@ -17,6 +17,9 @@
   <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
+<noscript>
+  <div class="noscript-warning">{{ __('main.warning_javascript_disabled') }}</div>
+</noscript>
 <nav class="main-header">
   <div class="navbar-wrapper">
 {{--    <input id="menu__toggle" type="checkbox"/>--}}
