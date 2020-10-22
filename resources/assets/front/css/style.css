@@ -235,7 +235,7 @@ h4 {
     visibility: hidden;
     top: 0;
     left: -100%;
-    width: 100%;
+    width: 320px;
     height: 100%;
     margin: 0;
     background-color: rgba(230, 200, 180, 0.9);

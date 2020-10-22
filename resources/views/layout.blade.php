@@ -22,9 +22,7 @@
 </noscript>
 <nav class="main-header">
   <div class="navbar-wrapper">
-{{--    <input id="menu__toggle" type="checkbox"/>--}}
     <div id="menu__toggle" class="menu__toggle"><span></span></div>
-
     <div id="menu__box" class="menu__box">
       <a class="navbar-brand" href="{{ route('home') }}">
         <img src="/images/logo.png" alt="">{{ config('app.name') }}</a>
@@ -89,7 +87,7 @@
 <!-- footer -->
 <footer class="footer">
   <div class="container">
-    <div class="text-center">&copy;2020<a href="#">{{ config('app.name') }}, </a>Designed by <a href="#">shylosa</a>
+    <div class="text-center">&copy;2021<a href="#">{{ config('app.name') }}, </a>Designed by <a href="#">shylosa</a>
     </div>
   </div>
 </footer>
