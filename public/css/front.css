@@ -3537,6 +3537,12 @@ Common Stylesheet
 }
 
 /* =============================elements============================== */
+@media screen and (min-width: 500px) {/* если окно браузера больше максимальной ширины сайта */
+    html {
+        margin-left: calc(100vw - 100%);
+        margin-right: 0;
+    }
+}
 body {
     width: 100%;
     font-family: 'Arsenal', sans-serif;
@@ -3733,7 +3739,7 @@ h4 {
     visibility: hidden;
     top: 0;
     left: -100%;
-    width: 100%;
+    width: 320px;
     height: 100%;
     margin: 0;
     background-color: rgba(230, 200, 180, 0.9);
