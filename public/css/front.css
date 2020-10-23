@@ -3591,6 +3591,16 @@ h4 {
     padding: 10px;
     filter: none;
 }
+
+.show {
+    opacity: 1;
+    z-index: 6000;
+}
+.hide {
+    opacity: 0;
+    transition: opacity 500ms;
+    z-index: 1;
+}
 /* =============================.section-header============================== */
 
 .main-header {
@@ -3686,7 +3696,7 @@ h4 {
     width: 26px;
     height: 26px;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 5500;
 }
 
 .menu__toggle span,
