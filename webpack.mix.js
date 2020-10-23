@@ -24,8 +24,10 @@ mix.styles([
     'resources/assets/front/css/nivo-lightbox.min.css',
     'node_modules/swiper/swiper-bundle.min.css',
     'resources/assets/front/css/style.css',
-    'resources/assets/front/css/responsive.css'
+    'resources/assets/front/css/responsive.css',
 ],'public/css/front.css');
+
+mix.sass('resources/assets/front/scss/preloader.scss', 'public/css/front-partial.css')
 
 mix.scripts([
     'resources/assets/front/js/jquery-1.11.3.min.js',

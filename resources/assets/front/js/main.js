@@ -97,4 +97,12 @@ function main() {
     }
 }
 
+window.addEventListener('load', function () {
+   let preloader = document.querySelector('.preloader');
+   if (typeof preloader != "undefined") {
+       preloader.classList.add('hide');
+       preloader.classList.remove('show');
+   }
+});
+
 main();

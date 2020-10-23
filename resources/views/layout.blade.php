@@ -7,6 +7,7 @@
   <!-- favicon icon -->
   <title>{{ config('app.name') }}</title>
   <!-- common css -->
+  <link rel="stylesheet" href="/css/front-partial.css">
   <link rel="stylesheet" href="/css/front.css">
   <!-- HTML5 shim and Respond.js IE9 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -20,6 +21,7 @@
 <noscript>
   <div class="noscript-warning">{{ __('main.warning_javascript_disabled') }}</div>
 </noscript>
+@include('pages._preloader')
 <nav class="main-header">
   <div class="navbar-wrapper">
     <div id="menu__toggle" class="menu__toggle"><span></span></div>

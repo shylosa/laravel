@@ -3537,12 +3537,6 @@ Common Stylesheet
 }
 
 /* =============================elements============================== */
-@media screen and (min-width: 500px) {/* если окно браузера больше максимальной ширины сайта */
-    html {
-        margin-left: calc(100vw - 100%);
-        margin-right: 0;
-    }
-}
 body {
     width: 100%;
     font-family: 'Arsenal', sans-serif;
@@ -3596,6 +3590,16 @@ h4 {
     font-size: 120%;
     padding: 10px;
     filter: none;
+}
+
+.show {
+    opacity: 1;
+    z-index: 6000;
+}
+.hide {
+    opacity: 0;
+    transition: opacity 500ms;
+    z-index: 1;
 }
 /* =============================.section-header============================== */
 
@@ -3692,7 +3696,7 @@ h4 {
     width: 26px;
     height: 26px;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 5500;
 }
 
 .menu__toggle span,
