@@ -50,36 +50,34 @@
 <!-- section-contacts -->
 <section class="section-contacts js-anchor" id="contacts">
   <div class="container">
-    <div class="container">
-      <div class="section-title">
-        <h2>{{ __('main.how_contacts') }}</h2>
-        <hr>
+    <div class="section-title">
+      <h2>{{ __('main.how_contacts') }}</h2>
+      <hr>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
+    <div class="row">
+      <div class="col-md-4">
+        <aside class="contact-widget">
+          <div class="about-img">
+            <img src="/images/footer-logo.png" alt=""><span>{{ config('app.name') }}</span>
+          </div>
+          <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
+            accusam et justo duo dlores et ea rebum magna text ar koto din.
+          </div>
+          <div class="social-share">
+            <ul>
+              <li><a class="s-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+              <li><a class="s-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a class="s-instagram" href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </aside>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
-      <div class="row">
-        <div class="col-md-4">
-          <aside class="contact-widget">
-            <div class="about-img">
-              <img src="/images/footer-logo.png" alt=""><span>{{ config('app.name') }}</span>
-            </div>
-            <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-              eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
-              accusam et justo duo dlores et ea rebum magna text ar koto din.
-            </div>
-            <div class="social-share">
-              <ul>
-                <li><a class="s-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a class="s-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a class="s-instagram" href="#"><i class="fab fa-instagram"></i></a></li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-        <div class="col-md-4 address">
-          <h4 class="text-uppercase">{{ __('main.where') }}:</h4>
-          <p>{{ __('main.Novomoskovsk') }}</p>
-          <p>{{ __('main.Dnipropetrovsk_region') }}</p>
-        </div>
+      <div class="col-md-4 address">
+        <h4 class="text-uppercase">{{ __('main.where') }}:</h4>
+        <p>{{ __('main.Novomoskovsk') }}</p>
+        <p>{{ __('main.Dnipropetrovsk_region') }}</p>
       </div>
     </div>
   </div>

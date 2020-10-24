@@ -79,7 +79,7 @@
           @foreach($projects as $project)
             <div class="swiper-slide">
               <div class="hover-bg">
-                <a href="{{ route('projects.show_all', $project->getSlug()) }}" title="{{ $project->getTitle() }}" data-lightbox-gallery="gallery1">
+                <a href="{{ route('projects.show_all', $project->getSlug()) }}" title="{{ $project->getTitle() }}">
                   <div class="hover-text">
                     <h4>{{ $project->getTitle() }}</h4>
                   </div>
@@ -99,33 +99,6 @@
       </div>
       <!-- /Slider -->
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
-      <div class="categories">
-        <ul class="cat">
-          <li>
-            <ol class="type">
-              <li><a href="#" data-filter="*" class="active">{{ __('All Projects') }}</a></li>
-              <li><a href="#" data-filter=".residential">{{ __('Residential') }}</a></li>
-              <li><a href="#" data-filter=".office">{{ __('Office') }}</a></li>
-              <li><a href="#" data-filter=".commercial">{{ __('Commercial') }}</a></li>
-            </ol>
-          </li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="row portfolio-items">
-        @foreach($projects as $project)
-          <div class="col-sm-6 col-md-4 col-lg-4 portfolio-item residential">
-            <div class="hover-bg">
-              <a href="{{ route('projects.show_all', $project->getSlug()) }}" title="{{ $project->getTitle() }}" data-lightbox-gallery="gallery1">
-                <div class="hover-text">
-                  <h4>{{ $project->getTitle() }}</h4>
-                </div>
-                <img src="{{ $project->getMainPhoto() }}" alt="{{ $project->getTitle() }}">
-              </a>
-            </div>
-          </div>
-        @endforeach
-      </div>
     </div>
   </section>
   <!-- ./section-portfolio -->

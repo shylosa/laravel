@@ -281,6 +281,7 @@ function main() {
 
     function toggleHandler() {
         toggleMenu();
+        toggleScrollbar();
         toggleLockScroll();
     }
 
@@ -302,6 +303,24 @@ function main() {
             burgerClass.remove(jsChecked);
         } else {
             burgerClass.add(jsChecked);
+        }
+    }
+
+    function toggleScrollbar()
+    {
+        let marginRight = document.body.style.marginRight;
+        //Default value 5px
+        let defaultMarginRightGoTop = 5;
+        let goTop = document.getElementById('js-scroll-to-top');
+
+        if (marginRight === '0px' || marginRight === '') {
+            let scrollbarWidth = window.innerWidth - document.body.clientWidth;
+            document.body.style.marginRight = scrollbarWidth + 'px';
+            //Prevent move goTopButton
+            goTop.style.marginRight = scrollbarWidth + defaultMarginRightGoTop + 'px';
+        } else {
+            document.body.style.marginRight = '0px';
+            goTop.style.marginRight = defaultMarginRightGoTop + 'px';
         }
     }
 }
