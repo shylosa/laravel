@@ -21,8 +21,9 @@ function main() {
                 return;
             }
             //Close menu bar
-            toggleMenu();
-            toggleLockScroll();
+            if (isMenuOpen()) {
+                toggleHandler();
+            }
         } else if (!isLinkHasHash(href)) {
             window.location.href = href;
         } else {
@@ -90,11 +91,16 @@ function main() {
     {
         let burgerClass = document.getElementById('menu__toggle').classList;
         let jsChecked = 'js-checked';
-        if (burgerClass.contains(jsChecked)) {
+        if (isMenuOpen()) {
             burgerClass.remove(jsChecked);
         } else {
             burgerClass.add(jsChecked);
         }
+    }
+
+    function isMenuOpen()
+    {
+        return document.getElementById('menu__toggle').classList.contains('js-checked');
     }
 
     function toggleScrollbar()

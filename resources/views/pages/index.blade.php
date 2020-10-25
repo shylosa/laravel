@@ -36,7 +36,7 @@
         <hr>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-sm-4 services">
+        <div class="col-xs-12 col-lg-4 services">
           <div class="services-image">
             <img src="/images/outside-design.jpg" class="img-responsive" alt="Project Title">
           </div>
@@ -44,7 +44,7 @@
           <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
             ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
         </div>
-        <div class="col-xs-12 col-sm-4 services">
+        <div class="col-xs-12 col-lg-4 services">
           <div class="services-image">
             <img src="/images/restoration-design.jpg" class="img-responsive" alt="Project Title">
           </div>
@@ -52,7 +52,7 @@
           <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
             ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
         </div>
-        <div class="col-xs-12 col-sm-4 services">
+        <div class="col-xs-12 col-lg-4 services">
           <div class="services-image">
             <img src="/images/stairs-design.jpg" class="img-responsive" alt="Project Title">
           </div>

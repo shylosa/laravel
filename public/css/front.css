@@ -3630,6 +3630,9 @@ h4 {
 
 .main-header .navbar-brand {
     font-size: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 30px;
 }
 
 .main-header .top-menu {
@@ -3693,6 +3696,11 @@ h4 {
 }
 /* =============================.menu-expand============================== */
 
+.navbar-wrapper {
+    width: 100%;
+    height: 100px;
+}
+
 .menu__toggle {
     display: flex;
     align-items: center;
@@ -3744,17 +3752,9 @@ h4 {
 }
 
 .menu__box {
-    display: block;
-    position: fixed;
-    visibility: hidden;
-    top: 0;
-    left: -100%;
-    width: 320px;
-    height: 100%;
-    margin: 0;
-    background-color: rgba(230, 200, 180, 0.9);
-    box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
-    transition-duration: .6s;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
     z-index: 2;
 }
 
@@ -3764,30 +3764,55 @@ h4 {
     text-transform: uppercase;
 }
 
+.menu__list {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
 .menu__item {
+    position: relative;
     display: block;
     padding: 12px 24px;
-    color: #333;
+    color: #333333;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
     transition-duration: .3s;
+    z-index: 2;
 }
 
 .menu__item:hover {
-    background-color: #CFD8DC;
     text-decoration: none;
-    padding-left: 30px;
     transition-duration: .3s;
 }
 
+.menu__item:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    background: #ffffff;
+    transition-duration: .5s;
+    z-index: -1;
+}
+
+.menu__item:hover:before {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    opacity: 1;
+    height: 100%;
+}
 /* =============================./menu-expand============================== */
 
 /* =============================.language============================== */
 .header-topline {
-    padding: 0;
-    margin: 0;
+    margin: 15px 0 0 0;
     text-align: center;
 }
 
@@ -3811,7 +3836,7 @@ h4 {
 
 .language-item__current:hover,
 .language-item__noncurrent:hover {
-    background-color: #CFD8DC;
+    background-color: #ffffff;
     border-radius: 8px;
     transform: scale(1.1);
     transition-duration: .6s;
@@ -4154,7 +4179,7 @@ ol.type li a:hover {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #ffffff;
+    background: transparent;
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -4205,6 +4230,60 @@ ol.type li a:hover {
 }
 
 /* ============================= Small Devices, Tablets ============================== */
+@media only screen and (min-width: 768px) {
+    .section-about .history-image {
+        margin-left: 0;
+    }
+
+    .section-about .about-text {
+        margin-top: 0;
+        padding-left: 10px;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .menu__toggle {
+        display: none;
+    }
+    .section-services .services {
+        padding: 0 2%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .menu__box {
+        display: block;
+        position: fixed;
+        visibility: hidden;
+        overflow: auto;
+        top: 0;
+        left: -100%;
+        width: 320px;
+        height: 100%;
+        margin: 0;
+        background-color: rgba(230, 200, 180, 0.9);
+        box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
+        transition-duration: .6s;
+    }
+
+    .menu__list {
+        display: block;
+    }
+
+    .menu__item:hover {
+        background-color: #ffffff;
+        padding-left: 30px;
+    }
+
+    .menu__item:before {
+        display: none;
+    }
+
+    .main-header .navbar-brand {
+        margin-top: 60px;
+        margin-left: 20px;
+        font-size: 30px;
+    }
+}
 @media only screen and (max-width: 768px) {
     .main-header-text {
         left: 0;
@@ -4216,11 +4295,7 @@ ol.type li a:hover {
         font-size: 30px;
     }
 
-    .main-header .navbar-brand {
-        margin-top: 60px;
-        margin-left: 20px;
-        font-size: 30px;
-    }
+
 
     .main-header .navbar-brand img {
         width: 60px;
@@ -4300,6 +4375,12 @@ ol.type li a:hover {
 }
 
 /* ============================= Extra Small Devices, Phones ============================== */
+@media screen and (max-width:1200px) and (orientation: landscape) {
+    .main-header .overlay {
+        padding-top: 0;
+    }
+}
+
 @media only screen and (max-width: 480px) {
     .main-header .overlay h1 {
         font-size: 30px;
