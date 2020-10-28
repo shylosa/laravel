@@ -52,6 +52,7 @@ abstract class AppModel extends Model
         if ($this->hasTranslation($locale)) {
             return $this->translate($locale)->slug;
         }
+        return '';
     }
 
     /**
@@ -63,5 +64,6 @@ abstract class AppModel extends Model
         if ($this->hasTranslation($locale)) {
             return $this->translateOrDefault($locale)->title;
         }
+        return '';
     }
 }
