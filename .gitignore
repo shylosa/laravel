@@ -68,3 +68,5 @@ Homestead.json
 /resources/assets/front/images
 /resources/assets/front/fonts
 /resources/assets/front/webfonts
+
+.php_cs.cache
