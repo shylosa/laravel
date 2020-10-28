@@ -4,15 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
   <title>AdminLTE</title>
-
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
-  <!-- flag-icon-css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
@@ -20,16 +16,15 @@
           display: inline-block;
           margin-left: 10px;
       }
-
       button.delete {
           background: transparent;
           border: none;
           color: #007bff;
-          padding: 0px;
+          padding: 0;
       }
   </style>
   <!-- Admin styles -->
-  <link rel="stylesheet" href="/css/project-photos.css">
+  <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -109,7 +104,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

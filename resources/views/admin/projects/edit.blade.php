@@ -127,5 +127,4 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <script type="text/javascript" src="/js/project-photos.js"></script>
 @stop

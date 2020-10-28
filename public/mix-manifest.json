@@ -3,5 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/css/front-partial.css": "/css/front-partial.css",
     "/css/front.css": "/css/front.css",
-    "/js/front.js": "/js/front.js"
+    "/js/front.js": "/js/front.js",
+    "/css/admin.css": "/css/admin.css",
+    "/js/admin.js": "/js/admin.js"
 }

@@ -39,6 +39,8 @@ npm-debug.log
 /public/img/
 /public/fonts/
 /public/webfonts/
+/public/dist/
+/public/plugins/
 
 # Laravel 4 specific
 bootstrap/compiled.php

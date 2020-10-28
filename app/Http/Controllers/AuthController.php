@@ -26,7 +26,7 @@ class AuthController extends Controller
      */
     public function registerForm()
     {
-        return view('pages.register');
+        return view('auth.register');
     }
 
     /**
@@ -58,7 +58,7 @@ class AuthController extends Controller
      */
     public function loginForm()
     {
-        return view('pages.login');
+        return view('auth.login');
     }
 
     /**
@@ -66,7 +66,6 @@ class AuthController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse|Redirector
-     * @throws ValidationException
      */
     public function login(Request $request)
     {

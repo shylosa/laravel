@@ -28,7 +28,7 @@
 .preloader__item:after {
   --o: 1;
   background: #E1CEC7;
-  content: "";
+  content: '';
 }
 
 @-webkit-keyframes a {

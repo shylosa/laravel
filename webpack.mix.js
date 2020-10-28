@@ -11,39 +11,39 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js')
+    .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.styles([
-    'resources/assets/front/css/bootstrap.min.css',
-    'resources/assets/front/css/all.min.css',
-    'resources/assets/front/css/animate.min.css',
-    'resources/assets/front/css/owl.carousel.css',
-    'resources/assets/front/css/owl.theme.css',
-    'resources/assets/front/css/owl.transitions.css',
-    'resources/assets/front/css/nivo-lightbox.min.css',
+    'node_modules/bootstrap/dist/css/bootstrap.css',
+    'node_modules/@fortawesome/fontawesome-free/css/all.css',
     'node_modules/swiper/swiper-bundle.min.css',
     'resources/assets/front/css/style.css',
-    'resources/assets/front/css/responsive.css',
 ],'public/css/front.css');
 
 mix.sass('resources/assets/front/scss/preloader.scss', 'public/css/front-partial.css')
 
 mix.scripts([
-    'resources/assets/front/js/jquery-1.11.3.min.js',
-    'resources/assets/front/js/bootstrap.min.js',
-    'resources/assets/front/js/all.min.js',
-    'resources/assets/front/js/owl.carousel.min.js',
-    'resources/assets/front/js/jquery.stickit.min.js',
-    'resources/assets/front/js/isotope.pkgd.min.js',
-    'resources/assets/front/js/nivo-lightbox.min.js',
+    'node_modules/jquery/dist/jquery.js',
+    'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
+    'node_modules/@fortawesome/fontawesome-free/js/all.js',
     'node_modules/swiper/swiper-bundle.min.js',
-    'resources/assets/front/js/menu.js',
+    'resources/assets/front/js/swiper-config.js',
     'resources/assets/front/js/main.js',
-    'resources/assets/front/js/swiper.js',
-    'resources/assets/front/js/scripts.js',
 ], 'public/js/front.js');
 
 mix.copy('resources/assets/front/fonts', 'public/fonts');
-mix.copy('resources/assets/front/webfonts', 'public/webfonts');
+mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
 mix.copy('resources/assets/front/images', 'public/images');
+
+/* Admin dashboard resources */
+mix.styles([
+    'resources/assets/admin/css/project-photos.css',
+],'public/css/admin.css');
+
+mix.scripts([
+    'resources/assets/admin/js/project-photos.js',
+], 'public/js/admin.js');
+
+mix.copy('vendor/almasaeed2010/adminlte/plugins', 'public/plugins');
+mix.copy('vendor/almasaeed2010/adminlte/dist', 'public/dist');
