@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.2.5",
         "ext-pdo": "*",
-        "almasaeed2010/adminlte": "~3.0",
+        "almasaeed2010/adminlte": "^3.0",
         "astrotomic/laravel-translatable": "^11.8",
         "cviebrock/eloquent-sluggable": "^7.0",
         "diglactic/laravel-breadcrumbs": "^6.0",
