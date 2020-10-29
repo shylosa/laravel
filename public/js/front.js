@@ -22499,7 +22499,7 @@ function main() {
     }
 
     let jsMoreButton = document.getElementById('js-more-button');
-    if (jsMoreButton && typeof jsMoreButton != "undefined") {
+    if (typeof jsMoreButton !== 'undefined' && jsMoreButton) {
         jsMoreButton.addEventListener('click', menuItemsHandler);
     }
 
@@ -22620,7 +22620,7 @@ function main() {
 
 window.addEventListener('load', function () {
    let preloader = document.querySelector('.preloader');
-   if (preloader && typeof preloader != "undefined") {
+   if (typeof preloader !== 'undefined' && preloader) {
        preloader.classList.add('hide');
        preloader.classList.remove('show');
    }
