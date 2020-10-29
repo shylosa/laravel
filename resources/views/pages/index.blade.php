@@ -1,5 +1,17 @@
 @extends('layouts.layout')
 
+@section('overlay')
+  <div class="overlay">
+    <div>
+      <h1>{{ config('app.name') }}<span>/</span>{{ __('Handcrafted Furniture Factory') }}</h1>
+    </div>
+    <div>
+      <p>{{ __('main.slogan') }}</p>
+    </div>
+    <a id="js-more-button" href="#about" class="btn btn-custom">{{ __('main.more') }}</a>
+  </div>
+@endsection
+
 @section('content')
 
   <!-- .section-about -->
@@ -98,5 +110,4 @@
     </div>
   </section>
   <!-- ./section-portfolio -->
-
 @endsection

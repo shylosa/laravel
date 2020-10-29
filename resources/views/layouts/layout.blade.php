@@ -23,7 +23,7 @@
   <div class="noscript-warning">{{ __('main.warning_javascript_disabled') }}</div>
 </noscript>
 @include('pages._preloader')
-<nav class="main-header">
+<nav class="main-header {{ $mainPageFlag ?? '' }}">
   <div class="navbar-wrapper">
     <div id="menu__toggle" class="menu__toggle"><span></span></div>
     <div id="menu__box" class="menu__box">
@@ -34,15 +34,7 @@
     </div>
   </div>
   <!-- /.navbar-expand-->
-  <div class="overlay">
-    <div>
-      <h1>{{ config('app.name') }}<span>/</span>{{ __('Handcrafted Furniture Factory') }}</h1>
-    </div>
-    <div>
-      <p>{{ __('main.slogan') }}</p>
-    </div>
-    <a id="js-more-button" href="#about" class="btn btn-custom">{{ __('main.more') }}</a>
-  </div>
+  @yield('overlay')
 </nav>
 <!-- /.main-header-->
 

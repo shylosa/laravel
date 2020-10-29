@@ -5,11 +5,15 @@ namespace App;
 use Astrotomic\Translatable\Locales;
 use DB;
 use Doctrine\DBAL\Driver\PDOException;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class AppModel
  * @package App
+ * @mixin Eloquent
+ * @method static translatedIn($query, $locale)
  */
 abstract class AppModel extends Model
 {

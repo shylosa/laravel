@@ -3,8 +3,14 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Eloquent;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class TagTranslation
+ * @package App
+ * @mixin Eloquent
+ */
 class TagTranslation extends AppModel
 {
     use Sluggable;

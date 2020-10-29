@@ -3,11 +3,13 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Eloquent;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CategoryTranslation
  * @package App
+ * @mixin Eloquent
  */
 class CategoryTranslation extends AppModel
 {

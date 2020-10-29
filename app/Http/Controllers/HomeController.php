@@ -16,7 +16,6 @@ use Illuminate\View\View;
 /**
  * Class HomeController
  * @package App\Http\Controllers
- * @mixin Eloquent
  */
 class HomeController extends Controller
 {
@@ -34,7 +33,7 @@ class HomeController extends Controller
     {
         $projects = Project::translatedIn(app()->getLocale())->paginate(self::PROJECTS_ON_PAGE);
 
-        return view('pages.index', ['projects' => $projects]);
+        return view('pages.index', ['projects' => $projects, 'mainPageFlag' => 'main-page']);
     }
 
     /**

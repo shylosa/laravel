@@ -3,9 +3,15 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class ProjectTranslation
+ * @package App
+ * @mixin Eloquent
+ */
 class ProjectTranslation extends AppModel
 {
     use Sluggable;
