@@ -5,7 +5,11 @@ function main() {
     for (const link of links) {
         link.addEventListener('click', menuItemsHandler);
     }
-    document.getElementById('js-more-button').addEventListener('click', menuItemsHandler);
+
+    let jsMoreButton = document.getElementById('js-more-button');
+    if (jsMoreButton && typeof jsMoreButton != "undefined") {
+        jsMoreButton.addEventListener('click', menuItemsHandler);
+    }
 
     function menuItemsHandler(e) {
         e.preventDefault();
@@ -124,7 +128,7 @@ function main() {
 
 window.addEventListener('load', function () {
    let preloader = document.querySelector('.preloader');
-   if (typeof preloader != "undefined") {
+   if (preloader && typeof preloader != "undefined") {
        preloader.classList.add('hide');
        preloader.classList.remove('show');
    }

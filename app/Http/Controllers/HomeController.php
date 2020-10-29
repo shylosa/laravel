@@ -41,11 +41,11 @@ class HomeController extends Controller
      */
     public function show(string $slug)
     {
-        $project = Project::whereTranslation('slug', $slug)->firstOrFail();
         $locale = app()->getLocale();
+        $project = Project::whereTranslation('slug', $slug)->firstOrFail();
 
         if ($project->translate()->where('slug', $slug)->first()->locale !== $locale) {
-            return redirect()->route('projects.show', $project->translate($locale)->slug);
+            return redirect()->route('projects.show_project', $project->translate($locale)->slug);
         }
 
         return view('pages.show', ['project' => $project]);

@@ -629,6 +629,10 @@ ol.type li a:hover {
     color: #5f3f3f;
 }
 
+
+.related-post-carousel {
+    width: 100%;
+}
 /* =============================.footer============================== */
 
 .footer {
@@ -677,7 +681,8 @@ ol.type li a:hover {
 /* ============================= /Scroll to  top button ============================== */
 
 /* ============================= ./Swiper-carousel ============================== */
-.swiper-container {
+.swiper-container,
+.swiper-container-show {
     width: 100%;
     height: 100%;
     margin-left: auto;

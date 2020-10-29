@@ -30,14 +30,14 @@
               </div>
               <div class="social-share">
                 <ul class="text-center pull-right">
-                  <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a class="s-instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                  <li><a class="s-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                  <li><a class="s-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a class="s-instagram" href="#"><i class="fab fa-instagram"></i></a></li>
                 </ul>
               </div>
             </div>
           </article>
-          <div class="row"><!--blog next previous-->
+          <div class="row"><!--project next previous-->
             <div class="col-md-6">
               @if($project->hasPrevious())
                 <div class="single-blog-box">
@@ -68,21 +68,35 @@
                 </div>
               @endif
             </div>
-          </div><!--blog next previous end-->
+          </div><!--/project next previous-->
           <div class="related-post-carousel"><!--related post carousel-->
             <div class="related-heading">
-              <h4>You might also like</h4>
+              <h4>{{ __('You might also like') }}</h4>
             </div>
-            <div class="items">
-              @foreach($project->related() as $item)
-                <div class="single-item">
-                  <a href="{{ route('projects.show_project', $item->getSlug()) }}">
-                    <img src="{{ $item->getMainPhoto() }}" alt="">
-                    <p>{{ $item->getTitle() }}</p>
-                  </a>
-                </div>
+            <!-- Slider -->
+            <div class="swiper-container-show">
+              <div class="swiper-wrapper" id="show-slider">
+                <!-- Slides -->
+                @foreach($project->related() as $item)
+                  <div class="swiper-slide">
+                    <div class="hover-bg">
+                      <a href="{{ route('projects.show_project', $item->getSlug()) }}" title="{{ $item->getTitle() }}">
+                        <div class="hover-text">
+                          <h4>{{ $item->getTitle() }}</h4>
+                        </div>
+                        <img src="{{ $item->getMainPhoto() }}" alt="{{ $item->getTitle() }}">
+                      </a>
+                    </div>
+                  </div>
               @endforeach
+              <!-- /Slides -->
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-scrollbar"></div>
             </div>
+            <!-- /Slider -->
           </div><!--related post carousel-->
         </div>
         @include('pages._sidebar')
