@@ -6,9 +6,7 @@ use App;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -17,6 +15,7 @@ use Astrotomic\Translatable\Translatable;
  * Class Tag
  *
  * @package App
+ * @mixin Eloquent
  * @property int $id
  * @property string $title
  * @property string $slug
@@ -33,7 +32,19 @@ use Astrotomic\Translatable\Translatable;
  * @method static Builder|Tag whereSlug($value)
  * @method static Builder|Tag whereTitle($value)
  * @method static Builder|Tag whereUpdatedAt($value)
- * @mixin Eloquent
+ * @property-read TagTranslation|null $translation
+ * @property-read Collection|TagTranslation[] $translations
+ * @property-read int|null $translations_count
+ * @method static Builder|Tag listsTranslations($translationField)
+ * @method static Builder|Tag notTranslatedIn($locale = null)
+ * @method static Builder|Tag orWhereTranslation($translationField, $value, $locale = null)
+ * @method static Builder|Tag orWhereTranslationLike($translationField, $value, $locale = null)
+ * @method static Builder|Tag orderByTranslation($translationField, $sortMethod = 'asc')
+ * @method static Builder|Tag translated()
+ * @method static Builder|Tag translatedIn($locale = null)
+ * @method static Builder|Tag whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
+ * @method static Builder|Tag whereTranslationLike($translationField, $value, $locale = null)
+ * @method static Builder|Tag withTranslation()
  */
 class Tag extends AppModel implements TranslatableContract
 {

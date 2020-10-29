@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Tag;
 use App\Category;
-use Eloquent;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 
 /**
@@ -48,7 +45,7 @@ class HomeController extends Controller
         $locale = app()->getLocale();
 
         if ($project->translate()->where('slug', $slug)->first()->locale !== $locale) {
-            return redirect()->route('projects.show_all', $project->translate($locale)->slug);
+            return redirect()->route('projects.show', $project->translate($locale)->slug);
         }
 
         return view('pages.show', ['project' => $project]);

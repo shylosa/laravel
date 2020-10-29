@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 
 /**
  * App\User
- *
+ * @mixin Eloquent
  * @method static find(int $id)
  * @property int $id
  * @property string $name
@@ -42,7 +42,6 @@ use Illuminate\Support\Str;
  * @method static Builder|User wherePassword($value)
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
- * @mixin Eloquent
  */
 class User extends Authenticatable
 {

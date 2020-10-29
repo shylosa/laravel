@@ -2,13 +2,10 @@
 
 namespace App;
 
-use App;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -17,6 +14,7 @@ use Astrotomic\Translatable\Translatable;
  * Class Category
  *
  * @package App
+ * @mixin Eloquent
  * @property int $id
  * @property string $title
  * @property string $slug
@@ -33,7 +31,19 @@ use Astrotomic\Translatable\Translatable;
  * @method static Builder|Category whereSlug($value)
  * @method static Builder|Category whereTitle($value)
  * @method static Builder|Category whereUpdatedAt($value)
- * @mixin Eloquent
+ * @property-read CategoryTranslation|null $translation
+ * @property-read Collection|CategoryTranslation[] $translations
+ * @property-read int|null $translations_count
+ * @method static Builder|Category listsTranslations($translationField)
+ * @method static Builder|Category notTranslatedIn($locale = null)
+ * @method static Builder|Category orWhereTranslation($translationField, $value, $locale = null)
+ * @method static Builder|Category orWhereTranslationLike($translationField, $value, $locale = null)
+ * @method static Builder|Category orderByTranslation($translationField, $sortMethod = 'asc')
+ * @method static Builder|Category translated()
+ * @method static Builder|Category translatedIn($locale = null)
+ * @method static Builder|Category whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
+ * @method static Builder|Category whereTranslationLike($translationField, $value, $locale = null)
+ * @method static Builder|Category withTranslation()
  */
 class Category extends AppModel implements TranslatableContract
 {

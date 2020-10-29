@@ -4,7 +4,6 @@ namespace App;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
  * Class Photo
  *
  * @package App
+ * @mixin Eloquent
  * @property int $id
  * @property string $image
  * @property string $project_id
@@ -27,7 +27,8 @@ use Illuminate\Support\Facades\Storage;
  * @method static Builder|Photo whereImage($value)
  * @method static Builder|Photo whereProjectId($value)
  * @method static Builder|Photo whereUpdatedAt($value)
- * @mixin Eloquent
+ * @property int $is_main
+ * @method static Builder|Photo whereIsMain($value)
  */
 class Photo extends AppModel
 {

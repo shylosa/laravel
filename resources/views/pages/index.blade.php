@@ -89,7 +89,7 @@
           @foreach($projects as $project)
             <div class="swiper-slide">
               <div class="hover-bg">
-                <a href="{{ route('projects.show_all', $project->getSlug()) }}" title="{{ $project->getTitle() }}">
+                <a href="{{ route('projects.show_project', $project->getSlug()) }}" title="{{ $project->getTitle() }}">
                   <div class="hover-text">
                     <h4>{{ $project->getTitle() }}</h4>
                   </div>

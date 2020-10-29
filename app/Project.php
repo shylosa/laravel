@@ -1,31 +1,29 @@
 <?php
 /**
- * Shylo Serhii
+ * Serhii Shylo
  *
- * PHP Version 7.3.6
+ * PHP Version 7.2
  *
  * @category Personal project
- * @package Laravel
- * @author Shylo Serhii <shylosa.mm@gmail.com>
- * @copyright 2020 Shylo Serhii
+ * @package JOIWood
+ * @author Serhii Shylo <shylosa.mm@gmail.com>
+ * @copyright 2020 Serhii Shylo
  * @license http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
  */
 
 /**
- * Project model class for the Laravel.
+ * Project model class.
  *
  * @category Personal project
- * @package Laravel
- * @author Shylo Serhii <shylosa.mm@gmail.com>
- * @copyright 2020 Shylo Serhii
+ * @package JOIWood
+ * @author Serhii Shylo <shylosa.mm@gmail.com>
+ * @copyright 2020 Serhii Shylo
  * @license http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
  */
 
 namespace App;
 
-use App;
 use Carbon\Carbon;
-
 use Eloquent;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,12 +31,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-
 use Intervention\Image\Facades\Image;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -49,6 +43,7 @@ use Astrotomic\Translatable\Translatable;
  * Class Project
  *
  * @package App
+ * @mixin Eloquent
  * @property int $id
  * @property string $title
  * @property string|null $description
@@ -83,7 +78,20 @@ use Astrotomic\Translatable\Translatable;
  * @method static Builder|Project whereTitle($value)
  * @method static Builder|Project whereUpdatedAt($value)
  * @method static Builder|Project whereViews($value)
- * @mixin Eloquent
+ * @property-read int|null $photos_count
+ * @property-read ProjectTranslation|null $translation
+ * @property-read Collection|ProjectTranslation[] $translations
+ * @property-read int|null $translations_count
+ * @method static Builder|Project listsTranslations($translationField)
+ * @method static Builder|Project notTranslatedIn($locale = null)
+ * @method static Builder|Project orWhereTranslation($translationField, $value, $locale = null)
+ * @method static Builder|Project orWhereTranslationLike($translationField, $value, $locale = null)
+ * @method static Builder|Project orderByTranslation($translationField, $sortMethod = 'asc')
+ * @method static Builder|Project translated()
+ * @method static Builder|Project translatedIn($locale = null)
+ * @method static Builder|Project whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
+ * @method static Builder|Project whereTranslationLike($translationField, $value, $locale = null)
+ * @method static Builder|Project withTranslation()
  */
 class Project extends AppModel implements TranslatableContract
 {
@@ -554,5 +562,4 @@ class Project extends AppModel implements TranslatableContract
         }
         $this->save();
     }
-
 }
