@@ -35,7 +35,7 @@
   <!-- /.navbar-expand-->
   <div class="overlay">
     <div>
-      <h1>{{ config('app.name') }}<span>/</span>Handcrafted Furniture Factory</h1>
+      <h1>{{ config('app.name') }}<span>/</span>{{ __('Handcrafted Furniture Factory') }}</h1>
     </div>
     <div>
       <p>{{ __('main.slogan') }}</p>
@@ -54,16 +54,16 @@
       <h2>{{ __('main.how_contacts') }}</h2>
       <hr>
     </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
+    <p>{{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.') }}</p>
     <div class="row">
       <div class="col-md-4">
         <aside class="contact-widget">
           <div class="about-img">
             <img src="/images/footer-logo.png" alt=""><span>{{ config('app.name') }}</span>
           </div>
-          <div class="about-content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+          <div class="about-content">{{ __('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
             eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed voluptua. At vero eos et
-            accusam et justo duo dlores et ea rebum magna text ar koto din.
+            accusam et justo duo dlores et ea rebum magna text ar koto din.') }}
           </div>
           <div class="social-share">
             <ul>

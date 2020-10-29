@@ -14,13 +14,11 @@
         <div class="col-xs-12 col-md-6">
           <div class="about-text">
             <h3>{{ __('main.factory') }}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed
-              commodo
-              nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.</p>
+            <p>{{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed
+              commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam commodo nibh.') }}</p>
             <h3>{{ __('main.what_we_make') }}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed
-              commodo
-              nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare.</p>
+            <p>{{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed
+              commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare.') }}</p>
           </div>
         </div>
       </div>
@@ -41,24 +39,24 @@
             <img src="/images/outside-design.jpg" class="img-responsive" alt="Project Title">
           </div>
           <h3>{{ __('main.playgrounds') }}</h3>
-          <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
-            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
+          <p>{{ __('Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
+            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.') }}</p>
         </div>
         <div class="col-xs-12 col-lg-4 services">
           <div class="services-image">
             <img src="/images/restoration-design.jpg" class="img-responsive" alt="Project Title">
           </div>
           <h3>{{ __('main.restoration') }}</h3>
-          <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
-            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
+          <p>{{ __('Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
+            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.') }}</p>
         </div>
         <div class="col-xs-12 col-lg-4 services">
           <div class="services-image">
             <img src="/images/stairs-design.jpg" class="img-responsive" alt="Project Title">
           </div>
           <h3>{{ __('main.stairs') }}</h3>
-          <p>Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
-            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.</p>
+          <p>{{ __('Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam. Lorem
+            ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend.') }}</p>
         </div>
       </div>
     </div>
@@ -88,17 +86,15 @@
               </div>
             </div>
           @endforeach
+          <!-- /Slides -->
         </div>
-        <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
-        <!-- If we need navigation buttons -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
-        <!-- If we need scrollbar -->
         <div class="swiper-scrollbar"></div>
       </div>
       <!-- /Slider -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.</p>
+      <p>{{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.') }}</p>
     </div>
   </section>
   <!-- ./section-portfolio -->

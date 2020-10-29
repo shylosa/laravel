@@ -28,7 +28,6 @@ abstract class AppModel extends Model
             } catch (PDOException $e) {
                 echo __('Подключение не удалось: ') . $e->getMessage();
             }
-
         }
 
         return $count;
@@ -42,7 +41,6 @@ abstract class AppModel extends Model
         return config('translatable.locales');
     }
 
-
     /**
      * @return mixed
      */
@@ -52,6 +50,7 @@ abstract class AppModel extends Model
         if ($this->hasTranslation($locale)) {
             return $this->translate($locale)->slug;
         }
+
         return '';
     }
 
@@ -64,6 +63,7 @@ abstract class AppModel extends Model
         if ($this->hasTranslation($locale)) {
             return $this->translateOrDefault($locale)->title;
         }
+
         return '';
     }
 }
