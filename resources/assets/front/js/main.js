@@ -110,7 +110,7 @@ function main() {
     function toggleScrollbar()
     {
         let marginRight = document.body.style.marginRight;
-        //Default value 5px
+        //Default value 5px for goTop button
         let defaultMarginRightGoTop = 5;
         let goTop = document.getElementById('js-scroll-to-top');
 

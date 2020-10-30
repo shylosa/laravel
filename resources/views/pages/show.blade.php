@@ -7,33 +7,20 @@
       <div class="row">
         <div class="col-md-8">
           <article class="post">
-            <div class="post-thumb">
-              <a href="{{ route('projects.show_project', $project->getSlug()) }}">
-                <img src="{{ $project->getMainPhoto() }}" alt="">
-              </a>
-            </div>
             <div class="post-content">
               <header class="entry-header text-center text-uppercase">
-                @if($project->hasCategory())
-                  <h6>
-                    <a href="{{ route('categories.show', $project->category->getSlug()) }}">{{ $project->getCategoryTitle() }}</a>
-                  </h6>
-                @endif
-                <h1 class="entry-title">
-                  <a href="{{ route('projects.show_project', $project->getSlug()) }}">{{ $project->getTitle() }}</a>
-                </h1>
+                <h1 class="entry-title">{{ $project->getTitle() }}</h1>
               </header>
+              <img src="{{ $project->getMainPhoto() }}" alt="">
+              @if($project->hasCategory())
+                <h6>
+                  <a href="{{ route('categories.show', $project->category->getSlug()) }}">{{ $project->getCategoryTitle() }}</a>
+                </h6>
+              @endif
               <div class="decoration">
                 @foreach($project->tags as $tag)
                   <a href="{{ route('tags.show', $tag->getSlug()) }}" class="btn btn-default">{{ $tag->getTitle() }}</a>
                 @endforeach
-              </div>
-              <div class="social-share">
-                <ul class="text-center pull-right">
-                  <li><a class="s-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-                  <li><a class="s-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a class="s-instagram" href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
               </div>
             </div>
           </article>
@@ -45,7 +32,7 @@
                     <img src="{{ $project->getPrevious()->getMainPhoto() }}" alt="">
                     <div class="overlay">
                       <div class="promo-text">
-                        <p><i class=" pull-left fa fa-angle-left"></i></p>
+                        <p><i class=" pull-left fas fa-angle-left"></i></p>
                         <h5>{{ $project->getPrevious()->getTitle() }}</h5>
                       </div>
                     </div>
@@ -60,7 +47,7 @@
                     <img src="{{ $project->getNext()->getMainPhoto() }}" alt="">
                     <div class="overlay">
                       <div class="promo-text">
-                        <p><i class=" pull-right fa fa-angle-right"></i></p>
+                        <p><i class=" pull-right fas fa-angle-right"></i></p>
                         <h5>{{ $project->getNext()->getTitle() }}</h5>
                       </div>
                     </div>

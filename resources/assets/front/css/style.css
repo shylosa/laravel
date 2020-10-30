@@ -116,6 +116,7 @@ h4 {
     background-size: cover;
     height: 120px;
     position: relative;
+    margin-bottom: 50px;
 }
 
 .main-header.main-page {
@@ -675,7 +676,7 @@ ol.type li a:hover {
 }
 
 .js-disable-scroll {
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 /* ============================= /Scroll to  top button ============================== */
@@ -763,6 +764,10 @@ ol.type li a:hover {
 }
 
 @media only screen and (max-width: 992px) {
+    .main-header {
+        height: 67px;
+    }
+
     .menu__box {
         display: block;
         position: fixed;

@@ -12,15 +12,15 @@ const swiperConfig = new Swiper('.swiper-container', {
         prevEl: '.swiper-button-prev',
     },
     autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
+        delay: 6000,
+        disableOnInteraction: true,
     },
 });
 //Slider for show page
 const swiperConfigShow = new Swiper('.swiper-container-show', {
     slidesPerView: 3,
     spaceBetween: 50,
-    freeMode: true,
+    freeMode: false,
     loop: true,
     pagination: {
         el: '.swiper-pagination',
@@ -31,8 +31,8 @@ const swiperConfigShow = new Swiper('.swiper-container-show', {
         prevEl: '.swiper-button-prev',
     },
     autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
+        delay: 10000,
+        disableOnInteraction: true,
     },
     breakpoints: {
         // when window width is <= 499px
