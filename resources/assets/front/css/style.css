@@ -116,7 +116,6 @@ h4 {
     background-size: cover;
     height: 120px;
     position: relative;
-    margin-bottom: 50px;
 }
 
 .main-header.main-page {
@@ -566,25 +565,6 @@ ol.type li a:hover {
     opacity: 1;
 }
 
-/* =============================.section-instagram============================== */
-
-.section-instagram .container-fluid {
-    padding: 0;
-}
-
-.section-instagram h3 {
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.section-instagram .row div {
-    padding: 0;
-}
-
-.section-instagram .section-title {
-    margin-bottom: 20px;
-}
-
 /* =============================.section-contacts============================== */
 
 .section-contacts {
@@ -629,11 +609,28 @@ ol.type li a:hover {
     font-size: 26px;
     color: #5f3f3f;
 }
+/* =============================/.section-contacts============================== */
 
+/* =============================section-show-page============================== */
+.section-show-page {
+    margin-bottom: 30px;
+}
+
+.section-show-page .row {
+    justify-content: center;
+}
+
+.project-photo {
+    margin-bottom: 20px;
+}
 
 .related-post-carousel {
+    position: relative;
     width: 100%;
+    height: auto;
 }
+/* =============================/section-show-page============================== */
+
 /* =============================.footer============================== */
 
 .footer {
@@ -683,7 +680,7 @@ ol.type li a:hover {
 
 /* ============================= ./Swiper-carousel ============================== */
 .swiper-container,
-.swiper-container-show {
+.swiper-container__show {
     width: 100%;
     height: 100%;
     margin-left: auto;
@@ -708,6 +705,7 @@ ol.type li a:hover {
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+    margin: auto 0;
 }
 
 .swiper-button-next,
@@ -720,6 +718,10 @@ ol.type li a:hover {
 }
 .swiper-pagination-bullet-active {
     background: #ffffff;
+}
+
+.swiper-pagination__show {
+    text-align: center;
 }
 
 .swiper-scrollbar {

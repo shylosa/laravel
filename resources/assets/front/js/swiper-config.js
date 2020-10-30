@@ -17,13 +17,16 @@ const swiperConfig = new Swiper('.swiper-container', {
     },
 });
 //Slider for show page
-const swiperConfigShow = new Swiper('.swiper-container-show', {
-    slidesPerView: 3,
-    spaceBetween: 50,
+const swiperConfigShow = new Swiper('.swiper-container__show', {
+    // default values
+    slidesPerView: 1,
+    spaceBetween: 10,
+    centeredSlides: true,
     freeMode: false,
     loop: true,
+    zoom:true,
     pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-pagination__show',
         clickable: true,
     },
     navigation: {
@@ -35,15 +38,14 @@ const swiperConfigShow = new Swiper('.swiper-container-show', {
         disableOnInteraction: true,
     },
     breakpoints: {
-        // when window width is <= 499px
-        499: {
-            slidesPerView: 1,
-            spaceBetweenSlides: 30
-        },
-        // when window width is <= 999px
-        999: {
+        // when window width is >= 568px
+        568: {
             slidesPerView: 2,
-            spaceBetweenSlides: 40
+            spaceBetween: 25
+        },
+        999: {
+            slidesPerView: 3,
+            spaceBetween: 50
         }
     }
 });

@@ -22455,18 +22455,21 @@ const swiperConfig = new Swiper('.swiper-container', {
         prevEl: '.swiper-button-prev',
     },
     autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
+        delay: 6000,
+        disableOnInteraction: true,
     },
 });
 //Slider for show page
-const swiperConfigShow = new Swiper('.swiper-container-show', {
-    slidesPerView: 3,
-    spaceBetween: 50,
-    freeMode: true,
+const swiperConfigShow = new Swiper('.swiper-container__show', {
+    // default values
+    slidesPerView: 1,
+    spaceBetween: 10,
+    centeredSlides: true,
+    freeMode: false,
     loop: true,
+    zoom:true,
     pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-pagination__show',
         clickable: true,
     },
     navigation: {
@@ -22474,19 +22477,18 @@ const swiperConfigShow = new Swiper('.swiper-container-show', {
         prevEl: '.swiper-button-prev',
     },
     autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
+        delay: 10000,
+        disableOnInteraction: true,
     },
     breakpoints: {
-        // when window width is <= 499px
-        499: {
-            slidesPerView: 1,
-            spaceBetweenSlides: 30
-        },
-        // when window width is <= 999px
-        999: {
+        // when window width is >= 568px
+        568: {
             slidesPerView: 2,
-            spaceBetweenSlides: 40
+            spaceBetween: 25
+        },
+        999: {
+            slidesPerView: 3,
+            spaceBetween: 50
         }
     }
 });
@@ -22602,7 +22604,7 @@ function main() {
     function toggleScrollbar()
     {
         let marginRight = document.body.style.marginRight;
-        //Default value 5px
+        //Default value 5px for goTop button
         let defaultMarginRightGoTop = 5;
         let goTop = document.getElementById('js-scroll-to-top');
 

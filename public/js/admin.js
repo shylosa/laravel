@@ -78,7 +78,7 @@ function removePhoto(t) {
 function removeMainPhoto(t) {
     let trg = t.parentNode.getElementsByClassName('img-preview')[0];
     let mainPhotoOldInput = trg.getElementsByTagName('input')[0];
-    if (typeof mainPhotoOldInput != "undefined") {
+    if (typeof mainPhotoOldInput !== 'undefined' && mainPhotoOldInput) {
         trg.removeChild(mainPhotoOldInput);
     }
     removePhoto(trg);
