@@ -1,15 +1,15 @@
 // Slider for main page
-const swiperConfig = new Swiper('.swiper-container', {
+const swiper__main = new Swiper('.swiper-container__main', {
     slidesPerView: 1,
     spaceBetween: 0,
     loop: true,
     pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-pagination__main',
         clickable: true,
     },
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next__main',
+        prevEl: '.swiper-button-prev__main',
     },
     autoplay: {
         delay: 6000,
@@ -17,29 +17,36 @@ const swiperConfig = new Swiper('.swiper-container', {
     },
 });
 //Slider for show page
-const swiperConfigShow = new Swiper('.swiper-container.page-show', {
+const swiper__show = new Swiper('.swiper-container__page-show', {
     // default values
-    slidesPerView: 3,
-    spaceBetween: 50,
+    slidesPerView: 1,
+    spaceBetween: 10,
     centeredSlides: true,
     freeMode: false,
     loop: true,
     pagination: {
-        el: '.swiper-pagination.page-show',
+        el: '.swiper-pagination__page-show',
         clickable: true,
     },
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next__page-show',
+        prevEl: '.swiper-button-prev__page-show',
     },
     autoplay: {
         delay: 10000,
         disableOnInteraction: true,
     },
     breakpoints: {
-        568: {
-            slidesPerView: 1,
-            spaceBetween: 10
-        }
+        //For screen >= 567px
+        567: {
+            slidesPerView: 2,
+            spaceBetween: 20
+        },
+        //For screen >= 768px
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 50
+        },
+
     }
 });

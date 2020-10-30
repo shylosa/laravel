@@ -83,8 +83,8 @@
         <hr>
       </div>
       <!-- Slider -->
-      <div class="swiper-container">
-        <div class="swiper-wrapper" id="main-slider">
+      <div class="swiper-container swiper-container__main">
+        <div class="swiper-wrapper" id="slider__main">
           <!-- Slides -->
           @foreach($projects as $project)
             <div class="swiper-slide">
@@ -100,10 +100,10 @@
           @endforeach
           <!-- /Slides -->
         </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-scrollbar"></div>
+        <div class="swiper-pagination swiper-pagination__main"></div>
+        <div class="swiper-button-prev swiper-button-prev__main"></div>
+        <div class="swiper-button-next swiper-button-next__main"></div>
+        <div class="swiper-scrollbar swiper-scrollbar__main"></div>
       </div>
       <!-- /Slider -->
       <p>{{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.') }}</p>

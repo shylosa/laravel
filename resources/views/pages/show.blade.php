@@ -39,8 +39,8 @@
           <h4>{{ __('You might also like') }}</h4>
         </div>
         <!-- Slider -->
-        <div class="swiper-container page-show">
-          <div class="swiper-wrapper" id="slider-page-show">
+        <div class="swiper-container swiper-container__page-show">
+          <div class="swiper-wrapper" id="slider__page-show">
             <!-- Slides -->
             @foreach($project->related() as $item)
               <div class="swiper-slide">
@@ -56,10 +56,10 @@
           @endforeach
           <!-- /Slides -->
           </div>
-          <div class="swiper-pagination page-show"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-scrollbar"></div>
+          <div class="swiper-pagination swiper-pagination__page-show"></div>
+          <div class="swiper-button-prev swiper-button-prev__page-show"></div>
+          <div class="swiper-button-next swiper-button-next__page-show"></div>
+          <div class="swiper-scrollbar swiper-scrollbar__page-show"></div>
         </div>
         <!-- /Slider -->
       </div><!--related post carousel-->

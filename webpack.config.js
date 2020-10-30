@@ -3,13 +3,14 @@
  * file. Based on what the user requests in that file,
  * a generic config object will be constructed for us.
  */
-let mix = require('laravel-mix');
+let laravelMixPath = process.env.NODE_PATH + '/laravel-mix/';
+let mix = require(laravelMixPath + 'src/index');
 
-let ComponentFactory = require('../src/components/ComponentFactory');
+let ComponentFactory = require(laravelMixPath + 'src/components/ComponentFactory');
 
 new ComponentFactory().installAll();
 
-require(Mix.paths.mix());
+require('./webpack.mix');
 
 /**
  * Just in case the user needs to hook into this point
@@ -24,6 +25,6 @@ Mix.dispatch('init', Mix);
  * for Webpack. And that's all there is to it. Simple!
  */
 
-let WebpackConfig = require('../src/builder/WebpackConfig');
+let WebpackConfig = require(laravelMixPath + 'src/builder/WebpackConfig');
 
 module.exports = new WebpackConfig().build();
