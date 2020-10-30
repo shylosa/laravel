@@ -680,7 +680,7 @@ ol.type li a:hover {
 
 /* ============================= ./Swiper-carousel ============================== */
 .swiper-container,
-.swiper-container__show {
+.swiper-container.page-show {
     width: 100%;
     height: 100%;
     margin-left: auto;
@@ -705,7 +705,6 @@ ol.type li a:hover {
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    margin: auto 0;
 }
 
 .swiper-button-next,
@@ -720,7 +719,7 @@ ol.type li a:hover {
     background: #ffffff;
 }
 
-.swiper-pagination__show {
+.swiper-pagination.page-show {
     text-align: center;
 }
 

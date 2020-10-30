@@ -17,8 +17,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
 mix.styles([
     'node_modules/bootstrap/dist/css/bootstrap.css',
     'node_modules/@fortawesome/fontawesome-free/css/all.css',
-    'resources/assets/front/css/style.css',
     'node_modules/swiper/swiper-bundle.min.css',
+    'resources/assets/front/css/style.css',
 ],'public/css/front.css');
 
 mix.sass('resources/assets/front/scss/preloader.scss', 'public/css/front-partial.css')
