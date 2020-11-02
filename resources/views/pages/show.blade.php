@@ -22,12 +22,12 @@
 
               @if($project->hasCategory())
                 <h6>
-                  <a href="{{ route('categories.show', $project->category->getSlug()) }}">{{ $project->getCategoryTitle() }}</a>
+                  <a href="{{ route('categories.show_category', $project->category->getSlug()) }}">{{ $project->getCategoryTitle() }}</a>
                 </h6>
               @endif
               <div class="decoration">
                 @foreach($project->tags as $tag)
-                  <a href="{{ route('tags.show', $tag->getSlug()) }}" class="btn btn-default">{{ $tag->getTitle() }}</a>
+                  <a href="{{ route('tags.show_tag', $tag->getSlug()) }}" class="btn btn-default">{{ $tag->getTitle() }}</a>
                 @endforeach
               </div>
             </div>
