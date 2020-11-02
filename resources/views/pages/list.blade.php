@@ -2,12 +2,12 @@
 
 @section('content')
   <!--main content start-->
-  <div class="main-content">
+  <section class="section-projects">
     <div class="container">
       <div class="row">
         <div class="col-md-8">
           <div class="row">
-            @foreach($projects as $project)
+            @forelse($projects as $project)
               <div class="col-md-6">
                 <article class="post post-grid">
                   <div class="post-thumb">
@@ -36,12 +36,14 @@
                   </div>
                 </article>
               </div>
-            @endforeach
+            @empty
+              <p>{{ __('No projects') }}</p>
+            @endforelse
           </div>
           {{ $projects->links() }}
         </div>
       </div>
     </div>
-  </div>
+  </section>
   <!-- end main content-->
 @endsection
