@@ -3,7 +3,7 @@
  * file. Based on what the user requests in that file,
  * a generic config object will be constructed for us.
  */
-let laravelMixPath = process.env.NODE_PATH + '/laravel-mix/';
+let laravelMixPath = './node_modules/laravel-mix/';
 let mix = require(laravelMixPath + 'src/index');
 
 let ComponentFactory = require(laravelMixPath + 'src/components/ComponentFactory');
