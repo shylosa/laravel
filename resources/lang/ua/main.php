@@ -13,7 +13,7 @@ return [
     'what_we_make' => 'що ми виробляємо',
     'how_contacts' => 'як з нами зв\'язатися',
     'where' => 'де ми знаходимося',
-    'our_services' => 'наши послуги',
+    'our_services' => 'наші послуги',
     'playgrounds' => 'дитячі майданчики',
     'restoration' => 'реставрація',
     'stairs' => 'сходи',
@@ -28,4 +28,5 @@ return [
     'name' => 'ім\'я',
     'admin_page' => 'адмін-панель',
     'warning_javascript_disabled' => 'У вашому браузері відключений javascript. Деякі функції можуть бути недоступні.',
+    'tags' => 'теги',
 ];

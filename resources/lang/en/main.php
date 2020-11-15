@@ -28,4 +28,5 @@ return [
     'name' => 'name',
     'admin_page' => 'admin page',
     'warning_javascript_disabled' => 'Javascript is disabled in your browser. Some features may be unavailable.',
+    'tags' => 'tags',
 ];

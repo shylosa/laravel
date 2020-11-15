@@ -431,6 +431,16 @@ class Project extends AppModel implements TranslatableContract
     }
 
     /**
+     * Returns whether or not the given project tags
+     *
+     * @return bool
+     */
+    public function hasTags(): bool
+    {
+        return $this->tags !== null;
+    }
+
+    /**
      * Returns whether or not the previous given project has
      *
      * @return mixed

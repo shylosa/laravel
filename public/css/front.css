@@ -14935,6 +14935,10 @@ Common Stylesheet
 }
 
 /* =============================elements============================== */
+:root {
+    --link-color: #5f3f3f;
+    --link-color-hover: #9f7676;
+}
 html, body {
     padding: 0;
     margin: 0;
@@ -14954,6 +14958,15 @@ img {
 
 section {
     padding: 70px 0;
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--link-color-hover);
 }
 
 h2 {
@@ -15516,6 +15529,11 @@ ol.type li a:hover {
     justify-content: center;
 }
 
+.section-show-page h2 {
+    font-size: 26px;
+    text-transform: uppercase;
+}
+
 .project-photo {
     margin-bottom: 20px;
 }
@@ -15524,6 +15542,14 @@ ol.type li a:hover {
     position: relative;
     width: 100%;
     height: 300px;
+}
+
+.decoration {
+    text-align: center;
+}
+
+.decoration a:hover {
+    color: var(--link-color-hover);
 }
 /* =============================/section-show-page============================== */
 

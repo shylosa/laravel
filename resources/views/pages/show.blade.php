@@ -21,15 +21,18 @@
               @endforeach
 
               @if($project->hasCategory())
-                <h6>
+                <h2 class="text-center">
                   <a href="{{ route('categories.show', $project->category->getSlug()) }}">{{ $project->getCategoryTitle() }}</a>
-                </h6>
+                </h2>
               @endif
-              <div class="decoration">
-                @foreach($project->tags as $tag)
-                  <a href="{{ route('tags.show', $tag->getSlug()) }}" class="btn btn-default">{{ $tag->getTitle() }}</a>
-                @endforeach
-              </div>
+              @if ($project->hasTags())
+                <div class="decoration">
+                  <span>{{ __('main.tags') }}:</span>
+                  @foreach($project->tags as $tag)
+                    <a href="{{ route('tags.show', $tag->getSlug()) }}" class="btn btn-default">{{ $tag->getTitle() }}</a>
+                  @endforeach
+                </div>
+              @endif
             </div>
           </article>
         </div>
