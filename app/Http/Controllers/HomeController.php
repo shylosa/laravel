@@ -57,7 +57,7 @@ class HomeController extends Controller
      * @param string $slug
      * @return Factory|View
      */
-    public function tag(string $slug)
+    public function tags(string $slug)
     {
         $tag = Tag::whereTranslation('slug', $slug)->firstOrFail();
         $projects = $tag->projects()->paginate(self::PROJECTS_ON_PAGE);
@@ -69,10 +69,11 @@ class HomeController extends Controller
      * Filtration projects by categories
      *
      * @param string $slug
-     * @return Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
-    public function category(string $slug)
+    public function categories(string $slug)
     {
+        $locale = app()->getLocale();
         $category = Category::whereTranslation('slug', $slug)->firstOrFail();
         $projects = $category->projects()->paginate(self::PROJECTS_ON_PAGE);
 

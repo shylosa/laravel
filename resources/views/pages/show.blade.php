@@ -52,7 +52,7 @@
                     <div class="hover-text">
                       <h4>{{ $item->getTitle() }}</h4>
                     </div>
-                    <img src="{{ $item->getMainPhoto() }}" alt="{{ $item->getTitle() }}">
+                    <div class="swiper-slide swiper-slide__page-show" style="background-image: url({{ $item->getMainPhoto() }})"></div>
                   </a>
                 </div>
               </div>

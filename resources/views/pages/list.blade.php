@@ -2,19 +2,19 @@
 
 @section('content')
   <!--main content start-->
-  <div class="main-content">
+  <section class="section-projects">
     <div class="container">
       <div class="row">
         <div class="col-md-8">
           <div class="row">
-            @foreach($projects as $project)
+            @forelse($projects as $project)
               <div class="col-md-6">
                 <article class="post post-grid">
                   <div class="post-thumb">
-                    <a href="{{ route('project.show', $project->slug) }}">
-                      <img src="{{ $project->getImage() }}" alt="">
+                    <a href="{{ route('projects.show_project', $project->getSlug()) }}">
+                      <img src="{{ $project->getMainPhoto() }}" alt="">
                     </a>
-                    <a href="{{ route('project.show', $project->slug) }}" class="post-thumb-overlay text-center">
+                    <a href="{{ route('projects.show_project', $project->getSlug()) }}" class="post-thumb-overlay text-center">
                       <div class="text-uppercase text-center">View Post</div>
                     </a>
                   </div>
@@ -22,11 +22,11 @@
                     <header class="entry-header text-center text-uppercase">
                       @if($project->hasCategory())
                         <h6>
-                          <a href="{{ route('category.show', $project->category->slug) }}"> {{$project->getCategoryTitle()}}</a>
+                          <a href="{{ route('categories.show_category', $project->category->getSlug()) }}"> {{$project->getCategoryTitle()}}</a>
                         </h6>
                       @endif
                       <h1 class="entry-title">
-                        <a href="{{ route('project.show', $project->slug) }}">{{ $project->title }}</a>
+                        <a href="{{ route('projects.show_project', $project->getSlug()) }}">{{ $project->getTitle() }}</a>
                       </h1>
                     </header>
                     <div class="entry-content">
@@ -36,13 +36,14 @@
                   </div>
                 </article>
               </div>
-            @endforeach
+            @empty
+              <p>{{ __('No projects') }}</p>
+            @endforelse
           </div>
           {{ $projects->links() }}
         </div>
-        @include('pages._sidebar')
       </div>
     </div>
-  </div>
+  </section>
   <!-- end main content-->
 @endsection
