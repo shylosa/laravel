@@ -453,29 +453,27 @@ hr {
     box-shadow: 15px 0 #5f3f3f;
 }
 
+.custom-furniture {
+    position: relative;
+    opacity: 1;
+}
+
+.custom-furniture {
+    animation: fadein 3s alternate ease-in-out infinite;
+}
+
+@keyframes fadein {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
+
 .custom-furniture p {
     font-size: 20px;
     margin: 0;
+    font-weight: 700;
+    color: var(--link-color);
 }
 
-.custom-furniture:before,
-.custom-furniture:after {
-    content: "";
-    display: block;
-    position: absolute;
-    background: var(--link-color);
-    width: 2px;
-    height: 100%;
-    top: 0;
-}
-
-.custom-furniture:before {
-    left: 0;
-}
-
-.custom-furniture:after {
-    right: 0;
-}
 /* =============================.section-portfolio============================== */
 
 .section-portfolio {
