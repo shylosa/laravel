@@ -437,7 +437,7 @@ class Project extends AppModel implements TranslatableContract
      */
     public function hasTags(): bool
     {
-        return $this->tags !== null;
+        return $this->tags->isNotEmpty();
     }
 
     /**

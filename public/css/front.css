@@ -15355,11 +15355,11 @@ hr {
 }
 
 .custom-furniture {
-    animation: fadein 3s alternate ease-in-out infinite;
+    animation: fadein 4s alternate ease-in-out infinite;
 }
 
 @keyframes fadein {
-    from { opacity: 0.2; }
+    from { opacity: 0.5; }
     to { opacity: 1; }
 }
 

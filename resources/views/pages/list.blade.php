@@ -5,10 +5,10 @@
   <section class="section-list-page">
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="row">
             @forelse($projects as $project)
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <article class="post post-grid">
                   <div class="post-thumb">
                     <a href="{{ route('projects.show_project', $project->getSlug()) }}">
