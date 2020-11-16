@@ -37,22 +37,21 @@
           </article>
         </div>
       </div>
+      <div class="related-heading">
+        <h4>{{ __('You might also like') }}</h4>
+      </div>
       <div class="related-post-carousel"><!--related post carousel-->
-        <div class="related-heading">
-          <h4>{{ __('You might also like') }}</h4>
-        </div>
         <!-- Slider -->
         <div class="swiper-container swiper-container__page-show">
           <div class="swiper-wrapper" id="slider__page-show">
             <!-- Slides -->
             @foreach($project->related() as $item)
-              <div class="swiper-slide">
+              <div class="swiper-slide swiper-slide__page-show" style="background-image: url({{ $item->getMainPhoto() }})">
                 <div class="hover-bg">
                   <a href="{{ route('projects.show_project', $item->getSlug()) }}" title="{{ $item->getTitle() }}">
                     <div class="hover-text">
                       <h4>{{ $item->getTitle() }}</h4>
                     </div>
-                    <div class="swiper-slide swiper-slide__page-show" style="background-image: url({{ $item->getMainPhoto() }})"></div>
                   </a>
                 </div>
               </div>

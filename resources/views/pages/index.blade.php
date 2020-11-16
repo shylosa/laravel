@@ -82,29 +82,31 @@
         <h2>{{ __('main.completed_projects') }}</h2>
         <hr>
       </div>
-      <!-- Slider -->
-      <div class="swiper-container swiper-container__main">
-        <div class="swiper-wrapper" id="slider__main">
-          <!-- Slides -->
-          @foreach($projects as $project)
-            <div class="swiper-slide swiper-slide__main" style="background-image: url({{ $project->getMainPhoto() }})">
-              <div class="hover-bg">
-                <a href="{{ route('projects.show_project', $project->getSlug()) }}" title="{{ $project->getTitle() }}">
-                  <div class="hover-text">
-                    <h4>{{ $project->getTitle() }}</h4>
-                  </div>
-                </a>
+      <div class="main-carousel">
+        <!-- Slider -->
+        <div class="swiper-container swiper-container__main">
+          <div class="swiper-wrapper" id="slider__main">
+            <!-- Slides -->
+            @foreach($projects as $project)
+              <div class="swiper-slide swiper-slide__main" style="background-image: url({{ $project->getMainPhoto() }})">
+                <div class="hover-bg">
+                  <a href="{{ route('projects.show_project', $project->getSlug()) }}" title="{{ $project->getTitle() }}">
+                    <div class="hover-text">
+                      <h4>{{ $project->getTitle() }}</h4>
+                    </div>
+                  </a>
+                </div>
               </div>
-            </div>
           @endforeach
           <!-- /Slides -->
+          </div>
+          <div class="swiper-pagination swiper-pagination__main"></div>
+          <div class="swiper-button-prev swiper-button-prev__main"></div>
+          <div class="swiper-button-next swiper-button-next__main"></div>
+          <div class="swiper-scrollbar swiper-scrollbar__main"></div>
         </div>
-        <div class="swiper-pagination swiper-pagination__main"></div>
-        <div class="swiper-button-prev swiper-button-prev__main"></div>
-        <div class="swiper-button-next swiper-button-next__main"></div>
-        <div class="swiper-scrollbar swiper-scrollbar__main"></div>
+        <!-- /Slider -->
       </div>
-      <!-- /Slider -->
       <p>{{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed dapibus leonec.') }}</p>
     </div>
   </section>

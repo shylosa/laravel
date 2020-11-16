@@ -452,11 +452,12 @@ hr {
 /* =============================.section-portfolio============================== */
 
 .section-portfolio {
+    position: relative;
     background: #EFEFEF;
-    margin-bottom: 10px;
 }
 
-.section-portfolio .container {
+.section-portfolio .main-carousel {
+    position: relative;
     height: 600px;
 }
 
@@ -853,8 +854,6 @@ ol.type li a:hover {
         font-size: 30px;
     }
 
-
-
     .main-header .navbar-brand img {
         width: 60px;
     }
@@ -897,6 +896,10 @@ ol.type li a:hover {
 
     .section-portfolio .categories {
         padding-bottom: 0;
+    }
+
+    .section-portfolio .main-carousel {
+        height: 400px;
     }
 
     .footer {
@@ -950,6 +953,10 @@ ol.type li a:hover {
 
     .section-portfolio ol.type li {
         width: 75%;
+    }
+
+    .section-portfolio .main-carousel {
+        height: 300px;
     }
 }
 
