@@ -73,7 +73,6 @@ class HomeController extends Controller
      */
     public function categories(string $slug)
     {
-        $locale = app()->getLocale();
         $category = Category::whereTranslation('slug', $slug)->firstOrFail();
         $projects = $category->projects()->paginate(self::PROJECTS_ON_PAGE);
 

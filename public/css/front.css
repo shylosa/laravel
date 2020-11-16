@@ -15564,6 +15564,17 @@ ol.type li a:hover {
 }
 /* =============================/section-show-page============================== */
 
+/* =============================.section-list-page============================== */
+.section-list-page .row {
+    display: flex;
+    justify-content: center;
+}
+
+.section-list-page h1 {
+    font-size: 22px;
+}
+/* =============================/section-list-page============================== */
+
 /* =============================section-projects============================== */
     .section-projects .row {
         justify-content: center;

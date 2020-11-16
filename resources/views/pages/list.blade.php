@@ -2,7 +2,7 @@
 
 @section('content')
   <!--main content start-->
-  <section class="section-projects">
+  <section class="section-list-page">
     <div class="container">
       <div class="row">
         <div class="col-md-8">
@@ -13,9 +13,6 @@
                   <div class="post-thumb">
                     <a href="{{ route('projects.show_project', $project->getSlug()) }}">
                       <img src="{{ $project->getMainPhoto() }}" alt="">
-                    </a>
-                    <a href="{{ route('projects.show_project', $project->getSlug()) }}" class="post-thumb-overlay text-center">
-                      <div class="text-uppercase text-center">View Post</div>
                     </a>
                   </div>
                   <div class="post-content">
