@@ -430,6 +430,10 @@ hr {
     text-align: center;
 }
 
+.section-services .container {
+    position: relative;
+}
+
 .section-services .row {
     width: 100%;
     margin: 0;
@@ -451,6 +455,26 @@ hr {
 
 .custom-furniture p {
     font-size: 20px;
+    margin: 0;
+}
+
+.custom-furniture:before,
+.custom-furniture:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: var(--link-color);
+    width: 2px;
+    height: 100%;
+    top: 0;
+}
+
+.custom-furniture:before {
+    left: 0;
+}
+
+.custom-furniture:after {
+    right: 0;
 }
 /* =============================.section-portfolio============================== */
 
