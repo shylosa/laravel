@@ -15345,6 +15345,9 @@ hr {
     box-shadow: 15px 0 #5f3f3f;
 }
 
+.custom-furniture p {
+    font-size: 20px;
+}
 /* =============================.section-portfolio============================== */
 
 .section-portfolio {
