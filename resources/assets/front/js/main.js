@@ -15,7 +15,7 @@ function main() {
         e.preventDefault();
         const href = this.getAttribute('href');
 
-        if (isHasAnchorsOnCurrentPage() && isLinkHasHash(href)) {
+        if (isHasAnchorsOnCurrentPage() && isAnchor(href)) {
             const offsetTop = document.querySelector(href).offsetTop;
             scroll({
                 top: offsetTop,
@@ -28,7 +28,7 @@ function main() {
             if (isMenuOpen()) {
                 toggleHandler();
             }
-        } else if (!isLinkHasHash(href)) {
+        } else if (!isAnchor(href)) {
             window.location.href = href;
         } else {
             window.location.href = window.location.origin + '/' + getLocale() + href;
@@ -39,7 +39,7 @@ function main() {
         return document.querySelectorAll('.js-anchor').length > 1;
     }
 
-    function isLinkHasHash(href) {
+    function isAnchor(href) {
         return href.indexOf('#') !== -1;
     }
 
@@ -62,13 +62,42 @@ function main() {
         });
     });
 
+    Element.prototype.show = function () {
+        if (!this.classList.contains('show')) {
+            this.classList.remove('hide');
+            this.classList.add('show');
+        }
+    }
+    Element.prototype.hide = function () {
+        if (!this.classList.contains('hide')) {
+            this.classList.remove('show');
+            this.classList.add('hide');
+        }
+    }
+    Element.prototype.addClass = function (cls) {
+        if (!this.classList.contains(cls)) {
+            this.classList.add(cls);
+        }
+    }
+    Element.prototype.removeClass = function (cls) {
+        if (this.classList.contains(cls)) {
+            this.classList.remove(cls);
+        }
+    }
+    Element.prototype.toggleClass = function (cls) {
+        if (!this.classList.contains(cls)) {
+            this.classList.add(cls);
+        } else {
+            this.classList.remove(cls);
+        }
+    }
     window.addEventListener('scroll', showScrollToTopLink);
 
     function showScrollToTopLink() {
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            scrollToTopLink.style.display = 'block';
+            scrollToTopLink.show();
         } else {
-            scrollToTopLink.style.display = 'none';
+            scrollToTopLink.hide();
         }
     }
 
@@ -79,27 +108,16 @@ function main() {
         toggleMenu();
         toggleScrollbar();
         toggleLockScroll();
+        scrollToTopLink.hide();
     }
 
     function toggleLockScroll() {
-        let pageClass = document.body.classList;
-        let jsClass = 'js-disable-scroll';
-        if (pageClass.contains(jsClass)) {
-            pageClass.remove(jsClass);
-        } else {
-            pageClass.add(jsClass);
-        }
+        document.body.toggleClass('js-disable-scroll');
     }
 
     function toggleMenu()
     {
-        let burgerClass = document.getElementById('menu__toggle').classList;
-        let jsChecked = 'js-checked';
-        if (isMenuOpen()) {
-            burgerClass.remove(jsChecked);
-        } else {
-            burgerClass.add(jsChecked);
-        }
+        document.getElementById('menu__toggle').toggleClass('js-checked');
     }
 
     function isMenuOpen()
@@ -129,8 +147,10 @@ function main() {
 window.addEventListener('load', function () {
    let preloader = document.querySelector('.preloader');
    if (typeof preloader !== 'undefined' && preloader) {
-       preloader.classList.add('hide');
-       preloader.classList.remove('show');
+       preloader.hide();
+       setTimeout(function () {
+           preloader.style.display = 'none';
+       }, 600);
    }
 });
 
