@@ -159,7 +159,7 @@ window.addEventListener('load', function() {
   const preloader = document.querySelector('.preloader');
   if (typeof preloader !== 'undefined' && preloader) {
     preloader.hide();
-    setTimeout(function() {
+    setTimeout(() => {
       preloader.style.display = 'none';
     }, 600);
   }
