@@ -73,7 +73,7 @@
       </div>
       <div class="custom-furniture">
         <p>{{ __('We make the furniture you are interested in based on a sample photo, picture or drawing.') }}</p>
-        <p>{{ __('Have you seen anywhere on the internet the furniture you would like to have? No problem! Show us the photo and we will make it for you!') }}</p>
+        <p class="typewriter">{{ __('Have you seen anywhere on the internet the furniture you would like to have? No problem! Show us the photo and we will make it for you!') }}</p>
       </div>
     </div>
   </section>
