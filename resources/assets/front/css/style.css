@@ -805,6 +805,47 @@ ol.type li a:hover {
 }
 /* ============================= ./Swiper-carousel ============================== */
 
+/* ============================= .Spatie-cookie-consent ============================== */
+.cookie-consent {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #28a745!important;
+    text-align: center!important;
+    padding: .5rem!important;
+    z-index: 1030;
+}
+
+.cookie-consent__message {
+    color: #f8f9fa!important;
+}
+
+.cookie-consent__agree {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: .25rem .5rem;
+    line-height: 1.5;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.cookie-consent__agree:hover {
+    background-color: #004eac;
+}
+
+/* ============================= ./Spatie-cookie-consent ============================== */
+
 /* ============================= Large Devices, Wide Screens ============================== */
 @media only screen and (max-width: 1200px) {
 

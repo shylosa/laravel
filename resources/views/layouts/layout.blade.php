@@ -86,6 +86,7 @@
 </footer>
 <!-- ./footer -->
 <!-- js files -->
+@include('cookieConsent::index')
 <script src="/js/front.js"></script>
 </body>
 </html>
