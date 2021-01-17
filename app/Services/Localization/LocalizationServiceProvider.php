@@ -7,6 +7,7 @@ use App\Services\Localization\Localization;
 
 /**
  * Class LocalizationServiceProvider
+ *
  * @package App\Services\Localization
  */
 class LocalizationServiceProvider extends ServiceProvider
@@ -14,7 +15,7 @@ class LocalizationServiceProvider extends ServiceProvider
     /**
      * {@inheritdoc }
      */
-    public function register()
+    public function register() :void
     {
         $this->app->bind("Localization", Localization::class);
     }

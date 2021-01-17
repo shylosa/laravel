@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Lang;
 
+
+/**
+ * Class LanguageController
+ * @package App\Http\Controllers
+ */
 class LanguageController extends Controller
 {
     /**
@@ -13,12 +17,13 @@ class LanguageController extends Controller
      * @param string $lang
      * @return RedirectResponse
      */
-    public function switchLang(Request $request, string $lang)
+    public function switchLang(Request $request, string $lang): RedirectResponse
     {
         // Store the URL on which the user was
         $previous_url = url()->previous();
 
         // Transform it into a correct request instance
+        /** @var Request $previous_request */
         $previous_request = app('request')->create($previous_url);
 
         // Get Query Parameters if applicable
@@ -27,6 +32,7 @@ class LanguageController extends Controller
         // Store the segments of the last request as an array
         $prefix = $previous_request->segment(1, '');
         $segments = $previous_request->segments();
+
         if (array_key_exists($prefix, config('translatable.locales'))) {
             array_shift($segments);
         }
