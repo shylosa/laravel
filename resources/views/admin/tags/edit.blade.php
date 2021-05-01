@@ -33,7 +33,7 @@
           {{ Form::open(['route' => ['tags.update',$tag->id], 'method' => 'put']) }}
           <div class="col-md-6">
             <div class="form-group">
-              @foreach(\App\AppModel::getLocales() as $locale => $language)
+              @foreach(\App\Models\AppModel::getLocales() as $locale => $language)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
                 <input type="text" class="form-control" id="{{ $locale }}_title" name="{{ $locale }}_title"
                        placeholder="" value="{{ $tag->translate($locale)->title }}">

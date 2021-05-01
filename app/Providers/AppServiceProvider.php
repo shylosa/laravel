@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\AppModel;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -39,5 +40,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('admin._sidebar', static function ($view) {
             $view->with('count', AppModel::sidebarCount());
         });
+
+        // Use Bootstrap styles for pagination blocks.
+        Paginator::useBootstrap();
     }
 }

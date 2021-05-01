@@ -37,50 +37,52 @@ function removeMainPhoto(t) {
 }
 
 const photos = document.querySelector('.js-photos-container');
-photos.addEventListener('change', (event) => {
-  const t = event.target;
-  if (t.tagName === 'INPUT') {
-    if (isMainPhoto(t)) {
-      removeMainPhoto(t);
+if (photos) {
+  photos.addEventListener('change', (event) => {
+    const t = event.target;
+    if (t.tagName === 'INPUT') {
+      if (isMainPhoto(t)) {
+        removeMainPhoto(t);
+      }
+      addPhoto(t);
     }
-    addPhoto(t);
-  }
-});
+  });
 
-photos.addEventListener('click', (event) => {
-  const t = event.target;
-  const jsAddImage = document.getElementById('js-add-image');
+  photos.addEventListener('click', (event) => {
+    const t = event.target;
+    const jsAddImage = document.getElementById('js-add-image');
 
-  // Add preview block
-  if (t.id === 'js-add-image') {
-    event.preventDefault();
-    // container
-    const field = document.createElement('div');
-    field.classList.add('js-photos');
-    jsAddImage.insertAdjacentElement('beforebegin', field);
-    // preview
-    const preview = document.createElement('div');
-    preview.classList.add('img-preview');
-    field.appendChild(preview);
-    // new input element
-    const input = document.createElement('input');
-    input.classList.add('btn', 'btn-dark');
-    input.type = 'file';
-    input.name = 'photos[]';
-    input.style.display = 'none';
-    input.classList.add('mb-2', 'mt-2');
-    field.appendChild(input);
+    // Add preview block
+    if (t.id === 'js-add-image') {
+      event.preventDefault();
+      // container
+      const field = document.createElement('div');
+      field.classList.add('js-photos');
+      jsAddImage.insertAdjacentElement('beforebegin', field);
+      // preview
+      const preview = document.createElement('div');
+      preview.classList.add('img-preview');
+      field.appendChild(preview);
+      // new input element
+      const input = document.createElement('input');
+      input.classList.add('btn', 'btn-dark');
+      input.type = 'file';
+      input.name = 'photos[]';
+      input.style.display = 'none';
+      input.classList.add('mb-2', 'mt-2');
+      field.appendChild(input);
 
-    input.click();
-  }
-
-  // Remove preview block
-  if (t.classList.contains('js-cancel-button')) {
-    if (isMainPhoto(t)) {
-      removeMainPhoto(t.parentNode);
-      document.getElementById('photos[0]').value = '';
-    } else {
-      t.parentNode.parentNode.remove();
+      input.click();
     }
-  }
-});
+
+    // Remove preview block
+    if (t.classList.contains('js-cancel-button')) {
+      if (isMainPhoto(t)) {
+        removeMainPhoto(t.parentNode);
+        document.getElementById('photos[0]').value = '';
+      } else {
+        t.parentNode.parentNode.remove();
+      }
+    }
+  });
+}

@@ -33,7 +33,7 @@
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              @foreach(\app\AppModel::getLocales() as $locale)
+              @foreach(\App\Models\AppModel::getLocales() as $locale)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
                 <input type="text" class="form-control" id="{{ $locale }}_title" placeholder="" name="{{ $locale }}_title"
                        value="{{ $project->translate($locale) ? $project->translate($locale)->title : ''}}">
@@ -48,7 +48,7 @@
                 <div class="img-preview">
                   @if ($project->photos->count() > 0)
                     <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
-                    <img src="{{ $project->getMainPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
+                    <img src="{{ $project->getMainPhoto() }}" alt="{{ \App\Models\Photo::noPhoto() }}">
                     <input class="old-photos" type="hidden" name="old_photos[0]" value="{{ $project->getMainPhotoID() }}">
                   @endif
                 </div>
@@ -64,7 +64,7 @@
                     <div class="js-photos">
                       <div class="img-preview">
                         <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
-                        <img src="{{ $photo->getPhoto() }}" alt="{{ \App\Photo::noPhoto() }}">
+                        <img src="{{ $photo->getPhoto() }}" alt="{{ \App\Models\Photo::noPhoto() }}">
                         <input class="old-photos" type="hidden" name="old_photos[]" value="{{ $photo->id }}">
                       </div>
                       <input class="btn btn-dark mb-2 mt-2" type="file" name="photos[]" style="display: none;">
@@ -108,7 +108,7 @@
             <!-- checkbox -->
             <div class="col-md-12">
               <div class="form-group">
-                @foreach(\app\AppModel::getLocales() as $locale)
+                @foreach(\app\Models\AppModel::getLocales() as $locale)
                   <label for="{{ $locale }}_description">Описание-{{ $locale }}</label>
                   <textarea class="form-control" id="{{ $locale }}_description" name="{{ $locale }}_description"
                             cols="30" rows="8">{{ $project->translate($locale) ? $project->translate($locale)->description : '' }}</textarea>

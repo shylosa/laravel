@@ -42,7 +42,7 @@
               <tr>
                 <td>{{$category->id}}</td>
                 <td>
-                  @foreach(\App\AppModel::getLocales() as $locale => $language)
+                  @foreach(\App\Models\AppModel::getLocales() as $locale => $language)
                     @if ($category->hasTranslation($locale))
                       <li class="category">{{ $category->translate($locale)->title }}</li>
                     @endif

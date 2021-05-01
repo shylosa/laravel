@@ -35,7 +35,7 @@
         <div class="box-body">
           <div class="col-md-6">
             <div class="form-group">
-              @foreach(\app\AppModel::getLocales() as $locale)
+              @foreach(\app\Models\AppModel::getLocales() as $locale)
                 <label for="{{ $locale }}_title">Название-{{ $locale }}</label>
                 <input type="text" class="form-control" id="{{ $locale }}_title" placeholder=""
                        name="{{ $locale }}_title" value="{{ old($locale . '_title') }}">
@@ -91,7 +91,7 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                @foreach(\app\AppModel::getLocales() as $locale)
+                @foreach(\app\Models\AppModel::getLocales() as $locale)
                   <label for="{{ $locale }}_description">Описание-{{ $locale }}</label>
                   <textarea class="form-control" id="{{ $locale }}_description"
                             name="{{ $locale }}_description" cols="30" rows="8">{{ old($locale . '_description') }}</textarea>

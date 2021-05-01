@@ -57,7 +57,7 @@
                 <div class="img-preview">
                   @if ($user->avatar)
                     <div class="js-cancel-button far fa-times-circle fa-2x" title="Удалить фото"></div>
-                    <img src="{{ $user->getAvatar() }}" alt="{{ \App\Photo::noPhoto() }}">
+                    <img src="{{ $user->getAvatar() }}" alt="{{ \App\Models\Photo::noPhoto() }}">
                     <input class="old-photos" type="hidden" name="old_photos[0]" value="{{ $user->id }}">
                   @endif
                 </div>
