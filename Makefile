@@ -3,20 +3,21 @@
 SHELL := /bin/sh
 CURRENT_UID := $(shell id -u)
 CURRENT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+PASS := 1
 
 #test:
 #	@echo $(CURRENT_UID)
 
 #remove folder with request cache
 flush:
-	php artisan route:clear
+	echo $(PASS) | sudo -S php artisan route:clear
 	php artisan config:clear
 	php artisan cache:clear
 
 #change owner and permissions for project folder
 owner:
-	sudo chown -R $(CURRENT_UID):www-data $(CURRENT_DIR)
-	sudo chmod -R 775 $(CURRENT_DIR)
+	echo $(PASS) | sudo -S chown -R $(CURRENT_UID):www-data $(CURRENT_DIR)
+	sudo chmod -R 777 $(CURRENT_DIR)
 
 docker-up: memory
 	docker-compose up -d
@@ -46,19 +47,19 @@ horizon-terminate:
 	docker-compose exec laravel_php php artisan horizon:terminate
 
 memory:
-	sudo sysctl -w vm.max_map_count=262144
+	echo $(PASS) | sudo -S sysctl -w vm.max_map_count=262144
 
 perm:
-	sudo chgrp -R www-data storage bootstrap/cache
+	echo $(PASS) | sudo -S chgrp -R www-data storage bootstrap/cache
 	sudo chmod -R ug+rwx storage bootstrap/cache
 
 clear:
-	php artisan route:clear
+	echo $(PASS) | sudo -S php artisan route:clear
 	php artisan config:clear
 	php artisan cache:clear
 
 up:
-	sudo service mysql stop
+	echo $(PASS) | sudo -S service mysql stop
 	sudo service apache2 stop
 	sudo service nginx stop
 	docker-compose up -d
@@ -68,3 +69,10 @@ stop:
 
 watch:
 	npm run watch-poll
+
+php:
+	docker exec -it -u 0 laravel_php bash
+
+restart:
+	echo $(PASS) | sudo -S service apache2 restart
+	sudo service mysql restart

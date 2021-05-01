@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\AppModel;
+use App\Models\AppModel;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;

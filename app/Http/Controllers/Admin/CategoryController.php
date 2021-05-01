@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\AppModel;
-use App\Category;
+use App\Models\AppModel;
+use App\Models\Category;
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;

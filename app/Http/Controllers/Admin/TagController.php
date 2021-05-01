@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\AppModel;
-use App\Tag;
+use App\Models\AppModel;
+use App\Models\Tag;
 use Astrotomic\Translatable\Locales;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,6 +16,10 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
+/**
+ * Class TagController
+ * @package App\Http\Controllers\Admin
+ */
 class TagController extends Controller
 {
     /**

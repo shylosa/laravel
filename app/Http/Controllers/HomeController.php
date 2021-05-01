@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
-use App\Tag;
-use App\Category;
+use App\Models\Project;
+use App\Models\Tag;
+use App\Models\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Auth;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;

@@ -2,12 +2,12 @@
 /**
  * Serhii Shylo
  *
- * PHP Version 7.2
+ * PHP Version 7.4
  *
  * @category Personal project
  * @package JOIWood
  * @author Serhii Shylo <shylosa.mm@gmail.com>
- * @copyright 2020 Serhii Shylo
+ * @copyright 2021 Serhii Shylo
  * @license http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
  */
 
@@ -17,11 +17,11 @@
  * @category Personal project
  * @package JOIWood
  * @author Serhii Shylo <shylosa.mm@gmail.com>
- * @copyright 2020 Serhii Shylo
+ * @copyright 2021 Serhii Shylo
  * @license http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
  */
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Eloquent;

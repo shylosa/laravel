@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\AppModel;
-use App\Project;
-use App\Tag;
-use App\Category;
+use App\Models\AppModel;
+use App\Models\Project;
+use App\Models\Tag;
+use App\Models\Category;
 use Astrotomic\Translatable\Locales;
 use Eloquent;
 use Exception;
