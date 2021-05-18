@@ -68,7 +68,7 @@ class Photo extends AppModel
     public function getPhoto()
     {
         if ($this->image === null) {
-            self::noImage();
+            return self::noPhoto();
         }
 
         return '/uploads/' . $this->image;

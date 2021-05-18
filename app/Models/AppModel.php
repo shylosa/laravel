@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use DB;
-use Doctrine\DBAL\Driver\PDOException;
+use Doctrine\DBAL\Driver\Exception;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +26,7 @@ abstract class AppModel extends Model
         foreach ($tables as $table) {
             try {
                 $count[$table] = DB::table($table)->get()->count();
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 echo __('Подключение не удалось: ') . $e->getMessage();
             }
         }

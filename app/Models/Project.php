@@ -46,6 +46,7 @@ use Astrotomic\Translatable\Translatable;
  * @mixin Eloquent
  * @property int $id
  * @property string $title
+ * @property string $main_image
  * @property string|null $description
  * @property int|null $category_id
  * @property string $customer_name
@@ -385,7 +386,7 @@ class Project extends AppModel implements TranslatableContract
     {
         return ($this->category !== null)
             ? $this->category->title
-            : 'Нет категории';
+            : __('Нет категории');
     }
 
     /**
@@ -397,7 +398,7 @@ class Project extends AppModel implements TranslatableContract
     {
         return (!$this->tags->isEmpty())
             ? implode(', ', $this->tags->pluck('title')->all())
-            : 'Нет тегов';
+            : __('Нет тегов');
     }
 
     /**

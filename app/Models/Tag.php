@@ -106,6 +106,6 @@ class Tag extends AppModel implements TranslatableContract
      */
     public static function getAllTagsList()
     {
-        return Tag::with('translations')->get()->pluck('title', 'id')->all();
+        return self::with('translations')->get()->pluck('title', 'id')->all();
     }
 }
