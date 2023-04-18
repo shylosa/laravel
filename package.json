@@ -36,7 +36,7 @@
     "@beyonk/google-fonts-webpack-plugin": "^1.2.3",
     "admin-lte": "^2.4.18",
     "dotenv": "^8.2.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "morris.js": "github:morrisjs/morris.js",
     "node-sass": "^7.0.0",
     "startbootstrap-sb-admin-2": "^4.0.7",
