@@ -157,7 +157,7 @@ class Project extends AppModel implements TranslatableContract
      * @param array $fields
      * @return static
      */
-    public static function add($fields): self
+    public static function add(array $fields): self
     {
         $project = new static();
         $project->fill($fields);

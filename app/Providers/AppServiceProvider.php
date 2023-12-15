@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\AppModel;
+use App\Classes\Helpers\Sidebar;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         if ($this->app->environment() !== 'production') {
             $this->app->register(IdeHelperServiceProvider::class);
@@ -26,9 +26,10 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @param Request $request
+     *
      * @return void
      */
-    public function boot(Request $request)
+    public function boot(Request $request): void
     {
         // Set the app locale according to the URL
         if (array_key_exists($request->segment(1), config('translatable.locales'))) {
@@ -38,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         view()->composer('admin._sidebar', static function ($view) {
-            $view->with('count', AppModel::sidebarCount());
+            $view->with('sidebar', Sidebar::getSidebar());
         });
 
         // Use Bootstrap styles for pagination blocks.

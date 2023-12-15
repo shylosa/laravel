@@ -14,30 +14,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 abstract class AppModel extends Model
 {
-    /**
-     * Count elements in sidebar
-     *
-     * @return array
-     */
-    public static function sidebarCount(): array
-    {
-        $tables = ['categories', 'projects', 'tags', 'users'];
-        $count = [];
-        foreach ($tables as $table) {
-            try {
-                $count[$table] = DB::table($table)->get()->count();
-            } catch (Exception $e) {
-                echo __('Подключение не удалось: ') . $e->getMessage();
-            }
-        }
-
-        return $count;
-    }
 
     /**
      * @return array
      */
-    public static function getLocales()
+    public static function getLocales(): array
     {
         return config('translatable.locales');
     }
@@ -45,7 +26,7 @@ abstract class AppModel extends Model
     /**
      * @return mixed
      */
-    public function getSlug()
+    public function getSlug(): mixed
     {
         $locale = app()->getLocale();
         if ($this->hasTranslation($locale)) {
@@ -58,7 +39,7 @@ abstract class AppModel extends Model
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getTitle(): mixed
     {
         $locale = app()->getLocale();
         if ($this->hasTranslation($locale)) {

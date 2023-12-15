@@ -40,14 +40,14 @@ class ProfileController extends Controller
         $this->validate(
             $request,
             [
-            'name'	=> 'required',
+            'name'  => 'required',
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users')->ignore(Auth::user()->id),
             ],
             'avatar' => 'nullable|image'
-        ]
+            ]
         );
 
         $user = Auth::user();
