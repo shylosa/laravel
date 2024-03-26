@@ -25,7 +25,7 @@ class UserController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         $users = User::all();
         return view('admin.users.index', ['users' => $users]);
@@ -36,7 +36,7 @@ class UserController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(): Factory|View|Application
     {
         return view('admin.users.create');
     }
@@ -48,7 +48,7 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'name' => 'required',
@@ -73,6 +73,7 @@ class UserController extends Controller
     public function edit(int $id)
     {
         $user = User::findOrFail($id);
+
         return view('admin.users.edit', ['user' => $user]);
     }
 
@@ -84,7 +85,7 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $user = User::findOrFail($id);
 
@@ -113,9 +114,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         User::findOrFail($id)->remove();
+
         return redirect()->route('users.index');
     }
+
 }

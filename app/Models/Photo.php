@@ -16,19 +16,6 @@ use Illuminate\Support\Facades\Storage;
  * @property int $id
  * @property string $image
  * @property string $project_id
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read Project $project
- * @method static Builder|Photo newModelQuery()
- * @method static Builder|Photo newQuery()
- * @method static Builder|Photo query()
- * @method static Builder|Photo whereCreatedAt($value)
- * @method static Builder|Photo whereId($value)
- * @method static Builder|Photo whereImage($value)
- * @method static Builder|Photo whereProjectId($value)
- * @method static Builder|Photo whereUpdatedAt($value)
- * @property int $is_main
- * @method static Builder|Photo whereIsMain($value)
  */
 class Photo extends AppModel
 {
@@ -53,7 +40,7 @@ class Photo extends AppModel
      */
     public static function add(array $fields): self
     {
-        $photo = new static();
+        $photo = new self();
         $photo->fill($fields);
         $photo->save();
 
@@ -65,7 +52,7 @@ class Photo extends AppModel
      *
      * @return string
      */
-    public function getPhoto()
+    public function getPhoto(): string
     {
         if ($this->image === null) {
             return self::noPhoto();
@@ -77,7 +64,7 @@ class Photo extends AppModel
     /**
      * @return string
      */
-    public static function noPhoto()
+    public static function noPhoto(): string
     {
         return '/img/no-image.png';
     }
@@ -85,7 +72,7 @@ class Photo extends AppModel
     /**
      * Remove image from uploads directory
      */
-    public function removePhoto()
+    public function removePhoto(): void
     {
         if ($this->image !== null) {
             Storage::delete(Project::UPLOAD_PATH . $this->image);

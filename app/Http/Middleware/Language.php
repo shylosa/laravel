@@ -18,7 +18,7 @@ class Language
      * @param Closure $next
      * @return RedirectResponse|mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         // Check if the first segment is admin page
         if (mb_strtolower($request->segment(1)) === 'admin') {

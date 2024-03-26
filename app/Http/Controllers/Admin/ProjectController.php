@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\AppModel;
+use App\Models\Category;
 use App\Models\Project;
 use App\Models\Tag;
-use App\Models\Category;
-use Astrotomic\Translatable\Locales;
 use Eloquent;
 use Exception;
 use Illuminate\Contracts\View\Factory;
@@ -29,7 +27,7 @@ class ProjectController extends Controller
      *
      * @return Factory|View
      */
-    public function index()
+    public function index(): Factory|View
     {
         $projects = Project::paginate(Controller::PER_PAGE);
         return view('admin.projects.index', compact('projects'));
@@ -40,10 +38,10 @@ class ProjectController extends Controller
      *
      * @return Factory|View
      */
-    public function create()
+    public function create(): Factory|View
     {
-        $categories = Category::getAllCategoriesList();
-        $tags = Tag::getAllTagsList();
+        $categories = Category::list();
+        $tags = Tag::list();
 
         return view('admin.projects.create', compact('categories', 'tags'));
     }
@@ -55,7 +53,7 @@ class ProjectController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             '*_title' => 'required|string',
@@ -94,8 +92,8 @@ class ProjectController extends Controller
     public function edit(int $id)
     {
         $project = Project::findOrFail($id);
-        $categories = Category::getAllCategoriesList();
-        $tags = Tag::getAllTagsList();
+        $categories = Category::list();
+        $tags = Tag::list();
         $selectedTags = $project->tags->pluck('id')->all();
         $photos = $project->getAdditionalPhotos();
 
@@ -153,7 +151,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         //Remove records from tags table
         Project::findOrFail($id)->tags()->detach();

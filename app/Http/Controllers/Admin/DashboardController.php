@@ -16,7 +16,7 @@ class DashboardController extends Controller
     /**
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         return view('admin.dashboard');
     }

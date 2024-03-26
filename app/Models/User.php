@@ -3,9 +3,6 @@
 namespace App\Models;
 
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
@@ -27,25 +24,12 @@ use Illuminate\Support\Str;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $avatar
- * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @method static Builder|User newModelQuery()
- * @method static Builder|User newQuery()
- * @method static Builder|User query()
- * @method static Builder|User whereAvatar($value)
- * @method static Builder|User whereCreatedAt($value)
- * @method static Builder|User whereEmail($value)
- * @method static Builder|User whereEmailVerifiedAt($value)
- * @method static Builder|User whereId($value)
- * @method static Builder|User whereIsAdmin($value)
- * @method static Builder|User whereName($value)
- * @method static Builder|User wherePassword($value)
- * @method static Builder|User whereRememberToken($value)
- * @method static Builder|User whereUpdatedAt($value)
  */
 class User extends Authenticatable
 {
     use Notifiable;
+
+    const ROLE_ADMIN = 1;
 
     /**
      * The attributes that are mass assignable.
@@ -81,7 +65,7 @@ class User extends Authenticatable
      */
     public static function add($fields)
     {
-        $user = new static;
+        $user = new self();
         $user->fill($fields);
         $user->save();
 
@@ -129,7 +113,7 @@ class User extends Authenticatable
      *
      * @param $image
      */
-    public function uploadAvatar($image)
+    public function uploadAvatar($image): void
     {
         if ($image === null) {
             return;
@@ -146,7 +130,7 @@ class User extends Authenticatable
     /**
      * Remove user's avatar from disk
      */
-    public function removeAvatar()
+    public function removeAvatar(): void
     {
         if ($this->avatar !== null) {
             Storage::delete(Project::UPLOAD_PATH . $this->avatar);
@@ -171,7 +155,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getAvatar()
+    public function getAvatar(): string
     {
         if ($this->avatar === null) {
             return '/img/no-image.png';
@@ -185,7 +169,7 @@ class User extends Authenticatable
      */
     public function makeAdmin(): void
     {
-        $this->is_admin = (int)true;
+        $this->is_admin = self::ROLE_ADMIN;
         $this->save();
     }
 
@@ -217,6 +201,10 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return Auth::user()->is_admin === (int)true;
+        /** @var $user User */
+        $user = Auth::user();
+
+        return ($user->is_admin === self::ROLE_ADMIN);
     }
+
 }

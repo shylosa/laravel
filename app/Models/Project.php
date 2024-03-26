@@ -55,44 +55,9 @@ use Astrotomic\Translatable\Translatable;
  * @property int $views
  * @property int $is_popular
  * @property string $date
- * @property array $photos
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read Category|null $category
- * @property-read Collection|Photo[] $images
- * @property-read int|null $images_count
- * @property-read Collection|Tag[] $tags
- * @property-read int|null $tags_count
- * @method static Builder|Project newModelQuery()
- * @method static Builder|Project newQuery()
- * @method static Builder|Project query()
- * @method static Builder|Project whereAddress($value)
- * @method static Builder|Project whereCategoryId($value)
- * @method static Builder|Project whereCreatedAt($value)
- * @method static Builder|Project whereCustomerName($value)
- * @method static Builder|Project whereDate($value)
- * @method static Builder|Project whereDescription($value)
- * @method static Builder|Project whereId($value)
- * @method static Builder|Project whereIsPopular($value)
- * @method static Builder|Project whereMainImage($value)
- * @method static Builder|Project whereStatus($value)
- * @method static Builder|Project whereTitle($value)
- * @method static Builder|Project whereUpdatedAt($value)
- * @method static Builder|Project whereViews($value)
- * @property-read int|null $photos_count
- * @property-read ProjectTranslation|null $translation
- * @property-read Collection|ProjectTranslation[] $translations
- * @property-read int|null $translations_count
- * @method static Builder|Project listsTranslations($translationField)
- * @method static Builder|Project notTranslatedIn($locale = null)
- * @method static Builder|Project orWhereTranslation($translationField, $value, $locale = null)
- * @method static Builder|Project orWhereTranslationLike($translationField, $value, $locale = null)
- * @method static Builder|Project orderByTranslation($translationField, $sortMethod = 'asc')
- * @method static Builder|Project translated()
- * @method static Builder|Project translatedIn($locale = null)
- * @method static Builder|Project whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
- * @method static Builder|Project whereTranslationLike($translationField, $value, $locale = null)
- * @method static Builder|Project withTranslation()
+ * @property HasMany $photos
+ *
+ * @property BelongsToMany Tags
  */
 class Project extends AppModel implements TranslatableContract
 {
@@ -103,11 +68,13 @@ class Project extends AppModel implements TranslatableContract
     public const IS_STANDARD = 0;
     public const IS_POPULAR = 1;
 
+    const IS_MAIN_PHOTO = 1;
+
     public const UPLOAD_PATH = 'uploads/';
     /**
      * @var string[]
      */
-    public $translatedAttributes = ['title', 'description', 'customer_name', 'address'];
+    public array $translatedAttributes = ['title', 'description', 'customer_name', 'address'];
 
     /**
      * The attributes that are mass assignable.
@@ -133,12 +100,7 @@ class Project extends AppModel implements TranslatableContract
      */
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Tag::class,
-            'project_tags',
-            'project_id',
-            'tag_id'
-        );
+        return $this->belongsToMany(Tag::class, 'project_tags', 'project_id', 'tag_id');
     }
 
     /**
@@ -201,7 +163,7 @@ class Project extends AppModel implements TranslatableContract
      * @param array $old_photos
      * @throws Exception
      */
-    public function setPhotos($photos, $old_photos)
+    public function setPhotos(array $photos, array $old_photos): void
     {
         // Check for the existence of a directory and create it if necessary
         $this->checkDirectory(self::UPLOAD_PATH);
@@ -228,7 +190,7 @@ class Project extends AppModel implements TranslatableContract
                 $fields = [
                     'project_id' => $this->id,
                     'image' => $filename,
-                    'is_main' => $key === 0 ? (int)true : (int)false
+                    'is_main' => ($key === 0) ? 1 : 0
                 ];
                 Photo::add($fields);
             }
@@ -240,7 +202,7 @@ class Project extends AppModel implements TranslatableContract
      *
      * @return string
      */
-    public function getImage()
+    public function getImage(): string
     {
         if ($this->main_image === null) {
             return '/img/no-image.png';
@@ -252,9 +214,9 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Set category for current project
      *
-     * @param int $id
+     * @param int|null $id
      */
-    public function setCategory(int $id): void
+    public function setCategory(?int $id): void
     {
         if ($id === null) {
             return;
@@ -266,9 +228,9 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Set tag for current project
      *
-     * @param $ids
+     * @param array|null $ids
      */
-    public function setTags($ids): void
+    public function setTags(?array $ids): void
     {
         if ($ids === null) {
             return;
@@ -292,6 +254,7 @@ class Project extends AppModel implements TranslatableContract
     public function setPublic(): void
     {
         $this->status = self::IS_PUBLIC;
+
         $this->save();
     }
 
@@ -382,11 +345,9 @@ class Project extends AppModel implements TranslatableContract
      *
      * @return string
      */
-    public function getCategoryTitle()
+    public function getCategoryTitle(): string
     {
-        return ($this->category !== null)
-            ? $this->category->title
-            : __('Нет категории');
+        return ($this->category !== null) ? $this->category->title : __('Нет категории');
     }
 
     /**
@@ -394,7 +355,7 @@ class Project extends AppModel implements TranslatableContract
      *
      * @return string
      */
-    public function getTagsTitles()
+    public function getTagsTitles(): string
     {
         return (!$this->tags->isEmpty())
             ? implode(', ', $this->tags->pluck('title')->all())
@@ -406,7 +367,7 @@ class Project extends AppModel implements TranslatableContract
      *
      * @return int|null
      */
-    public function getCategoryID()
+    public function getCategoryID(): ?int
     {
         return $this->category !== null ? $this->category->id : null;
     }
@@ -422,7 +383,7 @@ class Project extends AppModel implements TranslatableContract
     }
 
     /**
-     * Returns whether or not the given project category
+     * Returns whether the given project category
      *
      * @return bool
      */
@@ -432,7 +393,7 @@ class Project extends AppModel implements TranslatableContract
     }
 
     /**
-     * Returns whether or not the given project tags
+     * Returns whether the given project tags
      *
      * @return bool
      */
@@ -442,11 +403,11 @@ class Project extends AppModel implements TranslatableContract
     }
 
     /**
-     * Returns whether or not the previous given project has
+     * Returns whether the previous given project has
      *
      * @return mixed
      */
-    public function hasPrevious()
+    public function hasPrevious(): mixed
     {
         return self::where('id', '<', $this->id)->max('id');
     }
@@ -456,18 +417,19 @@ class Project extends AppModel implements TranslatableContract
      *
      * @return mixed
      */
-    public function getPrevious()
+    public function getPrevious(): mixed
     {
         $postID = $this->hasPrevious(); //ID
+
         return self::find($postID);
     }
 
     /**
-     * Returns whether or not the next given project has
+     * Returns whether the next given project has
      *
      * @return mixed
      */
-    public function hasNext()
+    public function hasNext(): mixed
     {
         return self::has('translation')->where('id', '>', $this->id)->min('id');
     }
@@ -477,9 +439,10 @@ class Project extends AppModel implements TranslatableContract
      *
      * @return mixed
      */
-    public function getNext()
+    public function getNext(): mixed
     {
         $postID = $this->hasNext();
+
         return self::find($postID);
     }
 
@@ -496,9 +459,9 @@ class Project extends AppModel implements TranslatableContract
     /**
      * Check for a directory
      *
-     * @param $directory
+     * @param string $directory
      */
-    public function checkDirectory(string $directory)
+    public function checkDirectory(string $directory): void
     {
         $path = public_path() . '/' . $directory;
 
@@ -508,15 +471,15 @@ class Project extends AppModel implements TranslatableContract
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
-    public function getMainPhoto()
+    public function getMainPhoto(): string
     {
         if ($this->photos->isEmpty()) {
             return '';
         }
 
-        $photo = $this->photos->where('is_main', (int)true)->first();
+        $photo = $this->photos->where('is_main', self::IS_MAIN_PHOTO)->first();
         if (empty($photo)) {
             return '/' . self::UPLOAD_PATH . $this->photos->first()->image;
         }
@@ -527,13 +490,13 @@ class Project extends AppModel implements TranslatableContract
     /**
      * @return string
      */
-    public function getMainPhotoID()
+    public function getMainPhotoID(): string
     {
         if ($this->photos->isEmpty()) {
             return '';
         }
 
-        $photo = $this->photos->where('is_main', (int)true)->first();
+        $photo = $this->photos->where('is_main', self::IS_MAIN_PHOTO)->first();
 
         return $photo->id ?? $this->photos[0]->id;
     }
@@ -547,14 +510,14 @@ class Project extends AppModel implements TranslatableContract
             return [];
         }
 
-        return $this->photos->where('is_main', '<>', (int)true)->all();
+        return $this->photos->where('is_main', '<>', self::IS_MAIN_PHOTO)->all();
     }
 
     /**
      * @param $validated
      * @return void
      */
-    public function saveTranslationsData($validated)
+    public function saveTranslationsData($validated): void
     {
         foreach (AppModel::getLocales() as $locale) {
             $this->translateOrNew($locale)->title = $validated[$locale . '_title'];

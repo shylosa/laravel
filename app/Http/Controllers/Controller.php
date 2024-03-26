@@ -15,6 +15,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    //Paginations
+    // Pagination
     public const PER_PAGE = 10;
 }

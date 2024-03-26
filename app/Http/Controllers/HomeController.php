@@ -26,7 +26,7 @@ class HomeController extends Controller
      *
      * @return Factory|View
      */
-    public function index()
+    public function index(): Factory|View
     {
         $projects = Project::translatedIn(app()->getLocale())->paginate(self::PROJECTS_ON_PAGE);
 
@@ -39,7 +39,7 @@ class HomeController extends Controller
      * @param string $slug
      * @return Application|Factory|RedirectResponse|View
      */
-    public function show(string $slug)
+    public function show(string $slug): Factory|View|RedirectResponse|Application
     {
         $locale = app()->getLocale();
         $project = Project::whereTranslation('slug', $slug)->firstOrFail();
@@ -57,7 +57,7 @@ class HomeController extends Controller
      * @param string $slug
      * @return Factory|View
      */
-    public function tags(string $slug)
+    public function tags(string $slug): Factory|View
     {
         $tag = Tag::whereTranslation('slug', $slug)->firstOrFail();
         $projects = $tag->projects()->paginate(self::PROJECTS_ON_PAGE);
@@ -71,7 +71,7 @@ class HomeController extends Controller
      * @param string $slug
      * @return Application|Factory|RedirectResponse|View
      */
-    public function categories(string $slug)
+    public function categories(string $slug): Factory|View|RedirectResponse|Application
     {
         $category = Category::whereTranslation('slug', $slug)->firstOrFail();
         $projects = $category->projects()->paginate(self::PROJECTS_ON_PAGE);

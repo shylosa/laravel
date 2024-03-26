@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AppModel;
 use App\Models\Category;
-use Astrotomic\Translatable\Validation\RuleFactory;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,9 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use \Astrotomic\Translatable\Locales;
 
 /**
  * Class CategoriesController
@@ -27,7 +24,7 @@ class CategoryController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         $categories = Category::paginate(Controller::PER_PAGE);
         //We leave only the categories that have translations
@@ -45,7 +42,7 @@ class CategoryController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(): Factory|View|Application
     {
         return view('admin.categories.create');
     }
@@ -56,7 +53,7 @@ class CategoryController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             '*_title' => 'string'
@@ -74,10 +71,10 @@ class CategoryController extends Controller
     /**
      * Show edit existing category and translations form
      *
-     * @param $id
+     * @param int $id
      * @return Application|Factory|View
      */
-    public function edit(int $id)
+    public function edit(int $id): Factory|View|Application
     {
         $category = Category::findOrFail($id);
 
@@ -91,7 +88,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $validated = $request->validate([
             '*_title' => 'string',

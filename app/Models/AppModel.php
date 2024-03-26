@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use DB;
-use Doctrine\DBAL\Driver\Exception;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class AppModel
+ * Class AppModel.
+ *
  * @package App
  * @mixin Eloquent
  */
 abstract class AppModel extends Model
 {
-
     /**
      * @return array
      */

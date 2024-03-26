@@ -19,32 +19,6 @@ use Astrotomic\Translatable\Translatable;
  * @property int $id
  * @property string $title
  * @property string $slug
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read Collection|Project[] $projects
- * @property-read int|null $projects_count
- * @method static Builder|Tag findSimilarSlugs($attribute, $config, $slug)
- * @method static Builder|Tag newModelQuery()
- * @method static Builder|Tag newQuery()
- * @method static Builder|Tag query()
- * @method static Builder|Tag whereCreatedAt($value)
- * @method static Builder|Tag whereId($value)
- * @method static Builder|Tag whereSlug($value)
- * @method static Builder|Tag whereTitle($value)
- * @method static Builder|Tag whereUpdatedAt($value)
- * @property-read TagTranslation|null $translation
- * @property-read Collection|TagTranslation[] $translations
- * @property-read int|null $translations_count
- * @method static Builder|Tag listsTranslations($translationField)
- * @method static Builder|Tag notTranslatedIn($locale = null)
- * @method static Builder|Tag orWhereTranslation($translationField, $value, $locale = null)
- * @method static Builder|Tag orWhereTranslationLike($translationField, $value, $locale = null)
- * @method static Builder|Tag orderByTranslation($translationField, $sortMethod = 'asc')
- * @method static Builder|Tag translated()
- * @method static Builder|Tag translatedIn($locale = null)
- * @method static Builder|Tag whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
- * @method static Builder|Tag whereTranslationLike($translationField, $value, $locale = null)
- * @method static Builder|Tag withTranslation()
  */
 class Tag extends AppModel implements TranslatableContract
 {
@@ -85,7 +59,6 @@ class Tag extends AppModel implements TranslatableContract
             'tag_id',
             'project_id'
         );
-
     }
 
     /**
@@ -95,7 +68,7 @@ class Tag extends AppModel implements TranslatableContract
      */
     public static function add(): self
     {
-        $model = new static();
+        $model = new self();
         $model->save();
 
         return $model;
@@ -104,7 +77,7 @@ class Tag extends AppModel implements TranslatableContract
     /**
      * @return array
      */
-    public static function getAllTagsList()
+    public static function list(): array
     {
         return self::with('translations')->get()->pluck('title', 'id')->all();
     }

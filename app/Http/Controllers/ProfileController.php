@@ -22,7 +22,7 @@ class ProfileController extends Controller
      *
      * @return Factory|View
      */
-    public function index()
+    public function index(): Factory|View
     {
         $user = Auth::user();
         return view('pages.profile', ['user' => $user]);
@@ -35,7 +35,7 @@ class ProfileController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate(
             $request,

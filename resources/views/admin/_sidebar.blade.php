@@ -10,9 +10,7 @@
     </div>
 
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-header">
-            <a href="{{ route('admin') }}" class="nav-link">АДМИН-ПАНЕЛЬ</a>
-        </li>
+        <li class="nav-header"></li>
         @foreach($sidebar as $sidebarItem)
             <li class="nav-item">
                 <a href="{{ route($sidebarItem['url']) }}" class="nav-link">

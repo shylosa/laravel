@@ -33,9 +33,9 @@ class AuthController extends Controller
      * Registration action
      *
      * @param Request $request
-     * @return RedirectResponse|Redirector
+     * @return RedirectResponse
      */
-    public function register(Request $request)
+    public function register(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required',
@@ -56,7 +56,7 @@ class AuthController extends Controller
      *
      * @return Factory|View
      */
-    public function loginForm()
+    public function loginForm(): Factory|View
     {
         return view('auth.login');
     }
@@ -65,9 +65,9 @@ class AuthController extends Controller
      * Login action
      *
      * @param Request $request
-     * @return RedirectResponse|Redirector
+     * @return RedirectResponse
      */
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse
     {
         $request->validate([
             'email' => 'required|email',
@@ -87,9 +87,9 @@ class AuthController extends Controller
     /**
      * Logout action
      *
-     * @return RedirectResponse|Redirector
+     * @return RedirectResponse
      */
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         return redirect()->route('login');

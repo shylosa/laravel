@@ -27,7 +27,7 @@ class TagController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         $tags = Tag::paginate(Controller::PER_PAGE);
         //We leave only the tags that have translations
@@ -45,7 +45,7 @@ class TagController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(): Factory|View|Application
     {
         return view('admin.tags.create');
     }
@@ -56,7 +56,7 @@ class TagController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             '*_title' => 'string'
@@ -77,7 +77,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return Application|Factory|View
      */
-    public function edit(int $id)
+    public function edit(int $id): Factory|View|Application
     {
         $tag = Tag::findOrFail($id);
 
@@ -91,7 +91,7 @@ class TagController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $validated = $request->validate([
             '*_title' => 'string',
@@ -120,7 +120,7 @@ class TagController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         $model = Tag::findOrFail($id);
 

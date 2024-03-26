@@ -19,7 +19,7 @@ class AdminMiddleware
      * @param Closure $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if (Auth::check() && Auth::user()->is_admin) {
             return $next($request);
